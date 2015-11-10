@@ -13,5 +13,7 @@ public:
 
 	Vector operator+(const Vector& v);
 	Vector operator-(const Vector& v);
+
+	float Length() const;
 };
 #endif

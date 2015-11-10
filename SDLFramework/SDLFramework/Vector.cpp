@@ -1,5 +1,7 @@
 #include "Vector.h"
 
+#include <cmath>
+
 Vector::Vector()
 	: z(0), y(0), x(0)
 {
@@ -35,4 +37,12 @@ Vector Vector::operator-(const Vector& v)
 	v2.z = z - v.z;
 
 	return v2;
+}
+
+float Vector::Length() const {
+	float length;
+
+	length = sqrt(x*x + y*y);
+
+	return length;
 }
