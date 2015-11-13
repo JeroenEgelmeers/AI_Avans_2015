@@ -14,6 +14,7 @@
     <ProjectGuid>{1BDED753-9F4B-440C-9BE8-4FA0335A4310}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SDLFramework</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,8 +85,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
@@ -102,8 +106,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="FWApplication.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="IGameObject.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>

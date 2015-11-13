@@ -5,7 +5,7 @@ class Vector;
 
 class Point
 {
-private:
+protected:
 	Point();
 public:
 	float x;
