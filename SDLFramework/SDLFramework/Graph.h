@@ -2,6 +2,9 @@
 #define __graph__
 
 #include <vector>
+#include <map>
+#include <math.h>
+#include <iostream>
 
 class Node;
 class Edge;
@@ -22,6 +25,9 @@ public:
 	
 	Node* GetNode(int i);
 	Edge* GetEdge(int i);
+
+	std::vector<Node*> Graph::AStar(Node* start, Node* goal);
+	int CalculateHeuristic(Node* start, Node* goal);
 
 	~Graph();
 };

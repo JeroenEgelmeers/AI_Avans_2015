@@ -2,26 +2,23 @@
 
 using std::vector;
 
-Node::Node() 
+Node::Node()
 	: Point()
-{
-}
+{}
 
 
 Node::Node(float x, float y)
-	: Point(x, y) 
-{
-}
+	: Point(x, y)
+{}
 
 Node::Node(float x, float y, float z)
-	: Point(x, y, z) 
-{
-}
+	: Point(x, y, z)
+{}
 
-vector<int> Node::GetEdges() {
+vector<int> Node::GetEdges()
+{
 	return edges;
 }
 
 Node::~Node()
-{
-}
+{}

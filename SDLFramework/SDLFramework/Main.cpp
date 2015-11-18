@@ -21,10 +21,10 @@ int main(int args[])
 		LOG("Couldn't create window...");
 		return EXIT_FAILURE;
 	}
-	
+
 	application->SetTargetFPS(60);
 	application->SetColor(Color(255, 10, 40, 255));
-	
+
 	auto graph = new Graph();
 
 	// Nodes
@@ -67,33 +67,36 @@ int main(int args[])
 		{
 			switch (event.type)
 			{
-			case SDL_QUIT:
-				application->Quit();
-				break;
-			case SDL_KEYDOWN:
-				switch (event.key.keysym.sym){
-				case SDLK_SPACE:
-					cow->setCurrentNode(graph->GetNode(rand() % 10));
-					hare->setCurrentNode(graph->GetNode(rand() % 10));
+				case SDL_QUIT:
+					application->Quit();
 					break;
-				default:
-					break;
-				}
+				case SDL_KEYDOWN:
+					switch (event.key.keysym.sym)
+					{
+						case SDLK_SPACE:
+							cow->setCurrentNode(graph->GetNode(rand() % 10));
+							hare->setCurrentNode(graph->GetNode(rand() % 10));
+							break;
+						default:
+							break;
+					}
 			}
 
 		}
-		
+
 		application->SetColor(Color(0, 0, 0, 255));
 		application->DrawText("KMINT opdracht 1", 800 / 2, 10);
 		application->DrawText("Hit the SPACE bar to move the cow.", 800 / 2, 25);
 
 		// Draw Nodes
-		for (auto &n : graph->GetNodes()) {
-			application->DrawRect(n.x - 5, n.y -5, 10, 10, true);
+		for (auto &n : graph->GetNodes())
+		{
+			application->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
 		}
 
 		// Draw Edges
-		for (auto &e : graph->GetEdges()) {
+		for (auto &e : graph->GetEdges())
+		{
 			Node* a = graph->GetNode(e.GetFirst());
 			Node* b = graph->GetNode(e.GetSecond());
 
@@ -110,6 +113,6 @@ int main(int args[])
 		application->RenderGameObjects();*/
 		application->EndTick();
 	}
-		
+
 	return EXIT_SUCCESS;
 }
