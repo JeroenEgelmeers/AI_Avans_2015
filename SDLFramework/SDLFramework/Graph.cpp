@@ -3,6 +3,8 @@
 #include "Edge.h"
 
 #include "Vector.h"
+#include "Cow.h"
+#include "Hare.h"
 
 using namespace std;
 
@@ -20,8 +22,10 @@ void Graph::AddEdge(int a, int b)
 {
 	edges.push_back(Edge(a, b, 1000 + (nodes[a] + nodes[b]).Length()));
 
-	nodes[a].GetEdges().push_back(edges.size() - 1);
-	nodes[b].GetEdges().push_back(edges.size() - 1);
+	nodes[a].AddEdge(edges.size() - 1);
+	nodes[b].AddEdge(edges.size() - 1);
+	//nodes[a].GetEdges().push_back(edges.size() - 1);
+	//nodes[b].GetEdges().push_back(edges.size() - 1);
 }
 
 Node* Graph::GetNode(int i)
@@ -44,17 +48,40 @@ Edge* Graph::GetEdge(int i)
 	return &edges[i];
 }
 
+void Graph::SetCow(Cow* _cow)
+{
+	cow = _cow;
+}
+
+Cow* Graph::GetCow()
+{
+	return cow;
+}
+
+void Graph::SetHare(Hare* _hare)
+{
+	hare = _hare;
+}
+Hare* Graph::GetHare()
+{
+	return hare;
+}
+
+std::vector<Node*> Graph::GetShortestPath()
+{
+	return this->AStar(cow->getCurrentNode(), hare->getCurrentNode());
+}
+
 std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 {
 	std::map<Node*, double> openList;
 	std::vector<Node*> closedList; // = new std::vector<Node*>();
-
-	openList[start] = 0.0;
+	openList.insert(std::pair<Node*, double>(start, 0));
 
 	Node* current = start;
 	closedList.push_back(current);
 
-	float weightTillNow = 0;
+	double weightTillNow = 0;
 
 	while (current != goal)
 	{
@@ -67,7 +94,8 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 				int h = CalculateHeuristic(goal, GetNode(e->GetSecond()));
 				int f = g + h;
 
-				openList[GetNode( e->GetSecond() )] = f;
+				//openList[GetNode( e->GetSecond() )] = f;
+				openList.insert(std::pair<Node*, double>(GetNode(e->GetSecond()), f));
 			}
 		}
 		
@@ -81,7 +109,6 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 		
 		for (size_t i = 0; i < current->GetEdges().size(); i++)
 		{
-
 			if (GetNode(GetEdge(current->GetEdges().at(i))->GetSecond()) == shortestNode)
 			{
 				weightTillNow += GetEdge(current->GetEdges().at(i))->GetLength();

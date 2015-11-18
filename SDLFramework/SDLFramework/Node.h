@@ -14,6 +14,7 @@ public:
 	Node(float x, float y, float z);
 
 	std::vector<int> GetEdges();
+	void AddEdge(int i);
 
 	int GetX() { return x; }
 	int GetY() { return y; }

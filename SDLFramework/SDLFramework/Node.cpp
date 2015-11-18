@@ -20,5 +20,10 @@ vector<int> Node::GetEdges()
 	return edges;
 }
 
+void Node::AddEdge(int i)
+{
+	edges.push_back(i);
+}
+
 Node::~Node()
 {}

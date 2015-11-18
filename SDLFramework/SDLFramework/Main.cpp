@@ -57,6 +57,9 @@ int main(int args[])
 	Cow* cow = new Cow(graph->GetNode(rand() % 10));
 	Hare* hare = new Hare(graph->GetNode(rand() % 10));
 
+	graph->SetCow(cow);
+	graph->SetHare(hare);
+
 	//while (true){}
 	while (application->IsRunning())
 	{
@@ -74,8 +77,9 @@ int main(int args[])
 					switch (event.key.keysym.sym)
 					{
 						case SDLK_SPACE:
-							cow->setCurrentNode(graph->GetNode(rand() % 10));
-							hare->setCurrentNode(graph->GetNode(rand() % 10));
+							//cow->setCurrentNode(graph->GetNode(rand() % 10));
+							//hare->setCurrentNode(graph->GetNode(rand() % 10));
+							graph->GetShortestPath();
 							break;
 						default:
 							break;
@@ -92,6 +96,12 @@ int main(int args[])
 		for (auto &n : graph->GetNodes())
 		{
 			application->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
+		}
+
+		for (size_t i = 0; i < graph->GetNodes().size(); i++)
+		{
+			
+			//application->DrawText(static_cast<char>(i), graph->GetNode(i)->GetX() - 20, graph->GetNode(i)->GetY() - 20);
 		}
 
 		// Draw Edges
