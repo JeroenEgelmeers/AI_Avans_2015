@@ -25,3 +25,7 @@ Point Point::operator+(const Vector& v) {
 
 	return p2;
 }
+
+Vector Point::operator+(const Point& p) {
+	return Vector(p.x - x, p.y - x);
+}

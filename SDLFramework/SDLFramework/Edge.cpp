@@ -1,14 +1,12 @@
 #include "Edge.h"
 
-
-
 Edge::Edge()
-	: second(0), first(0)
+	: length(0), second(0), first(0)
 {
 }
 
-Edge::Edge(int a, int b)
-	: second(b), first(a)
+Edge::Edge(int a, int b, float l)
+	: length(l), second(b), first(a)
 {
 }
 

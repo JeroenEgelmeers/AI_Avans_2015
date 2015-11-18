@@ -89,7 +89,7 @@ int main(int args[])
 
 		// Draw Nodes
 		for (auto &n : graph->GetNodes()) {
-			application->DrawRect(n.x, n.y, 10, 10, true);
+			application->DrawRect(n.x - 5, n.y -5, 10, 10, true);
 		}
 
 		// Draw Edges

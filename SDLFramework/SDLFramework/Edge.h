@@ -7,13 +7,17 @@ private:
 	int first;
 	int second;
 
+	float length;
+
 	Edge();
 public:
-	Edge(int a, int b);
+	Edge(int a, int b, float length);
 	~Edge();
 
 	int GetFirst() { return first; }
 	int GetSecond() { return second; }
+
+	float GetLength() { return length; }
 };
 
 #endif;

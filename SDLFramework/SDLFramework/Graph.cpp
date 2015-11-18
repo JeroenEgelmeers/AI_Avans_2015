@@ -2,6 +2,8 @@
 #include "Node.h"
 #include "Edge.h"
 
+#include "Vector.h"
+
 using namespace std;
 
 Graph::Graph()
@@ -16,7 +18,7 @@ void Graph::AddNode(Node n)
 
 void Graph::AddEdge(int a, int b)
 {	
-	edges.push_back(Edge(a , b));
+	edges.push_back(Edge(a , b, 1000 + (nodes[a] + nodes[b]).Length()));
 
 	nodes[a].GetEdges().push_back(edges.size() - 1);
 	nodes[b].GetEdges().push_back(edges.size() - 1);
