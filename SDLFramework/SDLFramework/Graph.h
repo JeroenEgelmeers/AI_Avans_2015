@@ -16,6 +16,9 @@ public:
 
 	void AddNode(Node n);
 	void AddEdge(int a, int b);
+
+	std::vector<Node> GetNodes();
+	std::vector<Edge> GetEdges();
 	
 	Node* GetNode(int i);
 	Edge* GetEdge(int i);

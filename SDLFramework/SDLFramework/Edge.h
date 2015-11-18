@@ -11,6 +11,9 @@ private:
 public:
 	Edge(int a, int b);
 	~Edge();
+
+	int GetFirst() { return first; }
+	int GetSecond() { return second; }
 };
 
 #endif;

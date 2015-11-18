@@ -2,8 +2,11 @@
 #include "Node.h"
 #include "Edge.h"
 
+using namespace std;
+
 Graph::Graph()
 {
+
 }
 
 void Graph::AddNode(Node n) 
@@ -21,6 +24,14 @@ void Graph::AddEdge(int a, int b)
 
 Node* Graph::GetNode(int i) {
 	return &nodes[i];
+}
+
+vector<Node> Graph::GetNodes() {
+	return nodes;
+}
+
+vector<Edge> Graph::GetEdges() {
+	return edges;
 }
 
 Edge* Graph::GetEdge(int i) {
