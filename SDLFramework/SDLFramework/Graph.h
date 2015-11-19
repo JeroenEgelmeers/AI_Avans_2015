@@ -41,6 +41,7 @@ public:
 
 	std::vector<Node*> Graph::AStar(Node* start, Node* goal);
 	int CalculateHeuristic(Node* start, Node* goal);
+	int FollowEdge(int node, int edge);
 
 	void MoveHare();
 

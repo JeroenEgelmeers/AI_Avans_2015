@@ -73,7 +73,7 @@ std::vector<Node*> Graph::GetShortestPath()
 std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 {
 	std::map<Node*, double> openList;
-	std::vector<Node*> closedList; // = new std::vector<Node*>();
+	std::vector<Node*> closedList;
 	openList.insert(std::pair<Node*, double>(start, 0));
 
 	Node* current = start;
@@ -85,14 +85,15 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 	{
 		for (int i : current->GetEdges())
 		{
-			Edge* e = GetEdge(i);
-			if (std::find(closedList.begin(), closedList.end(), GetNode(e->GetSecond())) == closedList.end())
+			//Edge* e = GetEdge(i);
+			int x = FollowEdge(current->id, i);
+			if (std::find(closedList.begin(), closedList.end(), GetNode(x)) == closedList.end())
 			{
-				int g = weightTillNow + e->GetLength();
-				int h = CalculateHeuristic(goal, GetNode(e->GetSecond()));
+				int g = weightTillNow + GetEdge(i)->GetLength();
+				int h = CalculateHeuristic(goal, GetNode(x));
 				int f = g + h;
 
-				openList.insert(std::pair<Node*, double>(GetNode(e->GetSecond()), f));
+				openList.insert(std::pair<Node*, double>(GetNode(x), f));
 			}
 		}
 		
@@ -112,8 +113,6 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 				break;
 			}
 		}
-		if (shortestNode == nullptr)
-			break;
 
 		current = shortestNode;
 
@@ -133,6 +132,14 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 int Graph::CalculateHeuristic(Node* start, Node* goal)
 {
 	return sqrt(pow((start->GetX() - goal->GetX()), 2) + pow(start->GetY() - goal->GetY(), 2));
+}
+
+int Graph::FollowEdge(int node, int edge)
+{
+	if (this->edges[edge].GetFirst() == node)
+		return edges[edge].GetSecond();
+	else
+		return edges[edge].GetFirst();
 }
 
 void Graph::MoveHare()

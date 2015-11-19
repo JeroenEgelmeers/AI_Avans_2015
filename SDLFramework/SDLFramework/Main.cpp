@@ -45,22 +45,23 @@ int main(int args[])
 
 	// Edges
 	graph->AddEdge(0, 1);
+	graph->AddEdge(0, 5);
 	graph->AddEdge(1, 2);
 	graph->AddEdge(2, 3);
+	graph->AddEdge(2, 5);
+	graph->AddEdge(3, 5);
 	graph->AddEdge(4, 5);
 	graph->AddEdge(5, 6);
+	graph->AddEdge(6, 8);
 	graph->AddEdge(7, 8);
 	graph->AddEdge(8, 9);
 	graph->AddEdge(9, 0);
-	graph->AddEdge(0, 5);
-	graph->AddEdge(6, 8);
-	graph->AddEdge(3, 5);
-	graph->AddEdge(2, 5);
 	//graph->AddEdge(7, 4);
 
 	// TODO set current cow node
 	Cow* cow = new Cow(graph->GetNode(rand() % graph->GetNodes().size()));
 	Hare* hare = new Hare(graph->GetNode(rand() % graph->GetNodes().size()));
+	//Hare* hare = new Hare(graph->GetNode(3));
 
 	graph->SetCow(cow);
 	graph->SetHare(hare);
@@ -74,36 +75,35 @@ int main(int args[])
 		{
 			switch (event.type)
 			{
-				case SDL_QUIT:
-					application->Quit();
+			case SDL_QUIT:
+				application->Quit();
+				break;
+			case SDL_KEYDOWN:
+				switch (event.key.keysym.sym)
+				{
+				case SDLK_SPACE:
+					cow->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
+					hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
 					break;
-				case SDL_KEYDOWN:
-					switch (event.key.keysym.sym)
-					{
-						case SDLK_SPACE:
-							cow->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
-							hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
-							break;
-						case SDLK_RETURN:
-						case SDLK_KP_ENTER:
-							if (!cow->MoveCow(graph->GetShortestPath())) {
-								Node* hareNode = hare->getCurrentNode();
-								vector<int> blockedNodes;
-								blockedNodes.clear();
-								blockedNodes = hareNode->GetEdges();
+				case SDLK_RETURN:
+				case SDLK_KP_ENTER:
+					if (!cow->MoveCow(graph->GetShortestPath())) {
+						Node* hareNode = hare->getCurrentNode();
+						vector<int> blockedNodes;
+						blockedNodes.clear();
+						blockedNodes = hareNode->GetEdges();
 
-								Node* newNode = graph->GetNode(rand() % graph->GetNodes().size());
-								while (find(blockedNodes.begin(), blockedNodes.end(), newNode->id) != blockedNodes.end()) {
-									newNode = graph->GetNode(rand() % graph->GetNodes().size());
-									cout << newNode->id;
-								}
-								hare->setCurrentNode(newNode);
-							}
-						default:
-							break;
+						Node* newNode = graph->GetNode(rand() % graph->GetNodes().size());
+						while (find(blockedNodes.begin(), blockedNodes.end(), newNode->id) != blockedNodes.end()) {
+							newNode = graph->GetNode(rand() % graph->GetNodes().size());
+							cout << newNode->id;
+						}
+						hare->setCurrentNode(newNode);
 					}
+				default:
+					break;
+				}
 			}
-
 		}
 
 		application->SetColor(Color(0, 0, 0, 255));
