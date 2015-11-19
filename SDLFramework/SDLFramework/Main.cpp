@@ -58,21 +58,6 @@ int main(int args[])
 	graph->AddEdge(2, 5);
 	//graph->AddEdge(7, 4);
 
-	// create way back
-	graph->AddEdge(1, 0);
-	graph->AddEdge(2, 1);
-	graph->AddEdge(3, 2);
-	graph->AddEdge(5, 4);
-	graph->AddEdge(6, 5);
-	graph->AddEdge(8, 7);
-	graph->AddEdge(9, 8);
-	graph->AddEdge(0, 9);
-	graph->AddEdge(5, 0);
-	graph->AddEdge(8, 6);
-	graph->AddEdge(5, 3);
-	graph->AddEdge(5, 2);
-	//graph->AddEdge(4, 7);
-
 	// TODO set current cow node
 	Cow* cow = new Cow(graph->GetNode(rand() % graph->GetNodes().size()));
 	Hare* hare = new Hare(graph->GetNode(rand() % graph->GetNodes().size()));
@@ -102,7 +87,17 @@ int main(int args[])
 						case SDLK_RETURN:
 						case SDLK_KP_ENTER:
 							if (!cow->MoveCow(graph->GetShortestPath())) {
-								hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
+								Node* hareNode = hare->getCurrentNode();
+								vector<int> blockedNodes;
+								blockedNodes.clear();
+								blockedNodes = hareNode->GetEdges();
+
+								Node* newNode = graph->GetNode(rand() % graph->GetNodes().size());
+								while (find(blockedNodes.begin(), blockedNodes.end(), newNode->id) != blockedNodes.end()) {
+									newNode = graph->GetNode(rand() % graph->GetNodes().size());
+									cout << newNode->id;
+								}
+								hare->setCurrentNode(newNode);
 							}
 						default:
 							break;
