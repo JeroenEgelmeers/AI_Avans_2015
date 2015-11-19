@@ -8,6 +8,7 @@ class Node : public Point
 {
 private: 
 	std::vector<int> edges;
+
 	Node();
 public:
 	int id;

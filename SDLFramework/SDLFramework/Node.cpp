@@ -1,4 +1,6 @@
 #include "Node.h"
+#include "Cow.h"
+#include "Hare.h"
 
 using std::vector;
 

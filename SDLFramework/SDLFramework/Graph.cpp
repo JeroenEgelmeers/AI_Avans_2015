@@ -24,8 +24,6 @@ void Graph::AddEdge(int a, int b)
 
 	nodes[a].AddEdge(edges.size() - 1);
 	nodes[b].AddEdge(edges.size() - 1);
-	//nodes[a].GetEdges().push_back(edges.size() - 1);
-	//nodes[b].GetEdges().push_back(edges.size() - 1);
 }
 
 Node* Graph::GetNode(int i)
@@ -79,7 +77,7 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 	openList.insert(std::pair<Node*, double>(start, 0));
 
 	Node* current = start;
-	closedList.push_back(current);
+	//closedList.push_back(current);
 
 	double weightTillNow = 0;
 
@@ -94,7 +92,6 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 				int h = CalculateHeuristic(goal, GetNode(e->GetSecond()));
 				int f = g + h;
 
-				//openList[GetNode( e->GetSecond() )] = f;
 				openList.insert(std::pair<Node*, double>(GetNode(e->GetSecond()), f));
 			}
 		}
@@ -123,7 +120,7 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 		closedList.push_back(current);
 
 		//Clear openList
-		openList = std::map<Node*, double>();
+		openList.clear();
 	}
 	std::cout << "cl length:  " << closedList.size() << std::endl;
 	for each (Node* n in closedList)
@@ -136,6 +133,14 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 int Graph::CalculateHeuristic(Node* start, Node* goal)
 {
 	return sqrt(pow((start->GetX() - goal->GetX()), 2) + pow(start->GetY() - goal->GetY(), 2));
+}
+
+void Graph::MoveHare()
+{
+	if (cow->getCurrentNode() == hare->getCurrentNode())
+	{
+
+	}
 }
 
 Graph::~Graph()

@@ -42,6 +42,8 @@ public:
 	std::vector<Node*> Graph::AStar(Node* start, Node* goal);
 	int CalculateHeuristic(Node* start, Node* goal);
 
+	void MoveHare();
+
 	~Graph();
 };
 

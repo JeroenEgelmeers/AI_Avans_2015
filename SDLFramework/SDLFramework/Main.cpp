@@ -28,16 +28,16 @@ int main(int args[])
 	auto graph = new Graph();
 
 	// Nodes
-	graph->AddNode(Node(200, 100, 0));
-	graph->AddNode(Node(400, 120, 1));
-	graph->AddNode(Node(600, 180, 2));
-	graph->AddNode(Node(580, 400, 3));
-	graph->AddNode(Node(480, 480, 4));
-	graph->AddNode(Node(380, 280, 5));
-	graph->AddNode(Node(280, 400, 6));
-	graph->AddNode(Node(200, 500, 7));
-	graph->AddNode(Node(160, 400, 8));
-	graph->AddNode(Node(130, 200, 9));
+	graph->AddNode(Node(200, 100, 0)); // id = 0
+	graph->AddNode(Node(400, 120, 1)); // id = 1
+	graph->AddNode(Node(600, 180, 2)); // id = 2
+	graph->AddNode(Node(580, 400, 3)); // id = 3
+	graph->AddNode(Node(480, 480, 4)); // id = 4
+	graph->AddNode(Node(380, 280, 5)); // id = 5
+	graph->AddNode(Node(280, 400, 6)); // id = 6
+	graph->AddNode(Node(200, 500, 7)); // id = 7
+	graph->AddNode(Node(160, 400, 8)); // id = 8
+	graph->AddNode(Node(130, 200, 9)); // id = 9
 
 	// Edges
 	graph->AddEdge(0, 1);
@@ -52,7 +52,7 @@ int main(int args[])
 	graph->AddEdge(6, 8);
 	graph->AddEdge(3, 5);
 	graph->AddEdge(2, 5);
-	graph->AddEdge(7, 4);
+	//graph->AddEdge(7, 4);
 
 	// create way back
 	graph->AddEdge(1, 0);
@@ -64,10 +64,10 @@ int main(int args[])
 	graph->AddEdge(9, 8);
 	graph->AddEdge(0, 9);
 	graph->AddEdge(5, 0);
-	graph->AddEdge(6, 8);
+	graph->AddEdge(8, 6);
 	graph->AddEdge(5, 3);
 	graph->AddEdge(5, 2);
-	graph->AddEdge(4, 7);
+	//graph->AddEdge(4, 7);
 
 	// TODO set current cow node
 	Cow* cow = new Cow(graph->GetNode(rand() % 10));
@@ -76,7 +76,6 @@ int main(int args[])
 	graph->SetCow(cow);
 	graph->SetHare(hare);
 
-	//while (true){}
 	while (application->IsRunning())
 	{
 		application->StartTick();
@@ -98,7 +97,8 @@ int main(int args[])
 							break;
 						case SDLK_RETURN:
 						case SDLK_KP_ENTER:
-							graph->GetShortestPath();
+							cow->MoveCow(graph->GetShortestPath());
+							graph->MoveHare();
 						default:
 							break;
 					}
@@ -115,12 +115,6 @@ int main(int args[])
 		{
 			application->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
 			application->DrawText(std::to_string(n.id), n.GetX(), n.GetY() + 50);
-		}
-
-		for (size_t i = 0; i < graph->GetNodes().size(); i++)
-		{
-			
-			//application->DrawText(static_cast<char>(i), graph->GetNode(i)->GetX() - 20, graph->GetNode(i)->GetY() - 20);
 		}
 
 		// Draw Edges
