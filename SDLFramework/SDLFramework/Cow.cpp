@@ -11,18 +11,26 @@ Cow::Cow(Node* cNode)
 
 Cow::~Cow() { }
 
-void Cow::Draw() 
+void Cow::Draw()
 {
 	mApplication->DrawTexture(mTexture, mX, mY, 100, 100);
 }
 
 bool Cow::MoveCow(std::vector<Node*> path)
 {
-	if (path.size() > 0) {
+	if (path.size() > 0)
+	{
 		setCurrentNode(path.at(1));
 		return true;
 	}
-	else {
+	else
+	{
 		return false;
 	}
+
+	//for each (Node* n in path)
+	//{
+	//	setCurrentNode(n);
+	//}
+	//return true;
 }

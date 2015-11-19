@@ -45,37 +45,22 @@ int main(int args[])
 
 	// Edges
 	graph->AddEdge(0, 1);
+	graph->AddEdge(0, 5);
 	graph->AddEdge(1, 2);
 	graph->AddEdge(2, 3);
+	graph->AddEdge(2, 5);
+	graph->AddEdge(3, 5);
 	graph->AddEdge(4, 5);
 	graph->AddEdge(5, 6);
+	graph->AddEdge(6, 8);
 	graph->AddEdge(7, 8);
 	graph->AddEdge(8, 9);
 	graph->AddEdge(9, 0);
-	graph->AddEdge(0, 5);
-	graph->AddEdge(6, 8);
-	graph->AddEdge(3, 5);
-	graph->AddEdge(2, 5);
-	//graph->AddEdge(7, 4);
-
-	// create way back
-	graph->AddEdge(1, 0);
-	graph->AddEdge(2, 1);
-	graph->AddEdge(3, 2);
-	graph->AddEdge(5, 4);
-	graph->AddEdge(6, 5);
-	graph->AddEdge(8, 7);
-	graph->AddEdge(9, 8);
-	graph->AddEdge(0, 9);
-	graph->AddEdge(5, 0);
-	graph->AddEdge(8, 6);
-	graph->AddEdge(5, 3);
-	graph->AddEdge(5, 2);
-	//graph->AddEdge(4, 7);
 
 	// TODO set current cow node
 	Cow* cow = new Cow(graph->GetNode(rand() % graph->GetNodes().size()));
 	Hare* hare = new Hare(graph->GetNode(rand() % graph->GetNodes().size()));
+	//Hare* hare = new Hare(graph->GetNode(3));
 
 	graph->SetCow(cow);
 	graph->SetHare(hare);
@@ -101,7 +86,8 @@ int main(int args[])
 							break;
 						case SDLK_RETURN:
 						case SDLK_KP_ENTER:
-							if (!cow->MoveCow(graph->GetShortestPath())) {
+							if (!cow->MoveCow(graph->GetShortestPath()))
+							{
 								hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
 							}
 						default:
