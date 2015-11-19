@@ -3,6 +3,7 @@
 #include "Edge.h"
 
 #include "Vector.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -44,64 +45,98 @@ Edge* Graph::GetEdge(int i)
 	return &edges[i];
 }
 
-std::vector<Node*> Graph::AStar(Node* start, Node* goal)
+int Graph::FollowEdge(int node, int edge)
 {
-	std::map<Node*, double> openList;
-	std::vector<Node*> closedList; // = new std::vector<Node*>();
-
-	openList[start] = 0.0;
-
-	Node* current = start;
-	closedList.push_back(current);
-
-	float weightTillNow = 0;
-
-	while (current != goal)
-	{
-		for (int i : current->GetEdges())
-		{
-			Edge* e = GetEdge(i);
-			if (std::find(closedList.begin(), closedList.end(), GetNode(e->GetSecond())) == closedList.end())
-			{
-				int g = weightTillNow + e->GetLength();
-				int h = CalculateHeuristic(goal, GetNode(e->GetSecond()));
-				int f = g + h;
-
-				openList[GetNode( e->GetSecond() )] = f;
-			}
-		}
-		
-		//Shortest
-		Node* shortestNode = nullptr;
-		for (std::pair<Node*, double> mapPair : openList)
-		{
-			if (shortestNode == nullptr || mapPair.second < openList[shortestNode])
-				shortestNode = mapPair.first;
-		}
-		
-		for (size_t i = 0; i < current->GetEdges().size(); i++)
-		{
-
-			if (GetNode(GetEdge(current->GetEdges().at(i))->GetSecond()) == shortestNode)
-			{
-				weightTillNow += GetEdge(current->GetEdges().at(i))->GetLength();
-				break;
-			}
-		}
-		current = shortestNode;
-
-		closedList.push_back(current);
-
-		//Clear openList
-		openList = std::map<Node*, double>();
-	}
-	std::cout << "cl length:  " << closedList.size() << std::endl;
-	return closedList;
+	if (edges[edge].GetFirst() == node)
+		return edges[edge].GetSecond();
+	else
+		return edges[edge].GetSecond();
 }
 
-int Graph::CalculateHeuristic(Node* start, Node* goal)
+int Graph::GetNumNodes() {
+	return nodes.size();
+}
+
+bool Graph::sortSmallerWeight(const int& l, const int& r)
 {
-	return sqrt(pow((start->GetX() - goal->GetX()), 2) + pow(start->GetY() - goal->GetY(), 2));
+	if (GetNode(l)->GetPathWeight > GetNode(r)->GetPathWeight()) return true;
+}
+
+void Graph::AStarReset() {
+	mAStarStep = ASTEP_BEGIN;
+	mTargetNode = nullptr;
+	mOpenList.clear();
+	mClosedList.clear();
+}
+
+std::vector<Node*> Graph::AStar(int current, int goal)
+{
+	AStarReset();
+	mTargetNode = GetNode(goal);
+
+	int current_node_index = 0;
+	GetNode(current_node_index)->SetSeen(true);
+	GetNode(current_node_index)->SetPathWeight(0);
+
+	for (int i = 1; i < GetNumNodes(); i++)
+		mOpenList.push_back(i);
+
+	while (mOpenList.size())
+	{
+		Node* current_node = GetNode(current_node_index);
+
+		size_t i;
+		for (i = 0; i < current_node->GetEdges().size(); i++)
+		{
+			int edge = current_node->GetEdges()[i];
+
+			int test_node = FollowEdge(current_node_index, edge);
+
+			if (GetNode(test_node)->IsSeen())
+				continue;
+			
+			float g_weight = GetEdge(edge)->GetLength() + current_node->GetPathWeight();
+			float h_weight = (*mTargetNode + *GetNode(test_node)).Length();
+
+			float f_weight = g_weight + h_weight;
+
+			if (f_weight < GetNode(test_node)->GetPathWeight())
+			{
+				GetNode(test_node)->SetPathWeight(f_weight);
+				GetNode(test_node)->SetPathFrom(current_node_index);
+			}
+		}
+
+		// We made changes to our node weights. Make sure it's still a heap by remaking the heap.
+		std::make_heap(mOpenList.begin(), mOpenList.end(), sortSmallerWeight);
+
+		// Pop the smallest item off the heap.
+		std::pop_heap(mOpenList.begin(), mOpenList.end(), sortSmallerWeight);
+
+		int lowest_path_node = mOpenList.back();
+		float lowest_path_weight = GetNode(lowest_path_node)->GetPathWeight();
+
+		mOpenList.pop_back();
+
+		if (lowest_path_node < 0)
+			return [];
+
+		current_node_index = lowest_path_node;
+		GetNode(current_node_index)->SetSeen(true);
+
+		if (GetNode(lowest_path_node) == mTargetNode)
+		{
+			mClosedList.push_back(current_node_index);
+
+			while (GetNode(current_node_index)->GetPathFrom() != ~0)
+			{
+				current_node_index = GetNode(current_node_index)->GetPathFrom();
+				mClosedList.push_back(current_node_index);
+			}
+
+			return;
+		}
+	}
 }
 
 Graph::~Graph()

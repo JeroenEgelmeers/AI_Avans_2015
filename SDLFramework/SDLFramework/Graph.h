@@ -11,6 +11,23 @@ class Edge;
 
 class Graph
 {
+private:
+	typedef enum
+	{
+		ASTEP_BEGIN,
+		ASTAR_FINDLOWEST,
+		ASTAR_CALCULATENEIGHBORS,
+		ASTAR_RECONSTRUCT,
+	} AStarStep;
+
+	AStarStep mAStarStep;
+	Node* mTargetNode;
+	std::vector<int> mOpenList;
+	std::vector<int> mClosedList;
+
+	bool sortSmallerWeight(const int& l, const int& r);
+	
+	void AStarReset();
 protected: 
 	std::vector<Node> nodes;
 	std::vector<Edge> edges;
@@ -23,11 +40,14 @@ public:
 	std::vector<Node> GetNodes();
 	std::vector<Edge> GetEdges();
 	
+
+	int GetNumNodes();
 	Node* GetNode(int i);
 	Edge* GetEdge(int i);
 
-	std::vector<Node*> Graph::AStar(Node* start, Node* goal);
-	int CalculateHeuristic(Node* start, Node* goal);
+	int Graph::FollowEdge(int node, int edge);
+
+	std::vector<Node*> AStar(int current, int goal);
 
 	~Graph();
 };
