@@ -9,11 +9,15 @@
 #include "Edge.h"
 #include "Cow.h"
 #include "Hare.h"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace std;
 
 int main(int args[])
 {
+	srand(time(NULL));
+
 	//auto window = Window::CreateSDLWindow();
 	auto application = new FWApplication();
 	if (!application->GetWindow())
@@ -70,8 +74,8 @@ int main(int args[])
 	//graph->AddEdge(4, 7);
 
 	// TODO set current cow node
-	Cow* cow = new Cow(graph->GetNode(rand() % 10));
-	Hare* hare = new Hare(graph->GetNode(rand() % 10));
+	Cow* cow = new Cow(graph->GetNode(rand() % graph->GetNodes().size()));
+	Hare* hare = new Hare(graph->GetNode(rand() % graph->GetNodes().size()));
 
 	graph->SetCow(cow);
 	graph->SetHare(hare);
@@ -92,13 +96,13 @@ int main(int args[])
 					switch (event.key.keysym.sym)
 					{
 						case SDLK_SPACE:
-							cow->setCurrentNode(graph->GetNode(rand() % 10));
-							hare->setCurrentNode(graph->GetNode(rand() % 10));
+							cow->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
+							hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
 							break;
 						case SDLK_RETURN:
 						case SDLK_KP_ENTER:
 							if (!cow->MoveCow(graph->GetShortestPath())) {
-								hare->setCurrentNode(graph->GetNode(rand() % 10));
+								hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
 							}
 						default:
 							break;
