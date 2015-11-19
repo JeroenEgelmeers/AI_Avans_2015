@@ -16,8 +16,6 @@ Graph::Graph()
 void Graph::AddNode(Node n)
 {
 	nodes.push_back(n);
-	int i = nodes.size();
-	n.id = i;
 }
 
 void Graph::AddEdge(int a, int b)
@@ -128,6 +126,10 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 		openList = std::map<Node*, double>();
 	}
 	std::cout << "cl length:  " << closedList.size() << std::endl;
+	for each (Node* n in closedList)
+	{
+		std::cout << "Route: " << n->id << std::endl;
+	}
 	return closedList;
 }
 

@@ -6,12 +6,14 @@ Node::Node()
 	: Point()
 {}
 
-Node::Node(float x, float y)
-	: Point(x, y)
+Node::Node(float x, float y, int _id)
+	: Point(x, y),
+	id(_id)
 {}
 
-Node::Node(float x, float y, float z)
-	: Point(x, y, z)
+Node::Node(float x, float y, float z, int _id)
+	: Point(x, y, z),
+	id(_id)
 {}
 
 vector<int> Node::GetEdges()

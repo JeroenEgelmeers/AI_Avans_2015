@@ -7,7 +7,7 @@ Cow::Cow(Node* cNode)
 	setCurrentNode(cNode);
 }
 
-Cow::~Cow(){ }
+Cow::~Cow() { }
 
 void Cow::Draw() 
 {

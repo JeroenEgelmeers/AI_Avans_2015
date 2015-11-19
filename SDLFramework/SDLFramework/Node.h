@@ -11,8 +11,8 @@ private:
 	Node();
 public:
 	int id;
-	Node(float x, float y);
-	Node(float x, float y, float z);
+	Node(float x, float y, int _id);
+	Node(float x, float y, float z, int _id);
 
 	std::vector<int> GetEdges();
 	void AddEdge(int i);
