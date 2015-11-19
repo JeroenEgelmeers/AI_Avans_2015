@@ -97,8 +97,9 @@ int main(int args[])
 							break;
 						case SDLK_RETURN:
 						case SDLK_KP_ENTER:
-							cow->MoveCow(graph->GetShortestPath());
-							graph->MoveHare();
+							if (!cow->MoveCow(graph->GetShortestPath())) {
+								hare->setCurrentNode(graph->GetNode(rand() % 10));
+							}
 						default:
 							break;
 					}

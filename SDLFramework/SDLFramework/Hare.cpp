@@ -1,7 +1,5 @@
 #include "Hare.h"
 
-
-
 Hare::Hare(Node * cNode)
 {
 	mTexture = mApplication->LoadTexture("rabbit-3.png");
@@ -13,6 +11,11 @@ Hare::Hare(Node * cNode)
 
 Hare::~Hare()
 {
+}
+
+void Hare::MoveHare(Node * node)
+{
+	setCurrentNode(node);
 }
 
 void Hare::Draw()

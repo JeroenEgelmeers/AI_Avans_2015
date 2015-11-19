@@ -8,5 +8,6 @@ public:
 	Hare(Node * cNode);
 	void Hare::Draw()override;
 	~Hare();
+	void Hare::MoveHare(Node* node);
 };
 

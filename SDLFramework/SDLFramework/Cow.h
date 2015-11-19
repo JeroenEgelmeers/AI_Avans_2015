@@ -1,16 +1,16 @@
 #include "Animal.h"
 #include <vector>
+#include "Hare.h"
 
 #pragma once
 class Cow : public Animal
 {
 private:
-	Uint32 waiting;
 public:
 	Cow(Node* cNode);
 	~Cow();
 
-	void MoveCow(std::vector<Node*> path);
+	bool MoveCow(std::vector<Node*> path);
 
 	void Draw()override;
 };
