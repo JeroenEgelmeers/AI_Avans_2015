@@ -16,6 +16,8 @@ Graph::Graph()
 void Graph::AddNode(Node n)
 {
 	nodes.push_back(n);
+	int i = nodes.size();
+	n.id = i;
 }
 
 void Graph::AddEdge(int a, int b)
@@ -115,6 +117,9 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 				break;
 			}
 		}
+		if (shortestNode == nullptr)
+			break;
+
 		current = shortestNode;
 
 		closedList.push_back(current);

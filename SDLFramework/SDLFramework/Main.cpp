@@ -77,9 +77,9 @@ int main(int args[])
 					switch (event.key.keysym.sym)
 					{
 						case SDLK_SPACE:
-							//cow->setCurrentNode(graph->GetNode(rand() % 10));
-							//hare->setCurrentNode(graph->GetNode(rand() % 10));
-							graph->GetShortestPath();
+							cow->setCurrentNode(graph->GetNode(rand() % 10));
+							hare->setCurrentNode(graph->GetNode(rand() % 10));
+							//graph->GetShortestPath();
 							break;
 						default:
 							break;
@@ -96,6 +96,7 @@ int main(int args[])
 		for (auto &n : graph->GetNodes())
 		{
 			application->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
+			application->DrawText(std::to_string(n.id), n.GetX() - 20, n.GetY() - 20);
 		}
 
 		for (size_t i = 0; i < graph->GetNodes().size(); i++)

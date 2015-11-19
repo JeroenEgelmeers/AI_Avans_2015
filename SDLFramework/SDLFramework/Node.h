@@ -10,6 +10,7 @@ private:
 	std::vector<int> edges;
 	Node();
 public:
+	int id;
 	Node(float x, float y);
 	Node(float x, float y, float z);
 

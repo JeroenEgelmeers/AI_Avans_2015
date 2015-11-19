@@ -6,7 +6,6 @@ Node::Node()
 	: Point()
 {}
 
-
 Node::Node(float x, float y)
 	: Point(x, y)
 {}
