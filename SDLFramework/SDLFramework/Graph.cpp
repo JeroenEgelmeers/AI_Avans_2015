@@ -77,7 +77,6 @@ std::vector<Node*> Graph::AStar(Node* start, Node* goal)
 	openList.insert(std::pair<Node*, double>(start, 0));
 
 	Node* current = start;
-	//closedList.push_back(current);
 
 	double weightTillNow = 0;
 
@@ -140,35 +139,6 @@ int Graph::FollowEdge(int node, int edge)
 		return edges[edge].GetSecond();
 	else
 		return edges[edge].GetFirst();
-}
-
-void Graph::MoveHare()
-{
-	if (cow->getCurrentNode() == hare->getCurrentNode())
-	{
-		std::vector<int> closed;
-		std::vector<Node> open = GetNodes();
-
-		for each (int i in hare->getCurrentNode()->GetEdges())
-		{
-			Edge* e = GetEdge(i);
-			closed.push_back(e->GetSecond());
-		}
-
-		// vec.erase(std::remove(vec.begin(), vec.end(), 8), vec.end());
-		for (size_t i = 0; i < closed.size(); i++)
-		{
-			for (size_t j = 0; j < open.size(); j++)
-			{
-				if (&open.at(j) == GetNode(i))
-				{
-					open.erase(open.begin() + j);
-				}
-			}
-
-			hare->setCurrentNode(&open[rand() % open.size()]);
-		}
-	}
 }
 
 Graph::~Graph() {}

@@ -75,34 +75,102 @@ int main(int args[])
 		{
 			switch (event.type)
 			{
-			case SDL_QUIT:
-				application->Quit();
-				break;
-			case SDL_KEYDOWN:
-				switch (event.key.keysym.sym)
-				{
-				case SDLK_SPACE:
-					cow->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
-					hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
+				case SDL_QUIT:
+					application->Quit();
 					break;
-				case SDLK_RETURN:
-				case SDLK_KP_ENTER:
-					if (!cow->MoveCow(graph->GetShortestPath())) {
-						Node* hareNode = hare->getCurrentNode();
-						vector<int> blockedNodes;
-						blockedNodes.clear();
-						blockedNodes = hareNode->GetEdges();
+				case SDL_KEYDOWN:
+					switch (event.key.keysym.sym)
+					{
+						case SDLK_SPACE:
+							cow->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
+							hare->setCurrentNode(graph->GetNode(rand() % graph->GetNodes().size()));
+							break;
+						case SDLK_RETURN:
+						case SDLK_KP_ENTER:
+							if (!cow->MoveCow(graph->GetShortestPath()))
+							{
+								Node* hareNode = hare->getCurrentNode();
+								vector<int> blockedNodes;
+								blockedNodes.clear();
+								blockedNodes = hareNode->GetEdges();
 
-						Node* newNode = graph->GetNode(rand() % graph->GetNodes().size());
-						while (find(blockedNodes.begin(), blockedNodes.end(), newNode->id) != blockedNodes.end()) {
-							newNode = graph->GetNode(rand() % graph->GetNodes().size());
-							cout << newNode->id;
-						}
-						hare->setCurrentNode(newNode);
+								Node* newNode = graph->GetNode(rand() % graph->GetNodes().size());
+								while (find(blockedNodes.begin(), blockedNodes.end(), newNode->id) != blockedNodes.end())
+								{
+									newNode = graph->GetNode(rand() % graph->GetNodes().size());
+									cout << newNode->id;
+								}
+								hare->setCurrentNode(newNode);
+							}
+							break;
+						#pragma region setCow location
+						case SDLK_0:
+							cow->setCurrentNode(graph->GetNode(0));
+							break;
+						case SDLK_1:
+							cow->setCurrentNode(graph->GetNode(1));
+							break;
+						case SDLK_2:
+							cow->setCurrentNode(graph->GetNode(2));
+							break;
+						case SDLK_3:
+							cow->setCurrentNode(graph->GetNode(3));
+							break;
+						case SDLK_4:
+							cow->setCurrentNode(graph->GetNode(4));
+							break;
+						case SDLK_5:
+							cow->setCurrentNode(graph->GetNode(5));
+							break;
+						case SDLK_6:
+							cow->setCurrentNode(graph->GetNode(6));
+							break;
+						case SDLK_7:
+							cow->setCurrentNode(graph->GetNode(7));
+							break;
+						case SDLK_8:
+							cow->setCurrentNode(graph->GetNode(8));
+							break;
+						case SDLK_9:
+							cow->setCurrentNode(graph->GetNode(9));
+							break;
+						#pragma endregion
+
+						#pragma region setHare location
+						case SDLK_KP_0:
+							hare->setCurrentNode(graph->GetNode(0));
+							break;
+						case SDLK_KP_1:
+							hare->setCurrentNode(graph->GetNode(1));
+							break;
+						case SDLK_KP_2:
+							hare->setCurrentNode(graph->GetNode(2));
+							break;
+						case SDLK_KP_3:
+							hare->setCurrentNode(graph->GetNode(3));
+							break;
+						case SDLK_KP_4:
+							hare->setCurrentNode(graph->GetNode(4));
+							break;
+						case SDLK_KP_5:
+							hare->setCurrentNode(graph->GetNode(5));
+							break;
+						case SDLK_KP_6:
+							hare->setCurrentNode(graph->GetNode(6));
+							break;
+						case SDLK_KP_7:
+							hare->setCurrentNode(graph->GetNode(7));
+							break;
+						case SDLK_KP_8:
+							hare->setCurrentNode(graph->GetNode(8));
+							break;
+						case SDLK_KP_9:
+							hare->setCurrentNode(graph->GetNode(9));
+							break;
+						#pragma endregion
+						default:
+							break;
 					}
-				default:
-					break;
-				}
 			}
 		}
 

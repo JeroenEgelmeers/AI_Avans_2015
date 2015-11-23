@@ -43,8 +43,6 @@ public:
 	int CalculateHeuristic(Node* start, Node* goal);
 	int FollowEdge(int node, int edge);
 
-	void MoveHare();
-
 	~Graph();
 };
 
