@@ -8,6 +8,10 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 
+#include "Graph.h"
+#include "Cow.h"
+#include "Hare.h"
+
 FWApplication * FWApplication::mInstance;
 FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	: mTargetDelayMS(1000 / 60),
@@ -63,8 +67,14 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 
 	mInstance = this;
 	mGameObjects.reserve(32);
-}
+	
+	mGraph = new Graph();
+	
+	// TODO set current cow node
+	Cow* cow = new Cow(mGraph->GetNode(rand() % 10));
+	Hare* hare = new Hare(mGraph->GetNode(rand() % 10));
 
+}
 
 FWApplication::~FWApplication()
 {

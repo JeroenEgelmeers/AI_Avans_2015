@@ -28,9 +28,6 @@ public:
 	int GetPathFrom() { return mPathFrom; }
 	void SetPathFrom(int f) { mPathFrom = f; }
 
-	int GetX() { return x; }
-	int GetY() { return y; }
-
 	~Node();
 };
 

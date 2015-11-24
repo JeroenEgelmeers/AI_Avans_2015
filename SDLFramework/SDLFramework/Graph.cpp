@@ -9,7 +9,48 @@ using namespace std;
 
 Graph::Graph()
 {
+	// Nodes
+	AddNode(Node(200, 100));
+	AddNode(Node(400, 120));
+	AddNode(Node(600, 180));
+	AddNode(Node(580, 400));
+	AddNode(Node(480, 480));
+	AddNode(Node(380, 280));
+	AddNode(Node(250, 400));
+	AddNode(Node(200, 500));
+	AddNode(Node(130, 400));
+	AddNode(Node(130, 200));
 
+	// Edges
+	AddEdge(0, 1);
+	AddEdge(1, 2);
+	AddEdge(2, 3);
+	AddEdge(4, 5);
+	AddEdge(5, 6);
+	AddEdge(7, 8);
+	AddEdge(8, 9);
+	AddEdge(9, 0);
+	AddEdge(0, 5);
+	AddEdge(6, 8);
+	AddEdge(3, 5);
+	AddEdge(2, 5);
+}
+
+void Graph::Draw() {
+	// Draw Nodes
+	for (auto &n : nodes)
+	{
+		mApplication->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
+	}
+
+	// Draw Edges
+	for (auto &e : edges)
+	{
+		Node a = nodes[e.GetFirst()];
+		Node b = nodes[e.GetSecond()];
+
+		mApplication->DrawLine(a.x, a.y, b.x, b.y);
+	}
 }
 
 void Graph::AddNode(Node n)
@@ -57,9 +98,10 @@ int Graph::GetNumNodes() {
 	return nodes.size();
 }
 
-bool Graph::sortSmallerWeight(const int& l, const int& r)
+bool sortSmallerWeight(const int& l, const int& r)
 {
-	if (GetNode(l)->GetPathWeight > GetNode(r)->GetPathWeight()) return true;
+	auto application = FWApplication::GetInstance();
+	return application->GetGraph()->GetNode(l)->GetPathWeight() > application->GetGraph()->GetNode(r)->GetPathWeight();
 }
 
 void Graph::AStarReset() {
@@ -69,7 +111,7 @@ void Graph::AStarReset() {
 	mClosedList.clear();
 }
 
-std::vector<Node*> Graph::AStar(int current, int goal)
+int Graph::AStar(int current, int goal)
 {
 	AStarReset();
 	mTargetNode = GetNode(goal);
@@ -119,7 +161,7 @@ std::vector<Node*> Graph::AStar(int current, int goal)
 		mOpenList.pop_back();
 
 		if (lowest_path_node < 0)
-			return [];
+			return -1;
 
 		current_node_index = lowest_path_node;
 		GetNode(current_node_index)->SetSeen(true);
@@ -134,9 +176,10 @@ std::vector<Node*> Graph::AStar(int current, int goal)
 				mClosedList.push_back(current_node_index);
 			}
 
-			return;
+			return 1;
 		}
 	}
+	return -1;
 }
 
 Graph::~Graph()

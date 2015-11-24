@@ -6,10 +6,12 @@
 #include <math.h>
 #include <iostream>
 
+#include "IGameObject.h"
+
 class Node;
 class Edge;
 
-class Graph
+class Graph : public IGameObject
 {
 private:
 	typedef enum
@@ -24,8 +26,6 @@ private:
 	Node* mTargetNode;
 	std::vector<int> mOpenList;
 	std::vector<int> mClosedList;
-
-	bool sortSmallerWeight(const int& l, const int& r);
 	
 	void AStarReset();
 protected: 
@@ -34,20 +34,21 @@ protected:
 public:
 	Graph();
 
+	void Update(float deltatime) {};
+	void Draw();
+
 	void AddNode(Node n);
 	void AddEdge(int a, int b);
 
 	std::vector<Node> GetNodes();
 	std::vector<Edge> GetEdges();
 	
-
 	int GetNumNodes();
 	Node* GetNode(int i);
 	Edge* GetEdge(int i);
 
 	int Graph::FollowEdge(int node, int edge);
-
-	std::vector<Node*> AStar(int current, int goal);
+	int AStar(int current, int goal);
 
 	~Graph();
 };

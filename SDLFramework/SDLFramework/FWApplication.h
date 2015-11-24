@@ -5,6 +5,7 @@
 #include <vector>
 
 class IGameObject;
+class Graph;
 struct SDL_Renderer;
 struct SDL_Window;
 struct SDL_Texture;
@@ -243,9 +244,13 @@ public:
 	void Quit();
 	//void AddOnEvent(std::function<void(SDL_Event*)> func);
 
+	Graph* GetGraph() { return mGraph; }
+
 private:
 	std::vector<IGameObject *> mGameObjects;
 	static FWApplication * mInstance;
+
+	Graph* mGraph;
 
 	SDL_Window * mWindow;
 	SDL_Renderer * mRenderer;
