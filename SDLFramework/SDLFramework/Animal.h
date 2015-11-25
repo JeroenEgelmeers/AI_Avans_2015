@@ -4,11 +4,12 @@
 
 class Animal : public IGameObject
 {
+protected:
+	Node* currentNode;
 public:
 	Animal();	
 	~Animal();
 
-	Node* currentNode;
 	Node* getCurrentNode() { return currentNode; }
 	void setCurrentNode(Node* cNode);
 

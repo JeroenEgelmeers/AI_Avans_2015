@@ -7,6 +7,7 @@
 #include <SDL_events.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <time.h>
 
 #include "Graph.h"
 #include "Cow.h"
@@ -65,14 +66,19 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	SetFontSize(12);
 	SetFont("OpenSans-Regular.ttf");
 
+	/* initialize random seed: */
+	srand(time(NULL));
 	mInstance = this;
 	mGameObjects.reserve(32);
 	
 	mGraph = new Graph();
-	
 	// TODO set current cow node
-	Cow* cow = new Cow(mGraph->GetNode(rand() % 10));
-	Hare* hare = new Hare(mGraph->GetNode(rand() % 10));
+	mCow = new Cow(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+	mHare = new Hare(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+
+	AddRenderable(mGraph);
+	AddRenderable(mCow);
+	AddRenderable(mHare);
 
 }
 
@@ -180,22 +186,30 @@ void FWApplication::EndTick()
 
 void FWApplication::UpdateGameObjects()
 {
-	for (IGameObject * obj : mGameObjects)
-	{
-		for (IGameObject * o : mGameObjects)
-		{
-			if (o != obj)
-			{
-				// Check collision
-				bool collided = obj->CheckCollision(o);
-				if (collided)
-				{
-					obj->OnCollision(o);
-					o->OnCollision(obj);
-				}
-			}
-		}
-		obj->Update((float)mDeltaTimeMS / 1000.0f);
+	//for (IGameObject * obj : mGameObjects)
+	//{
+	//	for (IGameObject * o : mGameObjects)
+	//	{
+	//		if (o != obj)
+	//		{
+	//			// Check collision
+	//			bool collided = obj->CheckCollision(o);
+	//			if (collided)
+	//			{
+	//				obj->OnCollision(o);
+	//				o->OnCollision(obj);
+	//			}
+	//		}
+	//	}
+	//	obj->Update((float)mDeltaTimeMS / 1000.0f);
+	//}
+
+	mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
+	
+	mCow->setCurrentNode(mGraph->GetNode(0 + (rand() % (int)(mGraph->GetNodes().size()))));
+
+	if (mHare->getCurrentNode() == mCow->getCurrentNode()) {
+		mHare->setCurrentNode(mGraph->GetNode(0 + (rand() % (int)(mGraph->GetNodes().size()))));
 	}
 }
 

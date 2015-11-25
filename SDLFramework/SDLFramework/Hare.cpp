@@ -7,8 +7,6 @@ Hare::Hare(Node * cNode)
 	mTexture = mApplication->LoadTexture("rabbit-3.png");
 	mApplication->AddRenderable(this);
 	setCurrentNode(cNode);
-	mX = currentNode->x;
-	mY = currentNode->y;
 }
 
 Hare::~Hare()
@@ -17,5 +15,5 @@ Hare::~Hare()
 
 void Hare::Draw()
 {
-	mApplication->DrawTexture(mTexture, mX, mY, 100, 100);
+	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
 }

@@ -37,12 +37,7 @@ Graph::Graph()
 }
 
 void Graph::Draw() {
-	// Draw Nodes
-	for (auto &n : nodes)
-	{
-		mApplication->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
-	}
-
+	mApplication->SetColor(Color(0, 0, 0, 255));
 	// Draw Edges
 	for (auto &e : edges)
 	{
@@ -51,6 +46,15 @@ void Graph::Draw() {
 
 		mApplication->DrawLine(a.x, a.y, b.x, b.y);
 	}
+
+	mApplication->SetColor(Color(255, 0, 0, 255));
+	// Draw Nodes
+	for (auto &n : nodes)
+	{
+		mApplication->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
+	}
+
+	mApplication->SetColor(Color(255, 255, 255, 255));
 }
 
 void Graph::AddNode(Node n)
@@ -102,6 +106,15 @@ bool sortSmallerWeight(const int& l, const int& r)
 {
 	auto application = FWApplication::GetInstance();
 	return application->GetGraph()->GetNode(l)->GetPathWeight() > application->GetGraph()->GetNode(r)->GetPathWeight();
+}
+
+int Graph::GetNodePosition(const Node* node) {
+	for (size_t i = 0; i < nodes.size(); i++) {
+		if (GetNode(i) == node) {
+			return i;
+		}
+	}	
+	return -1;
 }
 
 void Graph::AStarReset() {
@@ -161,7 +174,7 @@ int Graph::AStar(int current, int goal)
 		mOpenList.pop_back();
 
 		if (lowest_path_node < 0)
-			return -1;
+			return lowest_path_node;
 
 		current_node_index = lowest_path_node;
 		GetNode(current_node_index)->SetSeen(true);

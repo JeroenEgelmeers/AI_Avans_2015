@@ -11,5 +11,5 @@ Cow::~Cow(){ }
 
 void Cow::Draw() 
 {
-	mApplication->DrawTexture(mTexture, mX, mY, 100, 100);
+	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
 }

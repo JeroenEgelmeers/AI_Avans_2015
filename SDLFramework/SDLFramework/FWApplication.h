@@ -6,6 +6,8 @@
 
 class IGameObject;
 class Graph;
+class Cow;
+class Hare;
 struct SDL_Renderer;
 struct SDL_Window;
 struct SDL_Texture;
@@ -251,6 +253,8 @@ private:
 	static FWApplication * mInstance;
 
 	Graph* mGraph;
+	Cow* mCow;
+	Hare* mHare;
 
 	SDL_Window * mWindow;
 	SDL_Renderer * mRenderer;

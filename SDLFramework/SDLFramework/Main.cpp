@@ -40,8 +40,7 @@ int main(int args[])
 					switch (event.key.keysym.sym)
 					{
 						case SDLK_SPACE:
-					/*		cow->setCurrentNode(graph->GetNode(rand() % 10));
-							hare->setCurrentNode(graph->GetNode(rand() % 10));*/
+							application->UpdateGameObjects();
 							break;
 						default:
 							break;
@@ -53,15 +52,11 @@ int main(int args[])
 		application->SetColor(Color(0, 0, 0, 255));
 		application->DrawText("KMINT opdracht 1", 800 / 2, 10);
 		application->DrawText("Hit the SPACE bar to move the cow.", 800 / 2, 25);
-		
-	/*	cow->Draw();
-		hare->Draw();*/
 
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));
 
-		/*application->UpdateGameObjects();
-		application->RenderGameObjects();*/
+		application->RenderGameObjects();
 		application->EndTick();
 	}
 

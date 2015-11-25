@@ -9,7 +9,7 @@ Animal::~Animal()
 {
 }
 
-void Animal::setCurrentNode(Node * cNode)
+void Animal::setCurrentNode(Node* cNode)
 {
 	currentNode = cNode;
 }
