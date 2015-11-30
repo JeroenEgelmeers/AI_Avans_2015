@@ -1,7 +1,6 @@
 #include "Hare.h"
 #include "HareStates.h"
 
-
 Hare::Hare(Node * cNode)
 {
 	mTexture = mApplication->LoadTexture("rabbit-3.png");
@@ -9,8 +8,8 @@ Hare::Hare(Node * cNode)
 	setCurrentNode(cNode);
 
 	m_pStateMachine = new StateMachine<Animal>(dynamic_cast<Animal*>(this));
-	m_pStateMachine->SetCurrentState(WanderAroundCow::Instance());
-	m_pStateMachine->CurrentState()->Enter(this);
+	m_pStateMachine->SetCurrentState(new WanderAroundRabbit());
+	//m_pStateMachine->CurrentState()->Enter(this);
 }
 
 Hare::~Hare()

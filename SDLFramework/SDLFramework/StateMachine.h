@@ -63,10 +63,12 @@ public:
 	void  Update()const
 	{
 		//if a global state exists, call its execute method, else do nothing
-		if (m_pGlobalState)   m_pGlobalState->Execute(m_pOwner);
+		if (m_pGlobalState)
+			m_pGlobalState->Execute(m_pOwner);
 
 		//same for the current state
-		if (m_pCurrentState) m_pCurrentState->Execute(m_pOwner);
+		if (m_pCurrentState)
+			m_pCurrentState->Execute(m_pOwner);
 	}
 
 
@@ -76,6 +78,12 @@ public:
 		assert(pNewState && "<StateMachine::ChangeState>:trying to assign null state to current");
 
 		//keep a record of the previous state
+		if (m_pPreviousState != nullptr)
+		{
+			m_pPreviousState->Exit(m_pOwner);
+			delete m_pPreviousState;
+		}
+		
 		m_pPreviousState = m_pCurrentState;
 
 		//call the exit method of the existing state

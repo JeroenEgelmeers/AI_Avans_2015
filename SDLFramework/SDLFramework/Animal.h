@@ -19,7 +19,5 @@ public:
 	virtual void Update(float deltaTime) override;
 
 	StateMachine<Animal>* GetFSM() const
-	{
-		return m_pStateMachine;
-	};
+	{ return m_pStateMachine; }
 };

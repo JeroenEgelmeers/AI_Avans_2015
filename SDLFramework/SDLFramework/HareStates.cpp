@@ -1,48 +1,47 @@
 #include "HareStates.h"
-
+#include <random>
+#include "Animal.h"
 
 //------------------------------------------------------------------------methods for FleeFromCow
-FleeFromCow* FleeFromCow::Instance()
-{
-	static FleeFromCow instance;
-	return &instance;
-}
-
-
-void FleeFromCow::Enter(Hare* hare)
+void FleeFromCow::Enter(Animal* hare)
 {
 	
 }
 
 
-void FleeFromCow::Execute(Hare* hare)
+void FleeFromCow::Execute(Animal* hare)
 {
 	
 }
 
 
-void FleeFromCow::Exit(Hare* hare)
-{}
+void FleeFromCow::Exit(Animal* hare)
+{
+	fleeUpdates = 0;
+	fleeUpdatesDone = 0;
+}
 
 //------------------------------------------------------------------------methods for WanderAround
-WanderAroundRabbit* WanderAroundRabbit::Instance()
+void WanderAroundRabbit::Enter(Animal* hare)
 {
-	static WanderAroundRabbit instance;
-	return &instance;
+	std::random_device dev;
+	std::default_random_engine dre(dev());
+	std::uniform_int_distribution<int> dist1(1, 6);
+	wanderUpdates = dist1(dre);
 }
 
 
-void WanderAroundRabbit::Enter(Hare* rabbit)
+void WanderAroundRabbit::Execute(Animal* hare)
 {
-	
+	if (wanderUpdatesDone <= wanderUpdates)
+	{
+		// do stuff
+	}
 }
 
 
-void WanderAroundRabbit::Execute(Hare* rabbit)
+void WanderAroundRabbit::Exit(Animal* hare)
 {
-	
+	wanderUpdates = 0;
+	wanderUpdatesDone = 0;
 }
-
-
-void WanderAroundRabbit::Exit(Hare* rabbit)
-{}
