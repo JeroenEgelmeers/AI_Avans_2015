@@ -18,6 +18,7 @@ public:
 	Node(float x, float y, float z);
 
 	std::vector<int> GetEdges();
+	void AddEdge(int edge);
 
 	bool IsSeen() { return mSeen; }
 	void SetSeen(bool s) { mSeen = s; };

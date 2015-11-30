@@ -273,5 +273,6 @@ private:
 	uint32_t mFontSize;
 	//uint32_t mColor;
 
+	int GetNewNode(int node);
 };
 
