@@ -21,7 +21,7 @@ Graph::Graph()
 	AddNode(Node(130, 400));
 	AddNode(Node(130, 200));
 
-	// Edges
+	//// Edges
 	AddEdge(0, 1);
 	AddEdge(1, 2);
 	AddEdge(2, 3);
@@ -66,8 +66,8 @@ void Graph::AddEdge(int a, int b)
 {
 	edges.push_back(Edge(a, b, 1000 + (nodes[a] + nodes[b]).Length()));
 
-	nodes[a].GetEdges().push_back(edges.size() - 1);
-	nodes[b].GetEdges().push_back(edges.size() - 1);
+	nodes[a].AddEdge(edges.size() - 1);
+	nodes[b].AddEdge(edges.size() - 1);
 }
 
 Node* Graph::GetNode(int i)
@@ -95,7 +95,7 @@ int Graph::FollowEdge(int node, int edge)
 	if (edges[edge].GetFirst() == node)
 		return edges[edge].GetSecond();
 	else
-		return edges[edge].GetSecond();
+		return edges[edge].GetFirst();
 }
 
 int Graph::GetNumNodes() {
@@ -118,27 +118,50 @@ int Graph::GetNodePosition(const Node* node) {
 }
 
 void Graph::AStarReset() {
-	mAStarStep = ASTEP_BEGIN;
 	mTargetNode = nullptr;
 	mOpenList.clear();
 	mClosedList.clear();
+
+ 	for (int i = 0; i < nodes.size(); i++) {
+		nodes[i].SetSeen(false);
+		nodes[i].SetPathFrom(-1);
+		nodes[i].SetPathWeight(999999);
+	}
 }
 
 int Graph::AStar(int current, int goal)
 {
+	if (current == goal) {
+		return goal;
+	}
+
 	AStarReset();
 	mTargetNode = GetNode(goal);
 
-	int current_node_index = 0;
+	int current_node_index = current;
+
+	Node* current_node = GetNode(current_node_index);
 	GetNode(current_node_index)->SetSeen(true);
 	GetNode(current_node_index)->SetPathWeight(0);
 
-	for (int i = 1; i < GetNumNodes(); i++)
-		mOpenList.push_back(i);
 
-	while (mOpenList.size())
+	while (true)
 	{
-		Node* current_node = GetNode(current_node_index);
+		current_node = GetNode(current_node_index);
+
+		for (int edge : current_node->GetEdges()) {
+			bool contained = false;
+			for (int node : mOpenList) {
+				if (FollowEdge(current_node_index, edge) == node) {
+					contained = true;
+				}
+			}
+			if (contained == false) {
+				if (GetNode(FollowEdge(current_node_index, edge))->IsSeen() == false) {
+					mOpenList.push_back(FollowEdge(current_node_index, edge));
+				}
+			}
+		}
 
 		size_t i;
 		for (i = 0; i < current_node->GetEdges().size(); i++)
@@ -147,8 +170,9 @@ int Graph::AStar(int current, int goal)
 
 			int test_node = FollowEdge(current_node_index, edge);
 
-			if (GetNode(test_node)->IsSeen())
+			if (GetNode(test_node)->IsSeen()) {
 				continue;
+			}
 			
 			float g_weight = GetEdge(edge)->GetLength() + current_node->GetPathWeight();
 			float h_weight = (*mTargetNode + *GetNode(test_node)).Length();
@@ -167,15 +191,12 @@ int Graph::AStar(int current, int goal)
 
 		// Pop the smallest item off the heap.
 		std::pop_heap(mOpenList.begin(), mOpenList.end(), sortSmallerWeight);
-
+		
 		int lowest_path_node = mOpenList.back();
 		float lowest_path_weight = GetNode(lowest_path_node)->GetPathWeight();
 
 		mOpenList.pop_back();
-
-		if (lowest_path_node < 0)
-			return lowest_path_node;
-
+		
 		current_node_index = lowest_path_node;
 		GetNode(current_node_index)->SetSeen(true);
 
@@ -189,7 +210,9 @@ int Graph::AStar(int current, int goal)
 				mClosedList.push_back(current_node_index);
 			}
 
-			return 1;
+			mClosedList.pop_back();
+
+			return mClosedList.back();
 		}
 	}
 	return -1;

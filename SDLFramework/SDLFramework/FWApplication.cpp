@@ -74,7 +74,7 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mGraph = new Graph();
 	// TODO set current cow node
 	mCow = new Cow(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
-	mHare = new Hare(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+	mHare = new Hare(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mCow->getCurrentNode()))));
 
 	AddRenderable(mGraph);
 	AddRenderable(mCow);
@@ -89,6 +89,28 @@ FWApplication::~FWApplication()
 	TTF_CloseFont(mFont);
 	TTF_Quit();
 	SDL_Quit();
+}
+
+int FWApplication::GetNewNode(int currentNode){
+	std::vector<int> neighborNodes = std::vector<int>();
+
+	for (int edge : mGraph->GetNode(currentNode)->GetEdges()) {
+		neighborNodes.push_back(mGraph->FollowEdge(currentNode, edge));
+		neighborNodes.push_back(currentNode);
+	}
+
+	bool correctNumber = false;
+	int newNodePosition;
+	while (correctNumber == false) {
+		newNodePosition = 0 + (rand() % (int)(mGraph->GetNodes().size()));
+		correctNumber = true;
+		for (int node : neighborNodes) {
+			if (node == newNodePosition) {
+				correctNumber = false;
+			}
+		}
+	}
+	return newNodePosition;
 }
 
 SDL_Window * FWApplication::GetWindow() const
@@ -204,12 +226,12 @@ void FWApplication::UpdateGameObjects()
 	//	obj->Update((float)mDeltaTimeMS / 1000.0f);
 	//}
 
-	mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
+	int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
 	
-	mCow->setCurrentNode(mGraph->GetNode(0 + (rand() % (int)(mGraph->GetNodes().size()))));
+	mCow->setCurrentNode(mGraph->GetNode(path));
 
 	if (mHare->getCurrentNode() == mCow->getCurrentNode()) {
-		mHare->setCurrentNode(mGraph->GetNode(0 + (rand() % (int)(mGraph->GetNodes().size()))));
+		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
 	}
 }
 
