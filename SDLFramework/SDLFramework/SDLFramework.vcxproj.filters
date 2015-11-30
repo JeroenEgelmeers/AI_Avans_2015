@@ -30,6 +30,12 @@
     <Filter Include="Library\Pathfinding\Header">
       <UniqueIdentifier>{43324e06-a5d4-48c5-aee7-20e8d8db3522}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\FSM">
+      <UniqueIdentifier>{62b26a77-d1bc-42fc-896c-f6a3d1327808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FSM">
+      <UniqueIdentifier>{6635c754-000c-4867-9316-16be171b83e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -61,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="Animal.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CowStates.cpp">
+      <Filter>Source Files\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="HareStates.cpp">
+      <Filter>Source Files\FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +137,18 @@
     </ClInclude>
     <ClInclude Include="Animal.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CowStates.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="HareStates.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Header Files\FSM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
