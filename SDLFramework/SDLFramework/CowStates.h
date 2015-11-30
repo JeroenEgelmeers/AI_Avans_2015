@@ -10,24 +10,18 @@ class Animal;
 class ChaseRabbit : public State<Animal>
 {
 private:
-
-	ChaseRabbit()
-	{}
-
 	//copy ctor and assignment should be private
 	ChaseRabbit(const ChaseRabbit&);
 	ChaseRabbit& operator=(const ChaseRabbit&);
 
 public:
+	ChaseRabbit() { }
 
-	//this is a singleton
-	static ChaseRabbit* Instance();
+	virtual void Enter(Animal* Cow);
 
-	virtual void Enter(Cow* Cow);
+	virtual void Execute(Animal* Cow);
 
-	virtual void Execute(Cow* Cow);
-
-	virtual void Exit(Cow* Cow);
+	virtual void Exit(Animal* Cow);
 };
 
 //------------------------------------------------------------------------
@@ -38,23 +32,15 @@ public:
 class WanderAroundCow : public State<Animal>
 {
 private:
-
-	WanderAroundCow()
-	{}
-
 	//copy ctor and assignment should be private
 	WanderAroundCow(const WanderAroundCow&);
 	WanderAroundCow& operator=(const WanderAroundCow&);
-	int wanderUpdatesRequired;
+	int wanderUpdates, wanderUpdatesDone;
 
 public:
+	WanderAroundCow() { }
 
-	//this is a singleton
-	static WanderAroundCow* Instance();
-
-	virtual void Enter(Cow* Cow);
-
-	virtual void Execute(Cow* Cow);
-
-	virtual void Exit(Cow* Cow);
+	virtual void WanderAroundCow::Enter(Animal* Cow) override;
+	virtual void WanderAroundCow::Execute(Animal* Cow) override;
+	virtual void WanderAroundCow::Exit(Animal* Cow) override;
 };

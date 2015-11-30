@@ -1,23 +1,16 @@
 #include "CowStates.h"
-#include "Cow.h"
+#include "Animal.h"
 #include <random>
 #include <iostream>
 
 //------------------------------------------------------------------------methods for ChaseRabbit
-ChaseRabbit* ChaseRabbit::Instance()
-{
-	static ChaseRabbit instance;
-	return &instance;
-}
-
-
-void ChaseRabbit::Enter(Cow* cow)
+void ChaseRabbit::Enter(Animal* cow)
 {
 	//cow->chase();
 }
 
 
-void ChaseRabbit::Execute(Cow* cow)
+void ChaseRabbit::Execute(Animal* cow)
 {
 	//if (cow->getCurrentNode() == hare.CugetCurrentNode())
 	//{
@@ -28,43 +21,31 @@ void ChaseRabbit::Execute(Cow* cow)
 }
 
 
-void ChaseRabbit::Exit(Cow* cow)
-{}
+void ChaseRabbit::Exit(Animal* cow)
+{ }
 
 //------------------------------------------------------------------------methods for WanderAround
-WanderAroundCow* WanderAroundCow::Instance()
-{
-	static WanderAroundCow instance;
-	return &instance;
-}
-
-
-void WanderAroundCow::Enter(Cow* cow)
+void WanderAroundCow::Enter(Animal* cow)
 {
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 6);
-	wanderUpdatesRequired = dist1(dre);
+	wanderUpdates = dist1(dre);
 }
 
 
-void WanderAroundCow::Execute(Cow* cow)
+void WanderAroundCow::Execute(Animal* cow)
 {
-	if (wanderUpdates >= wanderUpdatesRequired)
+	if (wanderUpdatesDone >= wanderUpdates)
 	{
-		cow->GetFSM()->ChangeState(ChaseRabbit::Instance());
+		//cow->GetFSM()->ChangeState(ChaseRabbit::Instance());
 		wanderUpdates = 0;
 		return;
 	}
 
-	if (updatesSince > updateDelay)
-	{
-		cow->wander();
-		wanderUpdates++;
-		updatesSince = 0;
-	}
+	//cow->wander();
 }
 
 
-void WanderAroundCow::Exit(Cow* cow)
-{}
+void WanderAroundCow::Exit(Animal* cow)
+{ }

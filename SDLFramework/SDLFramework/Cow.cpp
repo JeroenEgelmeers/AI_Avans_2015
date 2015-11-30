@@ -8,7 +8,7 @@ Cow::Cow(Node* cNode)
 	setCurrentNode(cNode);
 	
 	m_pStateMachine = new StateMachine<Animal>(dynamic_cast<Animal*>(this));
-	m_pStateMachine->SetCurrentState(WanderAroundCow::Instance());
+	m_pStateMachine->SetCurrentState(new WanderAroundCow());
 	m_pStateMachine->CurrentState()->Enter(this);
 }
 
