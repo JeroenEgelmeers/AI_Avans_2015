@@ -6,7 +6,7 @@ class Hare : public Animal
 {
 public:
 	Hare(Node * cNode);
+	void Hare::Update(float deltaTime) override;
 	void Hare::Draw()override;
 	~Hare();
 };
-

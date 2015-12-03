@@ -13,18 +13,16 @@
 //------------------------------------------------------------------------
 #include <cassert>
 #include <string>
-
 #include "State.h"
-
 
 template <class entity_type>
 class StateMachine
 {
 private:
-
 	//a pointer to the agent that owns this instance
 	entity_type*          m_pOwner;
 
+	//a record of the current state the agent is in
 	State<entity_type>*   m_pCurrentState;
 
 	//a record of the last state the agent was in
@@ -33,9 +31,7 @@ private:
 	//this is called every time the FSM is updated
 	State<entity_type>*   m_pGlobalState;
 
-
 public:
-
 	StateMachine(entity_type* owner) :m_pOwner(owner),
 		m_pCurrentState(NULL),
 		m_pPreviousState(NULL),
@@ -50,10 +46,12 @@ public:
 	{
 		m_pCurrentState = s;
 	}
+
 	void SetGlobalState(State<entity_type>* s)
 	{
 		m_pGlobalState = s;
 	}
+
 	void SetPreviousState(State<entity_type>* s)
 	{
 		m_pPreviousState = s;
@@ -70,7 +68,6 @@ public:
 		if (m_pCurrentState)
 			m_pCurrentState->Execute(m_pOwner);
 	}
-
 
 	//change to a new state
 	void  ChangeState(State<entity_type>* pNewState)
@@ -114,10 +111,12 @@ public:
 	{
 		return m_pCurrentState;
 	}
+
 	State<entity_type>*  GlobalState()   const
 	{
 		return m_pGlobalState;
 	}
+
 	State<entity_type>*  PreviousState() const
 	{
 		return m_pPreviousState;
@@ -129,9 +128,7 @@ public:
 
 		//remove the 'class ' part from the front of the string
 		if (s.size() > 5)
-		{
 			s.erase(0, 6);
-		}
 
 		return s;
 	}

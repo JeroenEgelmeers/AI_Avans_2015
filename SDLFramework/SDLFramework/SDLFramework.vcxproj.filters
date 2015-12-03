@@ -74,6 +74,9 @@
     <ClCompile Include="HareStates.cpp">
       <Filter>Source Files\FSM</Filter>
     </ClCompile>
+    <ClCompile Include="StateFactory.cpp">
+      <Filter>Source Files\FSM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -148,6 +151,12 @@
       <Filter>Header Files\FSM</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="StateFactory.h">
+      <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEnum.h">
       <Filter>Header Files\FSM</Filter>
     </ClInclude>
   </ItemGroup>

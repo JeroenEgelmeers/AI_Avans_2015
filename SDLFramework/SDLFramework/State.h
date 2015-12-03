@@ -9,12 +9,18 @@
 //  Author: Mat Buckland (fup@ai-junkie.com)
 //
 //------------------------------------------------------------------------
+#include "StateFactory.h"
 
 template <class entity_type>
+
 class State
 {
-public:
+private:
+	
+protected:
+	
 
+public:
 	virtual ~State() {}
 
 	//this will execute when the state is entered

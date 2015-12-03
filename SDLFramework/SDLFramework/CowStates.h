@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include "StateFactory.h"
 class Animal;
 
 //------------------------------------------------------------------------
@@ -10,6 +11,8 @@ class Animal;
 class ChaseRabbit : public State<Animal>
 {
 private:
+	StateFactory* fectory;
+
 	//copy ctor and assignment should be private
 	ChaseRabbit(const ChaseRabbit&);
 	ChaseRabbit& operator=(const ChaseRabbit&);
@@ -18,9 +21,7 @@ public:
 	ChaseRabbit() { }
 
 	virtual void Enter(Animal* Cow);
-
 	virtual void Execute(Animal* Cow);
-
 	virtual void Exit(Animal* Cow);
 };
 
@@ -32,6 +33,7 @@ public:
 class WanderAroundCow : public State<Animal>
 {
 private:
+	StateFactory* fectory;
 	//copy ctor and assignment should be private
 	WanderAroundCow(const WanderAroundCow&);
 	WanderAroundCow& operator=(const WanderAroundCow&);

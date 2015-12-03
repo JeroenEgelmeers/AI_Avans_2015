@@ -96,6 +96,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="StateFactory.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +124,8 @@
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="StateEnum.h" />
+    <ClInclude Include="StateFactory.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>

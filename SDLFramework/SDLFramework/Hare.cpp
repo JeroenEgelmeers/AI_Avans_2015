@@ -9,11 +9,16 @@ Hare::Hare(Node * cNode)
 
 	m_pStateMachine = new StateMachine<Animal>(dynamic_cast<Animal*>(this));
 	m_pStateMachine->SetCurrentState(new WanderAroundRabbit());
-	//m_pStateMachine->CurrentState()->Enter(this);
+	m_pStateMachine->CurrentState()->Enter(dynamic_cast<Animal*>(this));
 }
 
 Hare::~Hare()
 {
+}
+
+void Hare::Update(float dt)
+{
+	this->GetFSM()->CurrentState()->Execute(dynamic_cast<Animal*>(this));
 }
 
 void Hare::Draw()
