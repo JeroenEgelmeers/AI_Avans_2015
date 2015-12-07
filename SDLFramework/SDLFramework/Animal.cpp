@@ -1,12 +1,9 @@
 #include "Animal.h"
+int Animal::m_iNextValidId = 0;
 
-Animal::Animal()
+Animal::Animal(int id)
 {
-}
-
-
-Animal::~Animal()
-{
+	SetID(id);
 }
 
 void Animal::setCurrentNode(Node* cNode)
@@ -18,6 +15,15 @@ void Animal::Draw()
 {
 }
 
-void Animal::Update(float deltaTime)
+void Animal::SetID(int val)
+{
+	if (val >= m_iNextValidId)
+	{
+		m_ID = val;
+		m_iNextValidId++;
+	}
+}
+
+Animal::~Animal()
 {
 }

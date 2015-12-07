@@ -1,11 +1,6 @@
 #pragma once
-#include "Node.h"
-#include "IGameObject.h"
-
-class Animal : public IGameObject
+class BaseGameEntity
 {
-protected:
-	Node* currentNode;
 private:
 	// every entity has a unique identifying number
 	int m_ID;
@@ -19,15 +14,17 @@ private:
 	//or equal to the next valid ID, before setting the ID and incrementing
 	//the next valid ID
 	void SetID(int val);
+
 public:
-	Animal(int id);
-	virtual ~Animal();
+	
+	BaseGameEntity(int id) {
+		SetID(id);
+	}
 
-	Node* getCurrentNode() { return currentNode; }
-	void setCurrentNode(Node* cNode);
-
-	virtual void Draw()override;
-	virtual void Update(float deltaTime) = 0;
+	virtual ~BaseGameEntity();
+	
+	//all entities must implement an update function
+	virtual void UPdate() = 0;
 	int ID()const { return m_ID; }
 };
 
