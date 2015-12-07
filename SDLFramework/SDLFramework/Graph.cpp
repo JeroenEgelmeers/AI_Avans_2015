@@ -1,7 +1,6 @@
 #include "Graph.h"
 #include "Node.h"
 #include "Edge.h"
-
 #include "Vector.h"
 #include <algorithm>
 
@@ -58,6 +57,7 @@ void Graph::Draw()
 	mApplication->SetColor(Color(255, 255, 255, 255));
 }
 
+#pragma region Setup, Gets, Sets
 void Graph::AddNode(Node n)
 {
 	nodes.push_back(n);
@@ -103,13 +103,13 @@ int Graph::GetNumNodes()
 {
 	return nodes.size();
 }
+#pragma endregion
 
 bool sortSmallerWeight(const int& l, const int& r)
 {
 	auto application = FWApplication::GetInstance();
 	return application->GetGraph()->GetNode(l)->GetPathWeight() > application->GetGraph()->GetNode(r)->GetPathWeight();
 }
-
 
 int Graph::GetNewNode(int currentNode)
 {
@@ -143,26 +143,9 @@ int Graph::GetNewNeighborNode(int currentNode)
 	std::vector<int> neighborNodes = std::vector<int>();
 
 	for (int edge : GetNode(currentNode)->GetEdges())
-	{
 		neighborNodes.push_back(FollowEdge(currentNode, edge));
-		//neighborNodes.push_back(currentNode);
-	}
-
-	bool correctNumber = false;
-	int newNodePosition;
-	while (correctNumber == false)
-	{
-		newNodePosition = 0 + (rand() % (int)(neighborNodes.size()));
-		correctNumber = false;
-		for (int node : neighborNodes)
-		{
-			if (node != newNodePosition)
-			{
-				correctNumber = true;
-			}
-		}
-	}
-	return newNodePosition;
+	
+	return neighborNodes.at(rand() % (int) (neighborNodes.size()));
 }
 
 int Graph::GetNodePosition(const Node* node)

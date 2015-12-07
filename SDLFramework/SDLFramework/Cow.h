@@ -7,5 +7,6 @@ public:
 	Cow(Node* cNode);
 	~Cow();
 
+	void Update(float deltaTime) override;
 	void Draw()override;
 };

@@ -30,7 +30,7 @@ void HareWanderAround::Enter(Animal* hare)
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 6);
-	//wanderUpdates = dist1(dre);
+	wanderUpdates = dist1(dre);
 	wanderUpdates = 3;
 	wanderUpdatesDone = 0;
 }
@@ -59,8 +59,7 @@ void HareRest::Enter(Animal* hare)
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 3);
-	//restUpdates = dist1(dre);
-	restUpdates = 2;
+	restUpdates = dist1(dre);
 	restUpdatesDone = 0;
 }
 

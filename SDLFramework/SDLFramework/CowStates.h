@@ -12,8 +12,6 @@ class Animal;
 class CowChaseHare : public IAnimalState
 {
 private:
-	//StateFactory* fectory;
-
 	//copy ctor and assignment should be private
 	CowChaseHare(const CowChaseHare&);
 	CowChaseHare& operator=(const CowChaseHare&);
@@ -34,14 +32,14 @@ public:
 class CowWanderAround : public IAnimalState
 {
 private:
-	//StateFactory* fectory;
 	//copy ctor and assignment should be private
 	CowWanderAround(const CowWanderAround&);
 	CowWanderAround& operator=(const CowWanderAround&);
 	int wanderUpdates, wanderUpdatesDone;
 
 public:
-	CowWanderAround() {}
+	CowWanderAround() { }
+	~CowWanderAround() { }
 
 	virtual void CowWanderAround::Enter(Animal* Cow) override;
 	virtual void CowWanderAround::Execute(Animal* Cow) override;

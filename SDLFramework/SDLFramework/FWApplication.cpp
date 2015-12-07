@@ -234,15 +234,16 @@ void FWApplication::UpdateGameObjects()
 	//}
 
 	mHare->Update(0);
+	mCow->Update(0);
 
-	int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
+	//int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
 
-	mCow->setCurrentNode(mGraph->GetNode(path));
+	//mCow->setCurrentNode(mGraph->GetNode(path));
 
-	if (mHare->getCurrentNode() == mCow->getCurrentNode())
-	{
-		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
-	}
+	//if (mHare->getCurrentNode() == mCow->getCurrentNode())
+	//{
+	//	mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+	//}
 }
 
 void FWApplication::RenderGameObjects()

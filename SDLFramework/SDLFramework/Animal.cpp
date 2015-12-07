@@ -27,4 +27,7 @@ void Animal::setCurrentNode(Node* cNode)
 
 void Animal::Draw() { }
 
-void Animal::Update(float deltaTime) { }
+void Animal::Update(float deltaTime)
+{
+	this->GetFSM()->CurrentState()->Execute(dynamic_cast<Animal*>(this));
+}

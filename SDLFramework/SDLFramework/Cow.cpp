@@ -14,6 +14,11 @@ Cow::Cow(Node* cNode)
 
 Cow::~Cow(){ }
 
+void Cow::Update(float dt)
+{
+	this->GetFSM()->CurrentState()->Execute(dynamic_cast<Animal*>(this));
+}
+
 void Cow::Draw() 
 {
 	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
