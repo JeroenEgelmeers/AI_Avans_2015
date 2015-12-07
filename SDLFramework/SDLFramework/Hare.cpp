@@ -7,8 +7,8 @@ Hare::Hare(Node * cNode)
 	mApplication->AddRenderable(this);
 	setCurrentNode(cNode);
 
-	m_pStateMachine = new StateMachine<Animal>(dynamic_cast<Animal*>(this));
-	m_pStateMachine->SetCurrentState(new WanderAroundRabbit());
+	m_pStateMachine = new StateMachine2<Animal>(dynamic_cast<Animal*>(this));
+	m_pStateMachine->SetCurrentState(new HareWanderAround());
 	m_pStateMachine->CurrentState()->Enter(dynamic_cast<Animal*>(this));
 }
 
@@ -24,4 +24,5 @@ void Hare::Update(float dt)
 void Hare::Draw()
 {
 	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
+	mApplication->DrawText(GetFSM()->GetNameOfCurrentState(), currentNode->x + 50, currentNode->y - 50);
 }

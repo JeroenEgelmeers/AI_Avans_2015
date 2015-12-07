@@ -1,8 +1,8 @@
 #pragma once
 enum StateEnum
 {
-	CowWanderAround = 0,
-	CowChaseHare,
-	HareWanderAround,
-	RabbitFleeFromCow
+	eCowWanderAround = 0,
+	eCowChaseHare,
+	eHareWanderAround,
+	eHareFleeFromCow
 };

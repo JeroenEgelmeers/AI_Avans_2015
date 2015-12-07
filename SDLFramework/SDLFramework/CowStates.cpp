@@ -5,30 +5,24 @@
 #include "StateFactory.h"
 
 //------------------------------------------------------------------------methods for ChaseRabbit
-void ChaseRabbit::Enter(Animal* cow)
+void CowChaseHare::Enter(Animal* cow)
 {
-	this->fectory = new StateFactory();
-	//cow->chase();
+	//this->fectory = new StateFactory();
 }
 
-void ChaseRabbit::Execute(Animal* cow)
+void CowChaseHare::Execute(Animal* cow)
 {
-	//if (cow->getCurrentNode() == hare.CugetCurrentNode())
-	//{
-		cow->GetFSM()->ChangeState(new ChaseRabbit());
-	//	return;
-	//}
+
 }
 
-void ChaseRabbit::Exit(Animal* cow)
+void CowChaseHare::Exit(Animal* cow)
 {
-	delete this->fectory;
+	
 }
 
 //------------------------------------------------------------------------methods for WanderAround
-void WanderAroundCow::Enter(Animal* cow)
+void CowWanderAround::Enter(Animal* cow)
 {
-	this->fectory = new StateFactory();
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 6);
@@ -36,20 +30,17 @@ void WanderAroundCow::Enter(Animal* cow)
 	wanderUpdatesDone = 0;
 }
 
-void WanderAroundCow::Execute(Animal* cow)
+void CowWanderAround::Execute(Animal* cow)
 {
 	if (wanderUpdatesDone >= wanderUpdates)
 	{
-		cow->GetFSM()->ChangeState();
+		cow->GetFSM()->ChangeState(new CowChaseHare());
 		return;
 	}
-
-	//cow->wander();
 }
 
-void WanderAroundCow::Exit(Animal* cow)
+void CowWanderAround::Exit(Animal* cow)
 {
-	delete this->fectory;
 	wanderUpdates = 0;
 	wanderUpdatesDone = 0;
 }

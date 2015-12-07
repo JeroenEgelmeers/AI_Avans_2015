@@ -110,6 +110,61 @@ bool sortSmallerWeight(const int& l, const int& r)
 	return application->GetGraph()->GetNode(l)->GetPathWeight() > application->GetGraph()->GetNode(r)->GetPathWeight();
 }
 
+
+int Graph::GetNewNode(int currentNode)
+{
+	std::vector<int> neighborNodes = std::vector<int>();
+
+	for (int edge : GetNode(currentNode)->GetEdges())
+	{
+		neighborNodes.push_back(FollowEdge(currentNode, edge));
+		neighborNodes.push_back(currentNode);
+	}
+
+	bool correctNumber = false;
+	int newNodePosition;
+	while (correctNumber == false)
+	{
+		newNodePosition = 0 + (rand() % (int)(GetNodes().size()));
+		correctNumber = true;
+		for (int node : neighborNodes)
+		{
+			if (node == newNodePosition)
+			{
+				correctNumber = false;
+			}
+		}
+	}
+	return newNodePosition;
+}
+
+int Graph::GetNewNeighborNode(int currentNode)
+{
+	std::vector<int> neighborNodes = std::vector<int>();
+
+	for (int edge : GetNode(currentNode)->GetEdges())
+	{
+		neighborNodes.push_back(FollowEdge(currentNode, edge));
+		//neighborNodes.push_back(currentNode);
+	}
+
+	bool correctNumber = false;
+	int newNodePosition;
+	while (correctNumber == false)
+	{
+		newNodePosition = 0 + (rand() % (int)(neighborNodes.size()));
+		correctNumber = false;
+		for (int node : neighborNodes)
+		{
+			if (node != newNodePosition)
+			{
+				correctNumber = true;
+			}
+		}
+	}
+	return newNodePosition;
+}
+
 int Graph::GetNodePosition(const Node* node)
 {
 	for (size_t i = 0; i < nodes.size(); i++)

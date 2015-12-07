@@ -9,5 +9,8 @@ static class StateFactory
 	protected:
 
 	public:
-		State<Animal>* CreateNewSate(StateEnum number);
+		StateFactory();
+		~StateFactory();
+
+		IAnimalState* CreateNewSate(StateEnum number);
 };

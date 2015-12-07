@@ -47,6 +47,8 @@ public:
 	Node* GetNode(int i);
 	Edge* GetEdge(int i);
 
+	int GetNewNode(int node);
+	int GetNewNeighborNode(int currentNode);
 	int GetNodePosition(const Node* node);
 
 	int Graph::FollowEdge(int node, int edge);

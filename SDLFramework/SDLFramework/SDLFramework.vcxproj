@@ -120,13 +120,14 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Hare.h" />
     <ClInclude Include="HareStates.h" />
+    <ClInclude Include="IAnimalState.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="StateEnum.h" />
-    <ClInclude Include="StateFactory.h" />
     <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="StateMachine2.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

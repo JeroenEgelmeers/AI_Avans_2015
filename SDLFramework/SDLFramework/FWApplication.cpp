@@ -70,11 +70,13 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	srand(time(NULL));
 	mInstance = this;
 	mGameObjects.reserve(32);
-	
+
 	mGraph = new Graph();
 	// TODO set current cow node
 	mCow = new Cow(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
 	mHare = new Hare(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mCow->getCurrentNode()))));
+	mCow->SetGraph(mGraph);
+	mHare->SetGraph(mGraph);
 
 	AddRenderable(mGraph);
 	AddRenderable(mCow);
@@ -91,21 +93,26 @@ FWApplication::~FWApplication()
 	SDL_Quit();
 }
 
-int FWApplication::GetNewNode(int currentNode){
+int FWApplication::GetNewNode(int currentNode)
+{
 	std::vector<int> neighborNodes = std::vector<int>();
 
-	for (int edge : mGraph->GetNode(currentNode)->GetEdges()) {
+	for (int edge : mGraph->GetNode(currentNode)->GetEdges())
+	{
 		neighborNodes.push_back(mGraph->FollowEdge(currentNode, edge));
 		neighborNodes.push_back(currentNode);
 	}
 
 	bool correctNumber = false;
 	int newNodePosition;
-	while (correctNumber == false) {
+	while (correctNumber == false)
+	{
 		newNodePosition = 0 + (rand() % (int)(mGraph->GetNodes().size()));
 		correctNumber = true;
-		for (int node : neighborNodes) {
-			if (node == newNodePosition) {
+		for (int node : neighborNodes)
+		{
+			if (node == newNodePosition)
+			{
 				correctNumber = false;
 			}
 		}
@@ -226,11 +233,14 @@ void FWApplication::UpdateGameObjects()
 	//	obj->Update((float)mDeltaTimeMS / 1000.0f);
 	//}
 
+	mHare->Update(0);
+
 	int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
-	
+
 	mCow->setCurrentNode(mGraph->GetNode(path));
 
-	if (mHare->getCurrentNode() == mCow->getCurrentNode()) {
+	if (mHare->getCurrentNode() == mCow->getCurrentNode())
+	{
 		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
 	}
 }
@@ -277,7 +287,6 @@ void FWApplication::DrawRect(int startPosX, int startPosY, int width, int height
 		SDL_RenderDrawRect(mRenderer, &rect);
 	}
 }
-
 
 //void FWApplication::DrawEllipse(int offsetX, int offsetY, int width, int height, bool fill)
 //{
@@ -376,7 +385,8 @@ uint32_t FWApplication::GetTimeSinceStartedMS() const
 
 void FWApplication::DrawText(const std::string & message, uint32_t offsetX, uint32_t offsetY)
 {
-	SDL_Color color = { mColor.r, mColor.g, mColor.b, mColor.a };
+	//SDL_Color color = { mColor.r, mColor.g, mColor.b, mColor.a };
+	SDL_Color color = { 0, 0, 0, mColor.a };
 	//SDL_Color bgColor = { mTextBackgroundColor.r, mTextBackgroundColor.g, mTextBackgroundColor.b, mTextBackgroundColor.a };
 
 	SDL_Surface * surface = TTF_RenderText_Blended(mFont, message.c_str(), color);

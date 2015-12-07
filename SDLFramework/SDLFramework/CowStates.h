@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include "StateFactory.h"
+#include "IAnimalState.h"
 class Animal;
 
 //------------------------------------------------------------------------
@@ -8,21 +9,21 @@ class Animal;
 //  Koe zal achter de haas aan gaan om deze proberen te vangen
 //  
 //------------------------------------------------------------------------
-class ChaseRabbit : public State<Animal>
+class CowChaseHare : public IAnimalState
 {
 private:
-	StateFactory* fectory;
+	//StateFactory* fectory;
 
 	//copy ctor and assignment should be private
-	ChaseRabbit(const ChaseRabbit&);
-	ChaseRabbit& operator=(const ChaseRabbit&);
+	CowChaseHare(const CowChaseHare&);
+	CowChaseHare& operator=(const CowChaseHare&);
 
 public:
-	ChaseRabbit() { }
+	CowChaseHare() {}
 
-	virtual void Enter(Animal* Cow);
-	virtual void Execute(Animal* Cow);
-	virtual void Exit(Animal* Cow);
+	virtual void CowChaseHare::Enter(Animal* Cow) override;
+	virtual void CowChaseHare::Execute(Animal* Cow) override;
+	virtual void CowChaseHare::Exit(Animal* Cow) override;
 };
 
 //------------------------------------------------------------------------
@@ -30,19 +31,19 @@ public:
 //  De koe zal doelloos rondlopen
 //  
 //------------------------------------------------------------------------
-class WanderAroundCow : public State<Animal>
+class CowWanderAround : public IAnimalState
 {
 private:
-	StateFactory* fectory;
+	//StateFactory* fectory;
 	//copy ctor and assignment should be private
-	WanderAroundCow(const WanderAroundCow&);
-	WanderAroundCow& operator=(const WanderAroundCow&);
+	CowWanderAround(const CowWanderAround&);
+	CowWanderAround& operator=(const CowWanderAround&);
 	int wanderUpdates, wanderUpdatesDone;
 
 public:
-	WanderAroundCow() { }
+	CowWanderAround() {}
 
-	virtual void WanderAroundCow::Enter(Animal* Cow) override;
-	virtual void WanderAroundCow::Execute(Animal* Cow) override;
-	virtual void WanderAroundCow::Exit(Animal* Cow) override;
+	virtual void CowWanderAround::Enter(Animal* Cow) override;
+	virtual void CowWanderAround::Execute(Animal* Cow) override;
+	virtual void CowWanderAround::Exit(Animal* Cow) override;
 };
