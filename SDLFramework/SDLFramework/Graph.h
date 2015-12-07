@@ -10,6 +10,7 @@
 
 class Node;
 class Edge;
+class Animal;
 
 class Graph : public IGameObject
 {
@@ -26,6 +27,9 @@ private:
 	Node* mTargetNode;
 	std::vector<int> mOpenList;
 	std::vector<int> mClosedList;
+
+	Cow* cow;
+	Hare* hare;
 	
 	void AStarReset();
 protected: 
@@ -39,6 +43,13 @@ public:
 
 	void AddNode(Node n);
 	void AddEdge(int a, int b);
+
+	void SetCowTarget(Cow* c);
+	void SetHareTarget(Hare* h);
+	int GetCowTargetNode();
+	int GetHareTargetNode();
+	//Pill* GetPillTarget();
+	//Gun* GetGunTarget();
 
 	std::vector<Node> GetNodes();
 	std::vector<Edge> GetEdges();

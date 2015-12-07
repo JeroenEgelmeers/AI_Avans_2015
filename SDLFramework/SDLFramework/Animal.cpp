@@ -1,10 +1,7 @@
 #include "Animal.h"
 #include "Graph.h"
 
-Animal::Animal()
-{
-}
-
+Animal::Animal() { }
 
 Animal::~Animal()
 {

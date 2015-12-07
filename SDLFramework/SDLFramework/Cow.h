@@ -9,4 +9,6 @@ public:
 
 	void Update(float deltaTime) override;
 	void Draw()override;
+
+	void Cow::SetGraph(Graph* g);
 };

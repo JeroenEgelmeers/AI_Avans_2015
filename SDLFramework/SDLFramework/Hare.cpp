@@ -1,5 +1,6 @@
 #include "Hare.h"
 #include "HareStates.h"
+#include "Graph.h"
 
 Hare::Hare(Node * cNode)
 {
@@ -25,4 +26,10 @@ void Hare::Draw()
 {
 	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
 	mApplication->DrawText(GetFSM()->GetNameOfCurrentState(), currentNode->x + 50, currentNode->y - 50);
+}
+
+void Hare::SetGraph(Graph* g)
+{
+	this->graph = g;
+	g->SetHareTarget(dynamic_cast<Hare*>(this));
 }

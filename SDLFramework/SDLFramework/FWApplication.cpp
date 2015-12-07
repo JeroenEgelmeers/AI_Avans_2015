@@ -240,10 +240,11 @@ void FWApplication::UpdateGameObjects()
 
 	//mCow->setCurrentNode(mGraph->GetNode(path));
 
-	//if (mHare->getCurrentNode() == mCow->getCurrentNode())
-	//{
-	//	mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
-	//}
+	if (mHare->getCurrentNode() == mCow->getCurrentNode())
+	{
+		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+		//mHare->GetFSM()->ChangeState(new HareWander)
+	}
 }
 
 void FWApplication::RenderGameObjects()

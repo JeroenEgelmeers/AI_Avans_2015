@@ -4,6 +4,9 @@
 #include "Vector.h"
 #include <algorithm>
 
+#include "Cow.h"
+#include "Hare.h"
+
 using namespace std;
 
 Graph::Graph()
@@ -270,5 +273,24 @@ int Graph::AStar(int current, int goal)
 	return -1;
 }
 
-Graph::~Graph()
-{ }
+void Graph::SetCowTarget(Cow* _cow)
+{
+	cow = _cow;
+}
+
+void Graph::SetHareTarget(Hare* _hare)
+{
+	hare = _hare;
+}
+
+int Graph::GetCowTargetNode()
+{
+	return GetNodePosition(cow->getCurrentNode());
+}
+
+int Graph::GetHareTargetNode()
+{
+	return GetNodePosition(hare->getCurrentNode());
+}
+
+Graph::~Graph() { }

@@ -1,5 +1,6 @@
 #include "Cow.h"
 #include "CowStates.h"
+#include "Graph.h"
 
 Cow::Cow(Node* cNode)
 {
@@ -23,4 +24,10 @@ void Cow::Draw()
 {
 	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
 	mApplication->DrawText(GetFSM()->GetNameOfCurrentState(), currentNode->x + 50, currentNode->y - 50);
+}
+
+void Cow::SetGraph(Graph* g)
+{
+	this->graph = g;
+	g->SetCowTarget(dynamic_cast<Cow*>(this));
 }

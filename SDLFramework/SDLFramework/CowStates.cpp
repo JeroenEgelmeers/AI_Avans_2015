@@ -14,7 +14,7 @@ void CowChaseHare::Enter(Animal* cow)
 void CowChaseHare::Execute(Animal* cow)
 {
 	// int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
-	int path = cow->GetGraph()->AStar(cow->GetGraph()->GetNodePosition(cow->getCurrentNode()), 0);
+	int path = cow->GetGraph()->AStar(cow->GetGraph()->GetCowTargetNode(), cow->GetGraph()->GetHareTargetNode());
 	cow->setCurrentNode(cow->GetGraph()->GetNode(path));
 }
 
