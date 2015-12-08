@@ -376,11 +376,11 @@
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="cad283ed-c54a-407d-8f22-224a3d2f8ae1"
+                Id="f8c87867-ddbb-40ec-84e2-0446b11d77b6"
                 isLeaf="false">
                 <opaqueActionMoniker
-                  Id="188c6445-d4e1-46fa-a2a7-457dac1e9de4"
-                  LastKnownName="Change state to &quot;Fly&quot;"
+                  Id="270382f1-3fd2-4142-b0d1-06d7b0c466a7"
+                  LastKnownName="Remove &quot;Gun&quot; from Hare"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -391,11 +391,11 @@
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="d9222f63-64df-4bae-ab90-22e6a178c37f"
+                Id="41e51a17-1efe-462c-aa14-e7809e1d8615"
                 isLeaf="false">
                 <opaqueActionMoniker
-                  Id="fa044ec0-e495-4ad9-8455-360b565e098d"
-                  LastKnownName="Change state to &quot;Fly&quot;"
+                  Id="abd47dd3-5eca-4176-a8f8-18b2ea4662cd"
+                  LastKnownName="Remove &quot;Pill&quot; from Cow"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -430,6 +430,36 @@
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
+          <opaqueAction
+            Id="270382f1-3fd2-4142-b0d1-06d7b0c466a7"
+            name="Remove &quot;Gun&quot; from Hare"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="06a1ae05-4f48-4f61-b2ee-d996ed161996"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="188c6445-d4e1-46fa-a2a7-457dac1e9de4"
+                  LastKnownName="Change state to &quot;Fly&quot;"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="abd47dd3-5eca-4176-a8f8-18b2ea4662cd"
+            name="Remove &quot;Pill&quot; from Cow"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="8fb29e23-d07b-4393-8c7d-9f12ce8143d7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="fa044ec0-e495-4ad9-8455-360b565e098d"
+                  LastKnownName="Change state to &quot;Fly&quot;"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
         </nodes>
       </activity>
     </packageHasNamedElement>

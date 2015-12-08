@@ -18,20 +18,6 @@
       </annotatedElements>
     </comment>
   </ownedCommentsInternal>
-  <profileInstances>
-    <packageHasProfileInstances Id="5138ea53-a8d6-41c6-813f-d594cde4f8a0">
-      <profileInstance Id="afaf4321-8afc-48ef-bf9d-675b74f4f99a" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="2b0181e2-6622-44bc-abd9-e024a0183feb">
-      <profileInstance Id="bbd65856-adc8-446c-9ac5-0a68b0d74fc3" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <activityRootModelHasActivity>
       <activity Id="b84ca42c-c829-440b-b52c-0ab78ffbf632" name="States" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
@@ -217,18 +203,18 @@
           <mergeNode Id="244f6f47-46a6-4ed5-a0cc-a77d723d33b0" name="Merge2" isLeaf="false">
             <elementDefinition Id="dc5b4a10-bb94-48b8-a496-bd005149683b" />
             <flowNodeTargets>
-              <controlFlow Id="33720d7b-6378-4f16-8d6c-3f8568e0b0c7" isLeaf="false">
-                <opaqueActionMoniker Id="8137d88d-ef83-46f2-a3df-91903f60d2dc" LastKnownName="Change state to &quot;Fly&quot;" />
-                <elementDefinition Id="cad283ed-c54a-407d-8f22-224a3d2f8ae1" />
+              <controlFlow Id="7497d2b4-b302-4254-af20-4639c75894aa" isLeaf="false">
+                <opaqueActionMoniker Id="1695d021-e48a-4213-831c-5f495369171a" LastKnownName="Remove &quot;Gun&quot; from Hare" />
+                <elementDefinition Id="f8c87867-ddbb-40ec-84e2-0446b11d77b6" />
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
           <mergeNode Id="31d8a439-4252-48b9-80bd-5b96bc35c48b" name="Merge3" isLeaf="false">
             <elementDefinition Id="887736aa-c739-4b4f-9a13-a6c9d78a6757" />
             <flowNodeTargets>
-              <controlFlow Id="9d478bcd-f804-48c8-8bd3-2cc7e0949ba7" isLeaf="false">
-                <opaqueActionMoniker Id="800db5c5-1d8b-4477-aa8a-c441ebeca73c" LastKnownName="Change state to &quot;Fly&quot;" />
-                <elementDefinition Id="d9222f63-64df-4bae-ab90-22e6a178c37f" />
+              <controlFlow Id="3eada5c9-494d-4713-81ea-ea8aa2a35845" isLeaf="false">
+                <opaqueActionMoniker Id="3e8004d0-e63a-405e-ad11-1214d6a5635e" LastKnownName="Remove &quot;Pill&quot; from Cow" />
+                <elementDefinition Id="41e51a17-1efe-462c-aa14-e7809e1d8615" />
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
@@ -250,11 +236,43 @@
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
+          <opaqueAction Id="1695d021-e48a-4213-831c-5f495369171a" name="Remove &quot;Gun&quot; from Hare" isLeaf="false">
+            <elementDefinition Id="270382f1-3fd2-4142-b0d1-06d7b0c466a7" />
+            <flowNodeTargets>
+              <controlFlow Id="379628ab-56cc-449e-a99b-861c46cfea07" isLeaf="false">
+                <opaqueActionMoniker Id="8137d88d-ef83-46f2-a3df-91903f60d2dc" LastKnownName="Change state to &quot;Fly&quot;" />
+                <elementDefinition Id="06a1ae05-4f48-4f61-b2ee-d996ed161996" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="3e8004d0-e63a-405e-ad11-1214d6a5635e" name="Remove &quot;Pill&quot; from Cow" isLeaf="false">
+            <elementDefinition Id="abd47dd3-5eca-4176-a8f8-18b2ea4662cd" />
+            <flowNodeTargets>
+              <controlFlow Id="b7a9f7e0-fc8f-4192-a9cf-cb953de37186" isLeaf="false">
+                <opaqueActionMoniker Id="800db5c5-1d8b-4477-aa8a-c441ebeca73c" LastKnownName="Change state to &quot;Fly&quot;" />
+                <elementDefinition Id="8fb29e23-d07b-4393-8c7d-9f12ce8143d7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
         </nodes>
       </activity>
     </activityRootModelHasActivity>
   </packagedElements>
   <package Id="0b97c78c-fd55-4ed9-ab1e-698c83c278ae" name="Modeling">
     <elementDefinition Id="38233cb7-b90f-4d07-b3c0-0de11a65ff16" />
+    <profileInstances>
+      <packageHasProfileInstances Id="5138ea53-a8d6-41c6-813f-d594cde4f8a0">
+        <profileInstance Id="afaf4321-8afc-48ef-bf9d-675b74f4f99a" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="2b0181e2-6622-44bc-abd9-e024a0183feb">
+        <profileInstance Id="bbd65856-adc8-446c-9ac5-0a68b0d74fc3" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </activityRootModel>
