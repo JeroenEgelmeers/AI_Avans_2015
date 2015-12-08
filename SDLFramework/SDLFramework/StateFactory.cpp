@@ -2,8 +2,6 @@
 #include "CowStates.h"
 #include "HareStates.h"
 
-
-
 StateFactory::StateFactory() {}
 
 StateFactory::~StateFactory() {}

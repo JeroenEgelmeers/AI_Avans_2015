@@ -233,8 +233,15 @@ void FWApplication::UpdateGameObjects()
 	//	obj->Update((float)mDeltaTimeMS / 1000.0f);
 	//}
 
-	mHare->Update(0);
-	mCow->Update(0);
+	if (moveCow) {
+		mCow->Update(0);
+		moveCow = false;
+	}
+	else {
+		mHare->Update(0);
+		moveCow = true;
+	}
+
 
 	//int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
 

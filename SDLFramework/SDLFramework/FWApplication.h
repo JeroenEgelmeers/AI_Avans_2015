@@ -265,6 +265,7 @@ private:
 	uint32_t mDeltaTimeMS; // The actual loop cycle time
 
 	bool mIsRunning;
+	bool moveCow;
 
 	Color mColor;
 	//Color mTextBackgroundColor;
