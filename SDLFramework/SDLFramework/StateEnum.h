@@ -5,6 +5,7 @@ enum StateEnum
 	eCowWanderAround = 0,
 	eCowChaseHare,
 	eCowRest,
+	eCowFleeFromHare,
 	// Add cow state here
 
 	//Do not remove this item
