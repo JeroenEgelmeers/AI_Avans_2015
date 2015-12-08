@@ -2,6 +2,8 @@
 #include "Node.h"
 #include "IGameObject.h"
 #include "StateMachine2.h"
+#include "StateFactory.h"
+#include "StateEnum.h"
 
 class Graph;
 
@@ -11,6 +13,8 @@ protected:
 	Graph* graph;
 	Node* currentNode;
 	StateMachine2<Animal>* m_pStateMachine;
+	StateFactory* factory;
+
 public:
 	Animal();	
 	~Animal();
@@ -25,4 +29,5 @@ public:
 	virtual void Update(float deltaTime) override;
 
 	StateMachine2<Animal>* GetFSM() const { return m_pStateMachine; }
+	virtual void ChangeState(StateEnum state);
 };

@@ -7,13 +7,10 @@
 
 //------------------------------------------------------------------------methods for ChaseRabbit
 void CowChaseHare::Enter(Animal* cow)
-{
-	//this->fectory = new StateFactory();
-}
+{ }
 
 void CowChaseHare::Execute(Animal* cow)
 {
-	// int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
 	int path = cow->GetGraph()->AStar(cow->GetGraph()->GetCowTargetNode(), cow->GetGraph()->GetHareTargetNode());
 	cow->setCurrentNode(cow->GetGraph()->GetNode(path));
 }
@@ -29,25 +26,50 @@ void CowWanderAround::Enter(Animal* cow)
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 6);
-	wanderUpdates = dist1(dre);
-	wanderUpdatesDone = 0;
+	//int stateUpdates, stateUpdatesDone;
+	stateUpdates = dist1(dre);
+	stateUpdatesDone = 0;
 }
 
 void CowWanderAround::Execute(Animal* cow)
 {
-	if (wanderUpdatesDone <= wanderUpdates)
+	if (stateUpdatesDone <= stateUpdates)
 	{
-		++wanderUpdatesDone;
+		++stateUpdatesDone;
 		cow->setCurrentNode(cow->GetGraph()->GetNode(cow->GetGraph()->GetNewNeighborNode(cow->GetGraph()->GetNodePosition(cow->getCurrentNode()))));
 	}
 	else
 	{
-		cow->GetFSM()->ChangeState(new CowChaseHare());
+		cow->ChangeState(StateEnum::eCowChaseHare);
 	}
 }
 
 void CowWanderAround::Exit(Animal* cow)
 {
-	wanderUpdates = 0;
-	wanderUpdatesDone = 0;
+	stateUpdates = 0;
+	stateUpdatesDone = 0;
+}
+
+//----------------------------------------------------------------------methodes for CowRest
+void CowRest::Enter(Animal* cow)
+{
+	std::random_device dev;
+	std::default_random_engine dre(dev());
+	std::uniform_int_distribution<int> dist1(1, 3);
+	stateUpdates = dist1(dre);
+	stateUpdatesDone = 0;
+}
+
+void CowRest::Execute(Animal* cow)
+{
+	if (stateUpdatesDone <= stateUpdates)
+		++stateUpdatesDone;
+	else
+		cow->ChangeState(StateEnum::eCowWanderAround);
+}
+
+void CowRest::Exit(Animal* hare)
+{
+	stateUpdates = 0;
+	stateUpdatesDone = 0;
 }

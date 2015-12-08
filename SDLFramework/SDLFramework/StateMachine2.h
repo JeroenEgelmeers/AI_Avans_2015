@@ -87,6 +87,7 @@ public:
 		{
 			m_pPreviousState->Exit(m_pOwner);
 			delete m_pPreviousState;
+			m_pPreviousState = nullptr;
 		}
 
 		m_pPreviousState = m_pCurrentState;

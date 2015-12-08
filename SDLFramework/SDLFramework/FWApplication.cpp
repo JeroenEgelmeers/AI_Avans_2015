@@ -249,8 +249,9 @@ void FWApplication::UpdateGameObjects()
 
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
+		std::cout << "cow killed hare, respawn hare \n";
 		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
-		//mHare->GetFSM()->ChangeState(new HareWander)
+		mHare->ChangeState(StateEnum::eHareWanderAround);
 	}
 }
 

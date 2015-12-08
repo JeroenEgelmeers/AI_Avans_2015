@@ -1,10 +1,14 @@
 #include "Animal.h"
 #include "Graph.h"
 
-Animal::Animal() { }
+Animal::Animal() 
+{
+	this->factory = new StateFactory();
+}
 
 Animal::~Animal()
 {
+	delete this->factory;
 }
 
 Graph* Animal::GetGraph()
@@ -27,4 +31,9 @@ void Animal::Draw() { }
 void Animal::Update(float deltaTime)
 {
 	this->GetFSM()->CurrentState()->Execute(dynamic_cast<Animal*>(this));
+}
+
+void Animal::ChangeState(StateEnum state)
+{
+
 }

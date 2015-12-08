@@ -31,3 +31,11 @@ void Cow::SetGraph(Graph* g)
 	this->graph = g;
 	g->SetCowTarget(dynamic_cast<Cow*>(this));
 }
+
+void Cow::ChangeState(StateEnum state)
+{
+	if (state < StateEnum::eEndCowStates)
+	{
+		this->GetFSM()->ChangeState(this->factory->CreateNewSate(state));
+	}
+}

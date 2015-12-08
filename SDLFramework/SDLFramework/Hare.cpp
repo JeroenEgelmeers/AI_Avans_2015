@@ -33,3 +33,11 @@ void Hare::SetGraph(Graph* g)
 	this->graph = g;
 	g->SetHareTarget(dynamic_cast<Hare*>(this));
 }
+
+void Hare::ChangeState(StateEnum state)
+{
+	if (state > StateEnum::eEndCowStates)
+	{
+		this->GetFSM()->ChangeState(this->factory->CreateNewSate(state));
+	}
+}

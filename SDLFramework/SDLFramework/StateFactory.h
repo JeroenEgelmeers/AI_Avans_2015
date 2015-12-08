@@ -1,5 +1,5 @@
 #pragma once
-#include "Animal.h"
+#include "IAnimalState.h"
 #include "StateEnum.h"
 
 static class StateFactory

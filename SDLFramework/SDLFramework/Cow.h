@@ -1,6 +1,6 @@
+#pragma once
 #include "Animal.h"
 
-#pragma once
 class Cow : public Animal
 {
 public:
@@ -11,4 +11,5 @@ public:
 	void Draw()override;
 
 	void Cow::SetGraph(Graph* g);
+	void Cow::ChangeState(StateEnum state) override;
 };

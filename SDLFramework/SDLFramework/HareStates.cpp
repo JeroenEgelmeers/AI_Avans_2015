@@ -44,7 +44,7 @@ void HareWanderAround::Execute(Animal* hare)
 	}
 	else
 	{
-		hare->GetFSM()->ChangeState(new HareRest);
+		hare->ChangeState(StateEnum::eHareRest);
 	}
 }
 
@@ -68,7 +68,7 @@ void HareRest::Execute(Animal* hare)
 	if (restUpdatesDone <= restUpdates)
 		++restUpdatesDone;
 	else
-		hare->GetFSM()->ChangeState(new HareWanderAround());
+		hare->ChangeState(StateEnum::eHareWanderAround);
 }
 
 void HareRest::Exit(Animal* hare)

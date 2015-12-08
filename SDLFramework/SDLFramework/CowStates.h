@@ -35,7 +35,7 @@ private:
 	//copy ctor and assignment should be private
 	CowWanderAround(const CowWanderAround&);
 	CowWanderAround& operator=(const CowWanderAround&);
-	int wanderUpdates, wanderUpdatesDone;
+	int stateUpdates, stateUpdatesDone;
 
 public:
 	CowWanderAround() { }
@@ -44,4 +44,21 @@ public:
 	virtual void CowWanderAround::Enter(Animal* Cow) override;
 	virtual void CowWanderAround::Execute(Animal* Cow) override;
 	virtual void CowWanderAround::Exit(Animal* Cow) override;
+};
+
+class CowRest : public IAnimalState
+{
+	private:
+		//copy ctor and assignment should be private
+		CowRest(const CowRest&);
+		CowRest& operator=(const CowRest&);
+		int stateUpdates, stateUpdatesDone;
+
+	public:
+		CowRest() { }
+		~CowRest() { }
+
+		virtual void CowRest::Enter(Animal* Cow) override;
+		virtual void CowRest::Execute(Animal* Cow) override;
+		virtual void CowRest::Exit(Animal* Cow) override;
 };
