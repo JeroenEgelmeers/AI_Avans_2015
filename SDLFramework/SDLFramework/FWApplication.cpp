@@ -242,11 +242,6 @@ void FWApplication::UpdateGameObjects()
 		moveCow = true;
 	}
 
-
-	//int path = mGraph->AStar(mGraph->GetNodePosition(mCow->getCurrentNode()), mGraph->GetNodePosition(mHare->getCurrentNode()));
-
-	//mCow->setCurrentNode(mGraph->GetNode(path));
-
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
 		std::cout << "cow killed hare, respawn hare \n";

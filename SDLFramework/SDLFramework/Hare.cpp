@@ -36,7 +36,7 @@ void Hare::SetGraph(Graph* g)
 
 void Hare::ChangeState(StateEnum state)
 {
-	if (state > StateEnum::eEndCowStates)
+	if (state > StateEnum::eEndCowStates && state < StateEnum::eEndHareStates)
 	{
 		this->GetFSM()->ChangeState(this->factory->CreateNewSate(state));
 	}
