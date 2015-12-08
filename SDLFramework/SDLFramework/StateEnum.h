@@ -14,6 +14,7 @@ enum StateEnum
 	eHareWanderAround,
 	eHareFleeFromCow,
 	eHareRest,
+	eHareChaseCow,
 	// Add hare state here
 
 	//Do not remove this item
