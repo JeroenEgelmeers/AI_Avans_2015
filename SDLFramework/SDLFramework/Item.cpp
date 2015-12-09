@@ -3,6 +3,7 @@
 
 Item::Item()
 {
+	TakenByAnimal = false;
 }
 
 Graph * Item::GetGraph()
@@ -25,7 +26,7 @@ void Item::Draw(){ }
 void Item::Update(float deltaTime)
 {
 }
-void Item::ChangeState(Animal animal){}
+void Item::ChangeState(Animal* animal){}
 
 Item::~Item()
 {

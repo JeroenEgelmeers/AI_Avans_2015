@@ -241,10 +241,16 @@ void FWApplication::UpdateGameObjects()
 	if (moveCow) {
 		mCow->Update(0);
 		moveCow = false;
+		if (mCow->getCurrentNode() == mPill->getCurrentNode()) {
+			mPill->ChangeState(mCow);
+		}
 	}
 	else {
 		mHare->Update(0);
 		moveCow = true;
+		if (mHare->getCurrentNode() == mGun->getCurrentNode()) {
+			mGun->ChangeState(mHare);
+		}
 	}
 
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
@@ -252,6 +258,17 @@ void FWApplication::UpdateGameObjects()
 		std::cout << "cow killed hare, respawn hare \n";
 		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
 		mHare->ChangeState(StateEnum::eHareWanderAround);
+		mCow->ChangeState(StateEnum::eCowWanderAround);
+		
+		// Respawn Pill and Gun
+		if (mPill->TakenByAnimal) {
+			mPill->setCurrentNode(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+			mPill->TakenByAnimal = false;
+		}
+		if (mGun->TakenByAnimal) {
+			mGun->setCurrentNode(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+			mGun->TakenByAnimal = false;
+		}
 	}
 }
 

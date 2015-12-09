@@ -16,12 +16,13 @@ public:
 
 	Graph*	GetGraph();
 	void	SetGraph(Graph* g);
+	bool	TakenByAnimal;
 
 	Node* getCurrentNode() { return currentNode; }
 	void setCurrentNode(Node* cNode);
 
 	virtual void Draw()override;
 	virtual void Update(float deltaTime) override;
-	virtual void ChangeState(Animal animal);
+	virtual void ChangeState(Animal* animal);
 };
 

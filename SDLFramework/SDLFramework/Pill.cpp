@@ -1,4 +1,6 @@
 #include "Pill.h"
+#include <iostream>
+using namespace std;
 
 Pill::Pill(Node* cNode)
 {
@@ -13,12 +15,15 @@ Pill::~Pill()
 
 void Pill::Draw()
 {
-	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
+	if (!TakenByAnimal) {
+		mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
+	}
 }
 
-void Pill::ChangeState(Animal animal)
+void Pill::ChangeState(Animal* animal)
 {
-	if (typeid(animal).name() == "Cow") {
-		animal.ChangeState(StateEnum::eCowChaseHare);
-	}
+		// TODO check if it's a cow!
+		cout << "Cow now chasing hare \n";
+		animal->ChangeState(StateEnum::eCowChaseHare);
+		TakenByAnimal = true;
 }

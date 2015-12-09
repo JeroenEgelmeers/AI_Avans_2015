@@ -8,6 +8,6 @@ public:
 	~Pill();
 
 	void Draw()override;
-	void ChangeState(Animal animal)override;
+	void ChangeState(Animal* animal)override;
 };
 

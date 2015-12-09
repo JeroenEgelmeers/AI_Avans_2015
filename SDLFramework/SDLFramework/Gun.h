@@ -8,5 +8,5 @@ public:
 	~Gun();
 
 	void Draw()override;
-	void ChangeState(Animal animal)override;
+	void ChangeState(Animal* animal)override;
 };

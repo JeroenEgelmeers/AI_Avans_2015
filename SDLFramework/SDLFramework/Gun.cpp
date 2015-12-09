@@ -13,12 +13,14 @@ Gun::~Gun()
 
 void Gun::Draw()
 {
-	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
+	if (!TakenByAnimal) {
+		mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
+	}
 }
 
-void Gun::ChangeState(Animal animal)
+void Gun::ChangeState(Animal* animal)
 {
-	if (typeid(animal).name() == "Hare") {
-		animal.ChangeState(StateEnum::eHareChaseCow);
-	}
+	// TODO check if it's a hare!
+	animal->ChangeState(StateEnum::eHareChaseCow);
+	TakenByAnimal = true;
 }
