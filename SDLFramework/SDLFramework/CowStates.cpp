@@ -97,6 +97,10 @@ void CowFleeFromHare::Execute(Animal* cow)
 	{
 		cow->ChangeState(StateEnum::eHareChaseCow);
 	}
+	else if (stateUpdatesDone > stateUpdates) // fleeing done
+	{
+		cow->ChangeState(StateEnum::eHareRest);
+	}
 }
 
 void CowFleeFromHare::Exit(Animal* hare)
