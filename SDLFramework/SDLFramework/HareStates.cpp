@@ -3,43 +3,21 @@
 #include "Animal.h"
 #include "Graph.h"
 
-//------------------------------------------------------------------------methods for FleeFromCow
-void HareFleeFromCow::Enter(Animal* hare)
-{
-	std::random_device dev;
-	std::default_random_engine dre(dev());
-	std::uniform_int_distribution<int> dist1(1, 6);
-	fleeUpdates = dist1(dre);
-	fleeUpdatesDone = 0;
-}
-
-void HareFleeFromCow::Execute(Animal* hare)
-{
-	
-}
-
-void HareFleeFromCow::Exit(Animal* hare)
-{
-	fleeUpdates = 0;
-	fleeUpdatesDone = 0;
-}
-
 //------------------------------------------------------------------------methods for WanderAround
 void HareWanderAround::Enter(Animal* hare)
 {
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 6);
-	wanderUpdates = dist1(dre);
-	wanderUpdates = 3;
-	wanderUpdatesDone = 0;
+	stateUpdates = dist1(dre);
+	stateUpdatesDone = 0;
 }
 
 void HareWanderAround::Execute(Animal* hare)
 {
-	if (wanderUpdatesDone <= wanderUpdates)
+	if (stateUpdatesDone <= stateUpdates)
 	{
-		++wanderUpdatesDone;
+		++stateUpdatesDone;
 		hare->setCurrentNode(hare->GetGraph()->GetNode(hare->GetGraph()->GetNewNeighborNode(hare->GetGraph()->GetNodePosition(hare->getCurrentNode()))));
 	}
 	else
@@ -50,8 +28,8 @@ void HareWanderAround::Execute(Animal* hare)
 
 void HareWanderAround::Exit(Animal* hare)
 {
-	wanderUpdates = 0;
-	wanderUpdatesDone = 0;
+	stateUpdates = 0;
+	stateUpdatesDone = 0;
 }
 //----------------------------------------------------------------------methodes
 void HareRest::Enter(Animal* hare)
@@ -59,20 +37,69 @@ void HareRest::Enter(Animal* hare)
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 3);
-	restUpdates = dist1(dre);
-	restUpdatesDone = 0;
+	stateUpdates = dist1(dre);
+	stateUpdatesDone = 0;
 }
 
 void HareRest::Execute(Animal* hare)
 {
-	if (restUpdatesDone <= restUpdates)
-		++restUpdatesDone;
+	if (stateUpdatesDone <= stateUpdates)
+		++stateUpdatesDone;
 	else
 		hare->ChangeState(StateEnum::eHareWanderAround);
 }
 
 void HareRest::Exit(Animal* hare)
 {
-	restUpdates = 0;
-	restUpdatesDone = 0;
+	stateUpdates = 0;
+	stateUpdatesDone = 0;
 }
+
+//------------------------------------------------------------------------methods for FleeFromCow
+void HareFleeFromCow::Enter(Animal* hare)
+{
+	// int stateUpdates, stateUpdatesDone;
+	std::random_device dev;
+	std::default_random_engine dre(dev());
+	std::uniform_int_distribution<int> dist1(4, 6);
+	stateUpdates = dist1(dre);
+	stateUpdatesDone = 0;
+}
+
+void HareFleeFromCow::Execute(Animal* hare)
+{
+	if (stateUpdatesDone <= stateUpdates)
+	{
+		++stateUpdatesDone;
+		int targetNode = hare->GetGraph()->GetFarthestHeuristicNode(hare->GetGraph()->GetHareTargetNode());
+		int path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), targetNode);
+		hare->setCurrentNode(hare->GetGraph()->GetNode(path));
+
+	}
+	else if (false) // hare has pill
+	{
+		hare->ChangeState(StateEnum::eHareWanderAround);
+	}
+	else if (false) // hare has gun
+	{
+		hare->ChangeState(StateEnum::eHareChaseCow);
+	}
+}
+
+void HareFleeFromCow::Exit(Animal* hare)
+{
+	stateUpdates = 0;
+	stateUpdatesDone = 0;
+}
+
+
+//------------------------------------------------------------------------methods for HareChaseCow
+void HareChaseCow::Enter(Animal* hare) { }
+
+void HareChaseCow::Execute(Animal* hare)
+{
+	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), hare->GetGraph()->GetCowTargetNode());
+	hare->setCurrentNode(hare->GetGraph()->GetNode(path));
+}
+
+void HareChaseCow::Exit(Animal* hare) { }

@@ -60,6 +60,7 @@ public:
 
 	int GetNewNode(int node);
 	int GetNewNeighborNode(int currentNode);
+	int GetFarthestHeuristicNode(int currentNode);
 	int GetNodePosition(const Node* node);
 
 	int Graph::FollowEdge(int node, int edge);

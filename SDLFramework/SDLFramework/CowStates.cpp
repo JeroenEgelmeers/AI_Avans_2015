@@ -5,9 +5,8 @@
 #include "StateFactory.h"
 #include "Graph.h"
 
-//------------------------------------------------------------------------methods for ChaseRabbit
-void CowChaseHare::Enter(Animal* cow)
-{ }
+// ------------------------------------------------------------------------methods for CowChaseHare
+void CowChaseHare::Enter(Animal* cow) { }
 
 void CowChaseHare::Execute(Animal* cow)
 {
@@ -15,18 +14,14 @@ void CowChaseHare::Execute(Animal* cow)
 	cow->setCurrentNode(cow->GetGraph()->GetNode(path));
 }
 
-void CowChaseHare::Exit(Animal* cow)
-{
-	
-}
+void CowChaseHare::Exit(Animal* cow) { }
 
-//------------------------------------------------------------------------methods for WanderAround
+// ------------------------------------------------------------------------ methods for CowWanderAround
 void CowWanderAround::Enter(Animal* cow)
 {
 	std::random_device dev;
 	std::default_random_engine dre(dev());
 	std::uniform_int_distribution<int> dist1(1, 6);
-	//int stateUpdates, stateUpdatesDone;
 	stateUpdates = dist1(dre);
 	stateUpdatesDone = 0;
 }
@@ -50,7 +45,7 @@ void CowWanderAround::Exit(Animal* cow)
 	stateUpdatesDone = 0;
 }
 
-//----------------------------------------------------------------------methodes for CowRest
+// ---------------------------------------------------------------------- methodes for CowRest
 void CowRest::Enter(Animal* cow)
 {
 	std::random_device dev;
@@ -69,6 +64,42 @@ void CowRest::Execute(Animal* cow)
 }
 
 void CowRest::Exit(Animal* hare)
+{
+	stateUpdates = 0;
+	stateUpdatesDone = 0;
+}
+
+// ---------------------------------------------------------------------- methodes for CowFleeFromHare
+void CowFleeFromHare::Enter(Animal* cow)
+{
+	std::random_device dev;
+	std::default_random_engine dre(dev());
+	std::uniform_int_distribution<int> dist1(4, 6);
+	stateUpdates = dist1(dre);
+	stateUpdatesDone = 0;
+}
+
+void CowFleeFromHare::Execute(Animal* cow)
+{
+	if (stateUpdatesDone <= stateUpdates)
+	{
+		++stateUpdatesDone;
+		int targetNode = cow->GetGraph()->GetFarthestHeuristicNode(cow->GetGraph()->GetCowTargetNode());
+		int path = cow->GetGraph()->AStar(cow->GetGraph()->GetCowTargetNode(), targetNode);
+		cow->setCurrentNode(cow->GetGraph()->GetNode(path));
+
+	}
+	else if (false) // hare has pill
+	{
+		cow->ChangeState(StateEnum::eHareWanderAround);
+	}
+	else if (false) // hare has gun
+	{
+		cow->ChangeState(StateEnum::eHareChaseCow);
+	}
+}
+
+void CowFleeFromHare::Exit(Animal* hare)
 {
 	stateUpdates = 0;
 	stateUpdatesDone = 0;

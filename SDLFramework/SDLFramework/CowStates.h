@@ -62,3 +62,20 @@ class CowRest : public IAnimalState
 		virtual void CowRest::Execute(Animal* Cow) override;
 		virtual void CowRest::Exit(Animal* Cow) override;
 };
+
+class CowFleeFromHare: public IAnimalState
+{
+private:
+	//copy ctor and assignment should be private
+	CowFleeFromHare(const CowFleeFromHare&);
+	CowFleeFromHare& operator=(const CowFleeFromHare&);
+	int stateUpdates, stateUpdatesDone;
+
+public:
+	CowFleeFromHare() { }
+	~CowFleeFromHare() { }
+
+	virtual void CowFleeFromHare::Enter(Animal* Cow) override;
+	virtual void CowFleeFromHare::Execute(Animal* Cow) override;
+	virtual void CowFleeFromHare::Exit(Animal* Cow) override;
+};

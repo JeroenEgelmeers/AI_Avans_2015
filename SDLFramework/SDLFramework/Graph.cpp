@@ -151,6 +151,25 @@ int Graph::GetNewNeighborNode(int currentNode)
 	return neighborNodes.at(rand() % (int) (neighborNodes.size()));
 }
 
+int Graph::GetFarthestHeuristicNode(int _currentNode)
+{
+	Node* currentNode = GetNode(_currentNode);
+	int targetNode = _currentNode;
+	float heuristic = 0;
+	for (size_t i = 0; i < this->GetNodes().size(); i++)
+	{
+		if (_currentNode == i)
+			++i; // skip, for entity is on this node
+
+		if ((*mTargetNode + *GetNode(i)).Length() > heuristic)
+		{
+			heuristic = (*mTargetNode + *GetNode(i)).Length();
+			targetNode = i;
+		}
+	}
+	return targetNode;
+}
+
 int Graph::GetNodePosition(const Node* node)
 {
 	for (size_t i = 0; i < nodes.size(); i++)
