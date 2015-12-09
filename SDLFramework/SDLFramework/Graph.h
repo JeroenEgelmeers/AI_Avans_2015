@@ -10,7 +10,10 @@
 
 class Node;
 class Edge;
-class Animal;
+class Cow;
+class Hare;
+class Pill;
+class Gun;
 
 class Graph : public IGameObject
 {

@@ -12,6 +12,8 @@
 #include "Graph.h"
 #include "Cow.h"
 #include "Hare.h"
+#include "Gun.h"
+#include "Pill.h"
 
 FWApplication * FWApplication::mInstance;
 FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
@@ -77,6 +79,9 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mHare = new Hare(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mCow->getCurrentNode()))));
 	mCow->SetGraph(mGraph);
 	mHare->SetGraph(mGraph);
+
+	mPill = new Pill(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+	mGun = new Gun(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
 
 	AddRenderable(mGraph);
 	AddRenderable(mCow);

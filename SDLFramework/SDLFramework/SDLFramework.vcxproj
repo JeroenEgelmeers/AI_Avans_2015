@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -91,10 +91,13 @@
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Hare.cpp" />
     <ClCompile Include="HareStates.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Pill.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="StateFactory.cpp" />
     <ClCompile Include="Vector.cpp" />
@@ -118,9 +121,12 @@
     <ClInclude Include="Edge.h" />
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="Hare.h" />
     <ClInclude Include="HareStates.h" />
     <ClInclude Include="IAnimalState.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Pill.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Node.h" />

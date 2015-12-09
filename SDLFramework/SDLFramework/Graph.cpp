@@ -6,6 +6,9 @@
 
 #include "Cow.h"
 #include "Hare.h"
+#include "Gun.h"
+#include "Pill.h"
+
 
 using namespace std;
 

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <functional>
 #include <cstdint>
 #include <vector>
@@ -8,6 +7,8 @@ class IGameObject;
 class Graph;
 class Cow;
 class Hare;
+class Pill;
+class Gun;
 struct SDL_Renderer;
 struct SDL_Window;
 struct SDL_Texture;
@@ -255,6 +256,8 @@ private:
 	Graph* mGraph;
 	Cow* mCow;
 	Hare* mHare;
+	Gun* mGun;
+	Pill* mPill;
 
 	SDL_Window * mWindow;
 	SDL_Renderer * mRenderer;
