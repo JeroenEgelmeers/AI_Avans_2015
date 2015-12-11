@@ -220,35 +220,21 @@ void FWApplication::EndTick()
 
 void FWApplication::UpdateGameObjects()
 {
-	//for (IGameObject * obj : mGameObjects)
-	//{
-	//	for (IGameObject * o : mGameObjects)
-	//	{
-	//		if (o != obj)
-	//		{
-	//			// Check collision
-	//			bool collided = obj->CheckCollision(o);
-	//			if (collided)
-	//			{
-	//				obj->OnCollision(o);
-	//				o->OnCollision(obj);
-	//			}
-	//		}
-	//	}
-	//	obj->Update((float)mDeltaTimeMS / 1000.0f);
-	//}
-
-	if (moveCow) {
+	if (moveCow)
+	{
 		mCow->Update(0);
 		moveCow = false;
-		if (mCow->getCurrentNode() == mPill->getCurrentNode()) {
+		if (mCow->getCurrentNode() == mPill->getCurrentNode())
+		{
 			mPill->ChangeState(mCow);
 		}
 	}
-	else {
+	else
+	{
 		mHare->Update(0);
 		moveCow = true;
-		if (mHare->getCurrentNode() == mGun->getCurrentNode()) {
+		if (mHare->getCurrentNode() == mGun->getCurrentNode())
+		{
 			mGun->ChangeState(mHare);
 		}
 	}
@@ -256,23 +242,32 @@ void FWApplication::UpdateGameObjects()
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
 		// TODO Check if cow is in chase state & hare is in chase state
-		if (!moveCow) {
-			std::cout << "cow killed hare, respawn hare \n";
-			mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+		if (mCow->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos || 
+			mHare->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos )
+		{
+			if (!moveCow)
+			{
+				std::cout << "cow killed hare, respawn hare \n";
+				mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+			}
+			else
+			{
+				std::cout << "Hare killed cow, respawn cow \n";
+				mCow->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+			}
+
+			mHare->ChangeState(StateEnum::eHareWanderAround);
+			mCow->ChangeState(StateEnum::eCowWanderAround);
 		}
-		else {
-			std::cout << "Hare killed cow, respawn cow \n";
-			mCow->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
-		}
-		mHare->ChangeState(StateEnum::eHareWanderAround);
-		mCow->ChangeState(StateEnum::eCowWanderAround);
-		
+
 		// Respawn Pill and Gun
-		if (mPill->TakenByAnimal) {
+		if (mPill->TakenByAnimal)
+		{
 			mPill->setCurrentNode(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
 			mPill->TakenByAnimal = false;
 		}
-		if (mGun->TakenByAnimal) {
+		if (mGun->TakenByAnimal)
+		{
 			mGun->setCurrentNode(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
 			mGun->TakenByAnimal = false;
 		}

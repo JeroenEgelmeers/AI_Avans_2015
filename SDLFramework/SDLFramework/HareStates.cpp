@@ -90,7 +90,7 @@ void HareChaseCow::Enter(Animal* hare) { }
 
 void HareChaseCow::Execute(Animal* hare)
 {
-	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), hare->GetGraph()->GetCowTargetNode());
+	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetHareTargetNode(), hare->GetGraph()->GetCowTargetNode());
 	hare->setCurrentNode(hare->GetGraph()->GetNode(path));
 }
 
