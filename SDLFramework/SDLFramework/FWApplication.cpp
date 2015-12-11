@@ -76,7 +76,7 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mGraph = new Graph();
 	// TODO set current cow node
 	mCow = new Cow(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
-	mHare = new Hare(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mCow->getCurrentNode()))));
+	mHare = new Hare(mGraph->GetNode(mGraph->GetNewNode(mGraph->GetNodePosition(mCow->getCurrentNode()))));
 	mCow->SetGraph(mGraph);
 	mHare->SetGraph(mGraph);
 
@@ -96,33 +96,6 @@ FWApplication::~FWApplication()
 	TTF_CloseFont(mFont);
 	TTF_Quit();
 	SDL_Quit();
-}
-
-int FWApplication::GetNewNode(int currentNode)
-{
-	std::vector<int> neighborNodes = std::vector<int>();
-
-	for (int edge : mGraph->GetNode(currentNode)->GetEdges())
-	{
-		neighborNodes.push_back(mGraph->FollowEdge(currentNode, edge));
-		neighborNodes.push_back(currentNode);
-	}
-
-	bool correctNumber = false;
-	int newNodePosition;
-	while (correctNumber == false)
-	{
-		newNodePosition = 0 + (rand() % (int)(mGraph->GetNodes().size()));
-		correctNumber = true;
-		for (int node : neighborNodes)
-		{
-			if (node == newNodePosition)
-			{
-				correctNumber = false;
-			}
-		}
-	}
-	return newNodePosition;
 }
 
 SDL_Window * FWApplication::GetWindow() const
@@ -242,22 +215,25 @@ void FWApplication::UpdateGameObjects()
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
 		// TODO Check if cow is in chase state & hare is in chase state
-		if (mCow->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos || 
-			mHare->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos )
+		if (mCow->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos)
 		{
 			if (!moveCow)
 			{
 				std::cout << "cow killed hare, respawn hare \n";
-				mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+				mHare->GetNewRandomNode();
+				mHare->ChangeState(StateEnum::eHareWanderAround);
+				mCow->ChangeState(StateEnum::eCowWanderAround);
 			}
-			else
+		}
+		if (mHare->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos)
+		{
+			if (moveCow)
 			{
 				std::cout << "Hare killed cow, respawn cow \n";
-				mCow->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+				mCow->GetNewRandomNode();
+				mHare->ChangeState(StateEnum::eHareWanderAround);
+				mCow->ChangeState(StateEnum::eCowWanderAround);
 			}
-
-			mHare->ChangeState(StateEnum::eHareWanderAround);
-			mCow->ChangeState(StateEnum::eCowWanderAround);
 		}
 
 		// Respawn Pill and Gun

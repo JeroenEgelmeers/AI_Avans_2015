@@ -26,6 +26,11 @@ void Animal::setCurrentNode(Node* cNode)
 	currentNode = cNode;
 }
 
+void Animal::GetNewRandomNode()
+{
+	this->setCurrentNode( this->graph->GetNode(this->graph->GetNewNode(this->graph->GetNodePosition(this->getCurrentNode()) )) );
+}
+
 void Animal::Draw() { }
 
 void Animal::Update(float deltaTime)

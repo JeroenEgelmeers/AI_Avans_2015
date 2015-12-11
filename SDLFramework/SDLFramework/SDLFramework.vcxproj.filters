@@ -39,6 +39,15 @@
     <Filter Include="Source Files\Items">
       <UniqueIdentifier>{90411e46-c630-4a48-bb97-2b8799349042}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Items">
+      <UniqueIdentifier>{a3ff461f-f768-4ac8-b867-e69f5c1f3f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Animals">
+      <UniqueIdentifier>{d22f572f-3324-4ca8-8e96-ae8aaa067392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Animals">
+      <UniqueIdentifier>{6a569671-d3f7-4835-9804-b7093a4552b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -62,15 +71,6 @@
     <ClCompile Include="Edge.cpp">
       <Filter>Library\Pathfinding\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Cow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Hare.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CowStates.cpp">
       <Filter>Source Files\FSM</Filter>
     </ClCompile>
@@ -88,6 +88,15 @@
     </ClCompile>
     <ClCompile Include="Pill.cpp">
       <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Cow.cpp">
+      <Filter>Source Files\Animals</Filter>
+    </ClCompile>
+    <ClCompile Include="Hare.cpp">
+      <Filter>Source Files\Animals</Filter>
+    </ClCompile>
+    <ClCompile Include="Animal.cpp">
+      <Filter>Source Files\Animals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,15 +147,6 @@
     <ClInclude Include="Graph.h">
       <Filter>Library\Pathfinding\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Cow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Hare.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CowStates.h">
       <Filter>Header Files\FSM</Filter>
     </ClInclude>
@@ -174,14 +174,23 @@
     <ClInclude Include="IAnimalState.h">
       <Filter>Header Files\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Gun.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Items</Filter>
     </ClInclude>
     <ClInclude Include="Pill.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Cow.h">
+      <Filter>Header Files\Animals</Filter>
+    </ClInclude>
+    <ClInclude Include="Hare.h">
+      <Filter>Header Files\Animals</Filter>
+    </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>Header Files\Animals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

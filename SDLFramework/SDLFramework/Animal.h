@@ -19,12 +19,12 @@ public:
 	Animal();	
 	~Animal();
 
-
 	Graph* GetGraph();
 	void SetGraph(Graph* g);
 
 	Node* getCurrentNode() { return currentNode; }
 	void setCurrentNode(Node* cNode);
+	void GetNewRandomNode();
 
 	virtual void Draw()override;
 	virtual void Update(float deltaTime) override;
