@@ -26,6 +26,16 @@
           LastKnownLocation="Modeling.uml" />
       </annotatedElements>
     </comment>
+    <comment
+      Id="cb76b591-0a91-4c4d-a9e5-1274052d8b20">
+      <body>If not killed, get currents best option</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="a4100532-9a4b-4555-b516-7bbc4cb674e7"
+          LastKnownName="Decision1"
+          LastKnownLocation="Modeling.uml" />
+      </annotatedElements>
+    </comment>
   </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
@@ -53,21 +63,6 @@
         isReadOnly="false"
         isSingleExecution="false">
         <nodes>
-          <opaqueAction
-            Id="6a3266a1-aaca-42fe-9a09-09b7f53e812c"
-            name="State: Wandering"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="14d3a047-3c1a-4208-827b-136a216ae1e9"
-                isLeaf="false">
-                <decisionNodeMoniker
-                  Id="0eb745fc-e006-4cfd-8910-cef9c67713b1"
-                  LastKnownName="Decision1"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
           <initialNode
             Id="913eb310-2937-43f3-81e9-58b99a280e06"
             name="Initial1"
@@ -83,383 +78,422 @@
               </controlFlow>
             </flowNodeTargets>
           </initialNode>
-          <decisionNode
-            Id="0eb745fc-e006-4cfd-8910-cef9c67713b1"
-            name="Decision1"
-            isLeaf="false">
-            <description>Vind pil</description>
-            <flowNodeTargets>
-              <controlFlow
-                Id="4b25e516-f1f6-48fa-86e5-717082d46160"
-                guard="Pill found and not killed"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="93c41dc4-6b3e-42f0-97fd-6e87b98b9491"
-                  LastKnownName="State: Chase"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="e498bf87-e256-495b-b931-6ea8bab309ee"
-                guard="Killed by Hare"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="887736aa-c739-4b4f-9a13-a6c9d78a6757"
-                  LastKnownName="Merge3"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="a7850221-b824-4896-bfe8-df28b91a5be0"
-                guard="no Pill found and not killed"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
-                  LastKnownName="Merge4"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
-          <opaqueAction
-            Id="93c41dc4-6b3e-42f0-97fd-6e87b98b9491"
-            name="State: Chase"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="2bc8fc4f-320d-40dc-922b-c96280a57ff0"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="a98dd752-5590-4c5d-aeb5-2bcabac5056a"
-                  LastKnownName="Use A* to chase Hare"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction
-            Id="a98dd752-5590-4c5d-aeb5-2bcabac5056a"
-            name="Use A* to chase Hare"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="fa9bc39c-f989-49e8-8998-cde4539ddc84"
-                isLeaf="false">
-                <decisionNodeMoniker
-                  Id="9c202e70-be2f-49ca-8160-61939724081d"
-                  LastKnownName="Decision2"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <decisionNode
-            Id="9c202e70-be2f-49ca-8160-61939724081d"
-            name="Decision2"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="59cd7b1b-3089-461f-a166-68bd32a9ac45"
-                guard="Did not found Hare and not killed"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="a98dd752-5590-4c5d-aeb5-2bcabac5056a"
-                  LastKnownName="Use A* to chase Hare"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="4ffcf0e5-de69-4149-8101-38d264877265"
-                guard="Killed by Hare"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="887736aa-c739-4b4f-9a13-a6c9d78a6757"
-                  LastKnownName="Merge3"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="1a486104-114a-47cd-baff-e82929c82b14"
-                guard="Found Hare and not killed"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="f76dec8c-7056-4d5a-94bc-8741d6157a52"
-                  LastKnownName="Remove &quot;Pill&quot; from Cow"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
           <initialNode
             Id="7d290292-9556-4a55-b45e-465beb0a4c6a"
             name="Initial2"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="50cc60bb-0f44-480c-88f6-672f78d0a718"
+                Id="eaa0c314-9db0-4251-b130-90ec2d90e2d2"
                 isLeaf="false">
                 <mergeNodeMoniker
-                  Id="5e887241-4492-4cb2-9487-f09d7b9c29cd"
+                  Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7"
                   LastKnownName="Merge1"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
           </initialNode>
-          <opaqueAction
-            Id="74c8f61c-5536-4717-9a06-0bf71b05c3e4"
-            name="State: Wandering"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="e9895b38-c8bd-488b-bb2b-8802b1615676"
-                isLeaf="false">
-                <decisionNodeMoniker
-                  Id="73360f90-4843-4c09-986d-7bd87232c164"
-                  LastKnownName="Decision3"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <decisionNode
-            Id="73360f90-4843-4c09-986d-7bd87232c164"
-            name="Decision3"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="6baadbb6-96ce-46d0-9fde-cdd0fbb22a74"
-                guard="Gun found and not taken by Cow"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="7a05cc7a-5012-4f2a-9142-3ac9a8d7869b"
-                  LastKnownName="Change state to &quot;Hunt&quot;"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="451ac497-5173-4c58-9b74-70e32da85d59"
-                guard="No Gun found and not taken by Cow"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="5e887241-4492-4cb2-9487-f09d7b9c29cd"
-                  LastKnownName="Merge1"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="c89587f5-39ba-40e3-89ff-26aa79b30095"
-                guard="Taken by Cow"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="dc5b4a10-bb94-48b8-a496-bd005149683b"
-                  LastKnownName="Merge2"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
-          <opaqueAction
-            Id="188c6445-d4e1-46fa-a2a7-457dac1e9de4"
-            name="Change state to &quot;Fly&quot;"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="ed3fd91b-992f-4a4f-ad04-4e30c8e70f3a"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="5e887241-4492-4cb2-9487-f09d7b9c29cd"
-                  LastKnownName="Merge1"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction
-            Id="7a05cc7a-5012-4f2a-9142-3ac9a8d7869b"
-            name="Change state to &quot;Hunt&quot;"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="b2f8fb22-5ac6-495f-a818-f7344ba30acf"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="c4d46e5e-ebf4-4600-ab7b-d7e432458295"
-                  LastKnownName="Use A* to chase  Cow"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction
-            Id="c4d46e5e-ebf4-4600-ab7b-d7e432458295"
-            name="Use A* to chase  Cow"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="911cd635-d9bb-4f2b-a660-c1c237a5d02f"
-                isLeaf="false">
-                <decisionNodeMoniker
-                  Id="f96eb584-971f-4706-8d77-dfdfbaebdeda"
-                  LastKnownName="Decision4"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <decisionNode
-            Id="f96eb584-971f-4706-8d77-dfdfbaebdeda"
-            name="Decision4"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="1badcea4-fb16-421d-aa53-e3a62c2d47cf"
-                guard="Did not found Cow and not Taken by Cow"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="c4d46e5e-ebf4-4600-ab7b-d7e432458295"
-                  LastKnownName="Use A* to chase  Cow"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="8dd8d609-47e7-4dd5-9543-334e4ffeb8a7"
-                guard="Taken by Cow"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="dc5b4a10-bb94-48b8-a496-bd005149683b"
-                  LastKnownName="Merge2"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="7042d29b-2852-4065-8e6f-18f466565c42"
-                guard="Cow killed"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="d5b362c4-4c9c-43cf-a31e-01951cdf303f"
-                  LastKnownName="Remove &quot;Gun&quot; from Hare"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
-          <opaqueAction
-            Id="f76dec8c-7056-4d5a-94bc-8741d6157a52"
-            name="Remove &quot;Pill&quot; from Cow"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="292441ea-9680-4cee-8160-bfc789c0f989"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
-                  LastKnownName="Merge4"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction
-            Id="d5b362c4-4c9c-43cf-a31e-01951cdf303f"
-            name="Remove &quot;Gun&quot; from Hare"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="93e83a07-f3d0-4653-a8d2-e4176df1ebb6"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="5e887241-4492-4cb2-9487-f09d7b9c29cd"
-                  LastKnownName="Merge1"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <mergeNode
-            Id="5e887241-4492-4cb2-9487-f09d7b9c29cd"
-            name="Merge1"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="67969549-1108-4d68-848f-c1c672888f6a"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="74c8f61c-5536-4717-9a06-0bf71b05c3e4"
-                  LastKnownName="State: Wandering"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <mergeNode
-            Id="dc5b4a10-bb94-48b8-a496-bd005149683b"
-            name="Merge2"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="f8c87867-ddbb-40ec-84e2-0446b11d77b6"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="270382f1-3fd2-4142-b0d1-06d7b0c466a7"
-                  LastKnownName="Remove &quot;Gun&quot; from Hare"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <mergeNode
-            Id="887736aa-c739-4b4f-9a13-a6c9d78a6757"
-            name="Merge3"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="41e51a17-1efe-462c-aa14-e7809e1d8615"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="abd47dd3-5eca-4176-a8f8-18b2ea4662cd"
-                  LastKnownName="Remove &quot;Pill&quot; from Cow"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <opaqueAction
-            Id="fa044ec0-e495-4ad9-8455-360b565e098d"
-            name="Change state to &quot;Fly&quot;"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="bb50cf75-a181-4b16-b276-9ff19dee59d0"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
-                  LastKnownName="Merge4"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
           <mergeNode
             Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
             name="Merge4"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="f813c590-bb3a-47a3-9d66-3738e23be02b"
+                Id="8deb3f97-fc97-4d8b-971c-838c1ff22948"
                 isLeaf="false">
                 <opaqueActionMoniker
-                  Id="6a3266a1-aaca-42fe-9a09-09b7f53e812c"
-                  LastKnownName="State: Wandering"
+                  Id="c2d5d864-1b10-4495-8199-7ef4473e6bea"
+                  LastKnownName="Chase Hare"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
           <opaqueAction
-            Id="270382f1-3fd2-4142-b0d1-06d7b0c466a7"
-            name="Remove &quot;Gun&quot; from Hare"
+            Id="c2d5d864-1b10-4495-8199-7ef4473e6bea"
+            name="Chase Hare"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="06a1ae05-4f48-4f61-b2ee-d996ed161996"
+                Id="f204b78f-fbf2-4b64-8ad3-f59bda0351a3"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="f7f2d115-6bcf-4e65-a430-98b457de2b62"
+                  LastKnownName="Decision2"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode
+            Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7"
+            name="Merge1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="80b34036-d417-4575-89bc-9e67fe521164"
                 isLeaf="false">
                 <opaqueActionMoniker
-                  Id="188c6445-d4e1-46fa-a2a7-457dac1e9de4"
-                  LastKnownName="Change state to &quot;Fly&quot;"
+                  Id="93aa047d-f9f7-4aa8-bb24-c71c7aac65c1"
+                  LastKnownName="Wandering"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction
+            Id="93aa047d-f9f7-4aa8-bb24-c71c7aac65c1"
+            name="Wandering"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="067bec08-d194-4319-96f5-e87114c1a36b"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="a4100532-9a4b-4555-b516-7bbc4cb674e7"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="a4100532-9a4b-4555-b516-7bbc4cb674e7"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0b66087d-6f2a-4f55-81de-947b94c6e18f"
+                guard="Option 2"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="5ea5b8ef-488c-4d3b-b261-afd79e1b5967"
+                  LastKnownName="Merge2"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="bc50945f-398f-4855-9359-3a831289fa2b"
+                guard="Option 3"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="e93e6a15-a230-452f-a7d6-5dd25881e6c5"
+                  LastKnownName="Merge3"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="30b30acb-47a0-4aa7-870d-4e4c4601a290"
+                guard="Killed by Cow"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="c20b1eee-925c-4448-a45b-3e3a5cd9a088"
+                  LastKnownName="Merge6"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="0dd64fcf-4069-4f94-aeea-146a56a4f749"
+                guard="Option 1"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a5aa257c-f86a-4bfb-8eba-61dd6e0667d3"
+                  LastKnownName="Fly From Cow"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="a5aa257c-f86a-4bfb-8eba-61dd6e0667d3"
+            name="Fly From Cow"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="39e26b80-6850-45eb-b8cd-031515610aeb"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7"
+                  LastKnownName="Merge1"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
           <opaqueAction
-            Id="abd47dd3-5eca-4176-a8f8-18b2ea4662cd"
-            name="Remove &quot;Pill&quot; from Cow"
+            Id="1af8355f-c81b-4205-8845-9a39def22283"
+            name="Respawn"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="8fb29e23-d07b-4393-8c7d-9f12ce8143d7"
+                Id="cf98e066-1d61-4ec6-9c4b-f036fb7c2de3"
                 isLeaf="false">
-                <opaqueActionMoniker
-                  Id="fa044ec0-e495-4ad9-8455-360b565e098d"
-                  LastKnownName="Change state to &quot;Fly&quot;"
+                <mergeNodeMoniker
+                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
+                  LastKnownName="Merge4"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
+          <decisionNode
+            Id="f7f2d115-6bcf-4e65-a430-98b457de2b62"
+            name="Decision2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="af303e9f-efb6-4029-9efa-5b5dbac522ee"
+                guard="Not killed by Hare"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
+                  LastKnownName="Merge4"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="6bced880-2d3a-4321-9348-dfb75d5c2916"
+                guard="Killed by Hare"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="1af8355f-c81b-4205-8845-9a39def22283"
+                  LastKnownName="Respawn"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="d3bf3e64-86d7-489f-b912-8b89643ada9f"
+            name="Respawn"
+            isLeaf="false" />
+          <opaqueAction
+            Id="3442c10f-a671-47ac-be1a-64e8280e4fae"
+            name="Search Weapon"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1ecf5798-659b-437f-8277-9dab764129a3"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="a323395a-e7db-4869-a648-81ec79a778d8"
+                  LastKnownName="Decision3"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="88c9fc72-b276-422f-b361-f7ad1490f763"
+            name="Search Sleep Pill"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7726a352-8054-4651-917b-7e6931ce3b8d"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="8708e8fa-027e-4508-8b2d-386f824d5108"
+                  LastKnownName="Decision4"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="a323395a-e7db-4869-a648-81ec79a778d8"
+            name="Decision3"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="a85b45db-0f53-434f-9138-62c30a7a78d5"
+                guard="Not Found"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="5ea5b8ef-488c-4d3b-b261-afd79e1b5967"
+                  LastKnownName="Merge2"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="b8c64fb5-e12d-4937-9569-1dacca255623"
+                guard="Found Weapon"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="ad2c6e5b-54d4-44be-90d1-1b68f5f92323"
+                  LastKnownName="Merge5"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction
+            Id="1276a220-dbd1-43d2-a296-efe447661c32"
+            name="Hunt Cow"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1d68c0bd-95d9-47d6-ab73-a4ca4a9693a8"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="55d811dd-272b-4fcc-b822-01ee5fa40c4b"
+                  LastKnownName="Decision5"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode
+            Id="8708e8fa-027e-4508-8b2d-386f824d5108"
+            name="Decision4"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e28b4c61-d884-4498-93fe-a22715a2257b"
+                guard="Not Found"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="e93e6a15-a230-452f-a7d6-5dd25881e6c5"
+                  LastKnownName="Merge3"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="2778dfa6-fc55-4cd2-828e-52c4a234ba5c"
+                guard="Found Sleep pill"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="ad2c6e5b-54d4-44be-90d1-1b68f5f92323"
+                  LastKnownName="Merge5"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <mergeNode
+            Id="5ea5b8ef-488c-4d3b-b261-afd79e1b5967"
+            name="Merge2"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9f193291-111b-4cf7-81cc-b5b666112df0"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="13b4d355-d241-4427-baeb-f38d613aa6e0"
+                  LastKnownName="Decision7"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <mergeNode
+            Id="e93e6a15-a230-452f-a7d6-5dd25881e6c5"
+            name="Merge3"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="907e2e8f-7251-4726-9025-0f9756f66e32"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="b88c5075-9d80-4912-9e24-4699c4f59bd9"
+                  LastKnownName="Decision6"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <mergeNode
+            Id="ad2c6e5b-54d4-44be-90d1-1b68f5f92323"
+            name="Merge5"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="1e2b77c0-4db2-44fc-9513-b7a29e5667a3"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="1276a220-dbd1-43d2-a296-efe447661c32"
+                  LastKnownName="Hunt Cow"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <decisionNode
+            Id="55d811dd-272b-4fcc-b822-01ee5fa40c4b"
+            name="Decision5"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="7a02b559-d563-4054-94a5-40b222e2269a"
+                guard="Not found Cow"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="ad2c6e5b-54d4-44be-90d1-1b68f5f92323"
+                  LastKnownName="Merge5"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="59198e10-40a8-4049-88fa-602c2df6f843"
+                guard="Killed Cow"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7"
+                  LastKnownName="Merge1"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="ce2d2254-ee82-4622-8f12-11a1083bfec2"
+                guard="Killed by Cow"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="c20b1eee-925c-4448-a45b-3e3a5cd9a088"
+                  LastKnownName="Merge6"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <decisionNode
+            Id="b88c5075-9d80-4912-9e24-4699c4f59bd9"
+            name="Decision6"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="708e1d90-ba2c-43ce-ba3d-10aebecc22d1"
+                guard="Else"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="88c9fc72-b276-422f-b361-f7ad1490f763"
+                  LastKnownName="Search Sleep Pill"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="cba95366-7ef8-45ec-8e9f-b6e6e2b8db16"
+                guard="Killed by Cow"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="c20b1eee-925c-4448-a45b-3e3a5cd9a088"
+                  LastKnownName="Merge6"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <decisionNode
+            Id="13b4d355-d241-4427-baeb-f38d613aa6e0"
+            name="Decision7"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="0995b281-569c-4bae-9385-b4d4f74e1097"
+                guard="Else"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="3442c10f-a671-47ac-be1a-64e8280e4fae"
+                  LastKnownName="Search Weapon"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="bfb8b3ab-1f12-48cf-b8cd-14c32cd59e35"
+                guard="Killed By Cow"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="c20b1eee-925c-4448-a45b-3e3a5cd9a088"
+                  LastKnownName="Merge6"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <mergeNode
+            Id="c20b1eee-925c-4448-a45b-3e3a5cd9a088"
+            name="Merge6"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="75af9695-e4cc-4412-977c-3c4dedf9ab20"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="d3bf3e64-86d7-489f-b912-8b89643ada9f"
+                  LastKnownName="Respawn"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
         </nodes>
       </activity>
     </packageHasNamedElement>

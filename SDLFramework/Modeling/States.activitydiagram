@@ -17,21 +17,19 @@
         <initialNodeMoniker Id="c527e093-bb87-44ce-808e-5c1b82e94687" LastKnownName="Initial1" />
       </annotatedElements>
     </comment>
+    <comment Id="5614198f-6fe3-46ce-ba1e-7cd05cbe20c1">
+      <elementDefinition Id="cb76b591-0a91-4c4d-a9e5-1274052d8b20" />
+      <body>If not killed, get currents best option</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="ff4b4ab1-00a4-4538-9e1e-e89dd49cf76a" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
   </ownedCommentsInternal>
   <packagedElements>
     <activityRootModelHasActivity>
       <activity Id="b84ca42c-c829-440b-b52c-0ab78ffbf632" name="States" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
         <elementDefinition Id="a2dbff5e-5937-4792-99b5-a7f1de683b2c" />
         <nodes>
-          <opaqueAction Id="a4d5564d-3a0d-4ed7-874e-4bcfa7458157" name="State: Wandering" isLeaf="false">
-            <elementDefinition Id="6a3266a1-aaca-42fe-9a09-09b7f53e812c" />
-            <flowNodeTargets>
-              <controlFlow Id="fadb5d74-0014-4e4d-adfc-20f2c1371a4f" isLeaf="false">
-                <decisionNodeMoniker Id="a121dac5-9459-4ca8-941c-fdb70051664a" LastKnownName="Decision1" />
-                <elementDefinition Id="14d3a047-3c1a-4208-827b-136a216ae1e9" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
           <initialNode Id="c527e093-bb87-44ce-808e-5c1b82e94687" name="Initial1" isLeaf="false">
             <elementDefinition Id="913eb310-2937-43f3-81e9-58b99a280e06" />
             <flowNodeTargets>
@@ -41,219 +39,238 @@
               </controlFlow>
             </flowNodeTargets>
           </initialNode>
-          <decisionNode Id="a121dac5-9459-4ca8-941c-fdb70051664a" name="Decision1" isLeaf="false">
-            <description>Vind pil</description>
-            <elementDefinition Id="0eb745fc-e006-4cfd-8910-cef9c67713b1" />
-            <flowNodeTargets>
-              <controlFlow Id="3205fca6-6972-40e5-acd5-96f588f55116" guard="Pill found and not killed" isLeaf="false">
-                <opaqueActionMoniker Id="8cff5e62-64cb-488e-ae90-e437e3f71487" LastKnownName="State: Chase" />
-                <elementDefinition Id="4b25e516-f1f6-48fa-86e5-717082d46160" />
-              </controlFlow>
-              <controlFlow Id="f4356e73-228e-4b0c-a461-678530ec8163" guard="Killed by Hare" isLeaf="false">
-                <mergeNodeMoniker Id="31d8a439-4252-48b9-80bd-5b96bc35c48b" LastKnownName="Merge3" />
-                <elementDefinition Id="e498bf87-e256-495b-b931-6ea8bab309ee" />
-              </controlFlow>
-              <controlFlow Id="c3ed22fb-b4ee-413d-8a4f-23970dc7ea04" guard="no Pill found and not killed" isLeaf="false">
-                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
-                <elementDefinition Id="a7850221-b824-4896-bfe8-df28b91a5be0" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
-          <opaqueAction Id="8cff5e62-64cb-488e-ae90-e437e3f71487" name="State: Chase" isLeaf="false">
-            <elementDefinition Id="93c41dc4-6b3e-42f0-97fd-6e87b98b9491" />
-            <flowNodeTargets>
-              <controlFlow Id="19a948f2-e765-4d14-9fd5-2fc2177e8815" isLeaf="false">
-                <opaqueActionMoniker Id="1a26c2c7-e8b0-4c24-9960-a053eb0deb57" LastKnownName="Use A* to chase Hare" />
-                <elementDefinition Id="2bc8fc4f-320d-40dc-922b-c96280a57ff0" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction Id="1a26c2c7-e8b0-4c24-9960-a053eb0deb57" name="Use A* to chase Hare" isLeaf="false">
-            <elementDefinition Id="a98dd752-5590-4c5d-aeb5-2bcabac5056a" />
-            <flowNodeTargets>
-              <controlFlow Id="e1c3d914-bf6a-48f7-9101-9d641d58b7ec" isLeaf="false">
-                <decisionNodeMoniker Id="6a74a2b3-aa8e-4db7-b8b5-527805d47964" LastKnownName="Decision2" />
-                <elementDefinition Id="fa9bc39c-f989-49e8-8998-cde4539ddc84" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <decisionNode Id="6a74a2b3-aa8e-4db7-b8b5-527805d47964" name="Decision2" isLeaf="false">
-            <elementDefinition Id="9c202e70-be2f-49ca-8160-61939724081d" />
-            <flowNodeTargets>
-              <controlFlow Id="8129fb45-76ea-41e0-93ea-ade65156771d" guard="Did not found Hare and not killed" isLeaf="false">
-                <opaqueActionMoniker Id="1a26c2c7-e8b0-4c24-9960-a053eb0deb57" LastKnownName="Use A* to chase Hare" />
-                <elementDefinition Id="59cd7b1b-3089-461f-a166-68bd32a9ac45" />
-              </controlFlow>
-              <controlFlow Id="d28d09c8-40e1-4502-8876-63cd78df46f3" guard="Killed by Hare" isLeaf="false">
-                <mergeNodeMoniker Id="31d8a439-4252-48b9-80bd-5b96bc35c48b" LastKnownName="Merge3" />
-                <elementDefinition Id="4ffcf0e5-de69-4149-8101-38d264877265" />
-              </controlFlow>
-              <controlFlow Id="dd7bbf08-1c45-4fb8-8b47-250222fb8aa7" guard="Found Hare and not killed" isLeaf="false">
-                <opaqueActionMoniker Id="07baa27c-ea66-4d40-b42d-fad277de8d58" LastKnownName="Remove &quot;Pill&quot; from Cow" />
-                <elementDefinition Id="1a486104-114a-47cd-baff-e82929c82b14" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
           <initialNode Id="5a6faea6-95f7-41dd-998e-e53026b7b303" name="Initial2" isLeaf="false">
             <elementDefinition Id="7d290292-9556-4a55-b45e-465beb0a4c6a" />
             <flowNodeTargets>
-              <controlFlow Id="796380ac-e428-4c4c-a7c1-30ce70ec9735" isLeaf="false">
-                <mergeNodeMoniker Id="768e7c61-d743-48bb-9fce-ac15b05d1e8c" LastKnownName="Merge1" />
-                <elementDefinition Id="50cc60bb-0f44-480c-88f6-672f78d0a718" />
+              <controlFlow Id="dc41606b-4b8f-4e96-bab0-f3db24678685" isLeaf="false">
+                <mergeNodeMoniker Id="c47ca2fd-fa98-472e-8fbd-bfcb417ca043" LastKnownName="Merge1" />
+                <elementDefinition Id="eaa0c314-9db0-4251-b130-90ec2d90e2d2" />
               </controlFlow>
             </flowNodeTargets>
           </initialNode>
-          <opaqueAction Id="8e79edec-cbf7-40b6-9c5f-f7586007ef69" name="State: Wandering" isLeaf="false">
-            <elementDefinition Id="74c8f61c-5536-4717-9a06-0bf71b05c3e4" />
-            <flowNodeTargets>
-              <controlFlow Id="0c43a160-c3d0-4b8c-8263-7d2d40c21e0c" isLeaf="false">
-                <decisionNodeMoniker Id="2aa63c15-6092-4a06-bd51-61fd1ce5a9e3" LastKnownName="Decision3" />
-                <elementDefinition Id="e9895b38-c8bd-488b-bb2b-8802b1615676" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <decisionNode Id="2aa63c15-6092-4a06-bd51-61fd1ce5a9e3" name="Decision3" isLeaf="false">
-            <elementDefinition Id="73360f90-4843-4c09-986d-7bd87232c164" />
-            <flowNodeTargets>
-              <controlFlow Id="64e8a1b1-bb95-4641-8025-f47d634acc99" guard="Gun found and not taken by Cow" isLeaf="false">
-                <opaqueActionMoniker Id="e4d9ea76-4a3b-4a5b-b1c8-120489d26a0a" LastKnownName="Change state to &quot;Hunt&quot;" />
-                <elementDefinition Id="6baadbb6-96ce-46d0-9fde-cdd0fbb22a74" />
-              </controlFlow>
-              <controlFlow Id="f36ea5bd-bd76-4c60-9d79-6f04bf164f1f" guard="No Gun found and not taken by Cow" isLeaf="false">
-                <mergeNodeMoniker Id="768e7c61-d743-48bb-9fce-ac15b05d1e8c" LastKnownName="Merge1" />
-                <elementDefinition Id="451ac497-5173-4c58-9b74-70e32da85d59" />
-              </controlFlow>
-              <controlFlow Id="5a94996c-dc0c-411b-b0b5-72b506e5ca73" guard="Taken by Cow" isLeaf="false">
-                <mergeNodeMoniker Id="244f6f47-46a6-4ed5-a0cc-a77d723d33b0" LastKnownName="Merge2" />
-                <elementDefinition Id="c89587f5-39ba-40e3-89ff-26aa79b30095" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
-          <opaqueAction Id="8137d88d-ef83-46f2-a3df-91903f60d2dc" name="Change state to &quot;Fly&quot;" isLeaf="false">
-            <elementDefinition Id="188c6445-d4e1-46fa-a2a7-457dac1e9de4" />
-            <flowNodeTargets>
-              <controlFlow Id="872ee73f-abae-455b-9f9e-2ed09a3b527f" isLeaf="false">
-                <mergeNodeMoniker Id="768e7c61-d743-48bb-9fce-ac15b05d1e8c" LastKnownName="Merge1" />
-                <elementDefinition Id="ed3fd91b-992f-4a4f-ad04-4e30c8e70f3a" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction Id="e4d9ea76-4a3b-4a5b-b1c8-120489d26a0a" name="Change state to &quot;Hunt&quot;" isLeaf="false">
-            <elementDefinition Id="7a05cc7a-5012-4f2a-9142-3ac9a8d7869b" />
-            <flowNodeTargets>
-              <controlFlow Id="681297c7-81af-4b38-a926-19babd563d5e" isLeaf="false">
-                <opaqueActionMoniker Id="af190d83-67ba-49a7-817d-4e0ac02b9505" LastKnownName="Use A* to chase  Cow" />
-                <elementDefinition Id="b2f8fb22-5ac6-495f-a818-f7344ba30acf" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction Id="af190d83-67ba-49a7-817d-4e0ac02b9505" name="Use A* to chase  Cow" isLeaf="false">
-            <elementDefinition Id="c4d46e5e-ebf4-4600-ab7b-d7e432458295" />
-            <flowNodeTargets>
-              <controlFlow Id="ce75b511-babd-488b-bfdf-9c632186bc10" isLeaf="false">
-                <decisionNodeMoniker Id="a76988c8-84b1-4eb2-9daf-58cd4e21588f" LastKnownName="Decision4" />
-                <elementDefinition Id="911cd635-d9bb-4f2b-a660-c1c237a5d02f" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <decisionNode Id="a76988c8-84b1-4eb2-9daf-58cd4e21588f" name="Decision4" isLeaf="false">
-            <elementDefinition Id="f96eb584-971f-4706-8d77-dfdfbaebdeda" />
-            <flowNodeTargets>
-              <controlFlow Id="b4279c81-0d31-4833-912e-affab1e5e0b5" guard="Did not found Cow and not Taken by Cow" isLeaf="false">
-                <opaqueActionMoniker Id="af190d83-67ba-49a7-817d-4e0ac02b9505" LastKnownName="Use A* to chase  Cow" />
-                <elementDefinition Id="1badcea4-fb16-421d-aa53-e3a62c2d47cf" />
-              </controlFlow>
-              <controlFlow Id="cbf3869c-3d4a-4e08-a608-421b131ad8c3" guard="Taken by Cow" isLeaf="false">
-                <mergeNodeMoniker Id="244f6f47-46a6-4ed5-a0cc-a77d723d33b0" LastKnownName="Merge2" />
-                <elementDefinition Id="8dd8d609-47e7-4dd5-9543-334e4ffeb8a7" />
-              </controlFlow>
-              <controlFlow Id="db0508c8-4b07-428f-993f-c68d4c3d4285" guard="Cow killed" isLeaf="false">
-                <opaqueActionMoniker Id="2fd0e673-a737-482b-bada-1c15aa41ad69" LastKnownName="Remove &quot;Gun&quot; from Hare" />
-                <elementDefinition Id="7042d29b-2852-4065-8e6f-18f466565c42" />
-              </controlFlow>
-            </flowNodeTargets>
-          </decisionNode>
-          <opaqueAction Id="07baa27c-ea66-4d40-b42d-fad277de8d58" name="Remove &quot;Pill&quot; from Cow" isLeaf="false">
-            <elementDefinition Id="f76dec8c-7056-4d5a-94bc-8741d6157a52" />
-            <flowNodeTargets>
-              <controlFlow Id="16aed8e2-32a5-4756-afb2-0a0d8f4818eb" isLeaf="false">
-                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
-                <elementDefinition Id="292441ea-9680-4cee-8160-bfc789c0f989" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <opaqueAction Id="2fd0e673-a737-482b-bada-1c15aa41ad69" name="Remove &quot;Gun&quot; from Hare" isLeaf="false">
-            <elementDefinition Id="d5b362c4-4c9c-43cf-a31e-01951cdf303f" />
-            <flowNodeTargets>
-              <controlFlow Id="1e175666-cbe7-4183-a6f0-543d325bdb14" isLeaf="false">
-                <mergeNodeMoniker Id="768e7c61-d743-48bb-9fce-ac15b05d1e8c" LastKnownName="Merge1" />
-                <elementDefinition Id="93e83a07-f3d0-4653-a8d2-e4176df1ebb6" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <mergeNode Id="768e7c61-d743-48bb-9fce-ac15b05d1e8c" name="Merge1" isLeaf="false">
-            <elementDefinition Id="5e887241-4492-4cb2-9487-f09d7b9c29cd" />
-            <flowNodeTargets>
-              <controlFlow Id="7189d0f3-1484-4ddd-834f-fd824b9db878" isLeaf="false">
-                <opaqueActionMoniker Id="8e79edec-cbf7-40b6-9c5f-f7586007ef69" LastKnownName="State: Wandering" />
-                <elementDefinition Id="67969549-1108-4d68-848f-c1c672888f6a" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <mergeNode Id="244f6f47-46a6-4ed5-a0cc-a77d723d33b0" name="Merge2" isLeaf="false">
-            <elementDefinition Id="dc5b4a10-bb94-48b8-a496-bd005149683b" />
-            <flowNodeTargets>
-              <controlFlow Id="7497d2b4-b302-4254-af20-4639c75894aa" isLeaf="false">
-                <opaqueActionMoniker Id="1695d021-e48a-4213-831c-5f495369171a" LastKnownName="Remove &quot;Gun&quot; from Hare" />
-                <elementDefinition Id="f8c87867-ddbb-40ec-84e2-0446b11d77b6" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <mergeNode Id="31d8a439-4252-48b9-80bd-5b96bc35c48b" name="Merge3" isLeaf="false">
-            <elementDefinition Id="887736aa-c739-4b4f-9a13-a6c9d78a6757" />
-            <flowNodeTargets>
-              <controlFlow Id="3eada5c9-494d-4713-81ea-ea8aa2a35845" isLeaf="false">
-                <opaqueActionMoniker Id="3e8004d0-e63a-405e-ad11-1214d6a5635e" LastKnownName="Remove &quot;Pill&quot; from Cow" />
-                <elementDefinition Id="41e51a17-1efe-462c-aa14-e7809e1d8615" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <opaqueAction Id="800db5c5-1d8b-4477-aa8a-c441ebeca73c" name="Change state to &quot;Fly&quot;" isLeaf="false">
-            <elementDefinition Id="fa044ec0-e495-4ad9-8455-360b565e098d" />
-            <flowNodeTargets>
-              <controlFlow Id="be0c0292-7628-4c0e-9eb6-3e7edfc5bc33" isLeaf="false">
-                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
-                <elementDefinition Id="bb50cf75-a181-4b16-b276-9ff19dee59d0" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
           <mergeNode Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" name="Merge4" isLeaf="false">
             <elementDefinition Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684" />
             <flowNodeTargets>
-              <controlFlow Id="eaf178c1-4015-4922-8a8d-9ea37e61725d" isLeaf="false">
-                <opaqueActionMoniker Id="a4d5564d-3a0d-4ed7-874e-4bcfa7458157" LastKnownName="State: Wandering" />
-                <elementDefinition Id="f813c590-bb3a-47a3-9d66-3738e23be02b" />
+              <controlFlow Id="69284d05-2702-4043-b05e-29f9805366db" isLeaf="false">
+                <opaqueActionMoniker Id="3b1d036d-22e2-4e8d-93ef-c345e46a6be5" LastKnownName="Chase Hare" />
+                <elementDefinition Id="8deb3f97-fc97-4d8b-971c-838c1ff22948" />
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
-          <opaqueAction Id="1695d021-e48a-4213-831c-5f495369171a" name="Remove &quot;Gun&quot; from Hare" isLeaf="false">
-            <elementDefinition Id="270382f1-3fd2-4142-b0d1-06d7b0c466a7" />
+          <opaqueAction Id="3b1d036d-22e2-4e8d-93ef-c345e46a6be5" name="Chase Hare" isLeaf="false">
+            <elementDefinition Id="c2d5d864-1b10-4495-8199-7ef4473e6bea" />
             <flowNodeTargets>
-              <controlFlow Id="379628ab-56cc-449e-a99b-861c46cfea07" isLeaf="false">
-                <opaqueActionMoniker Id="8137d88d-ef83-46f2-a3df-91903f60d2dc" LastKnownName="Change state to &quot;Fly&quot;" />
-                <elementDefinition Id="06a1ae05-4f48-4f61-b2ee-d996ed161996" />
+              <controlFlow Id="d1ae59c3-472f-4934-89cd-e39dbee13bd2" isLeaf="false">
+                <decisionNodeMoniker Id="2a979e15-4b5b-4d43-8986-922a35dfa766" LastKnownName="Decision2" />
+                <elementDefinition Id="f204b78f-fbf2-4b64-8ad3-f59bda0351a3" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
-          <opaqueAction Id="3e8004d0-e63a-405e-ad11-1214d6a5635e" name="Remove &quot;Pill&quot; from Cow" isLeaf="false">
-            <elementDefinition Id="abd47dd3-5eca-4176-a8f8-18b2ea4662cd" />
+          <mergeNode Id="c47ca2fd-fa98-472e-8fbd-bfcb417ca043" name="Merge1" isLeaf="false">
+            <elementDefinition Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7" />
             <flowNodeTargets>
-              <controlFlow Id="b7a9f7e0-fc8f-4192-a9cf-cb953de37186" isLeaf="false">
-                <opaqueActionMoniker Id="800db5c5-1d8b-4477-aa8a-c441ebeca73c" LastKnownName="Change state to &quot;Fly&quot;" />
-                <elementDefinition Id="8fb29e23-d07b-4393-8c7d-9f12ce8143d7" />
+              <controlFlow Id="cff7f53a-0584-450f-b455-c0a2ec09dc5f" isLeaf="false">
+                <opaqueActionMoniker Id="d388dd45-6a12-43a9-aaa8-d1df105a71cc" LastKnownName="Wandering" />
+                <elementDefinition Id="80b34036-d417-4575-89bc-9e67fe521164" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction Id="d388dd45-6a12-43a9-aaa8-d1df105a71cc" name="Wandering" isLeaf="false">
+            <elementDefinition Id="93aa047d-f9f7-4aa8-bb24-c71c7aac65c1" />
+            <flowNodeTargets>
+              <controlFlow Id="fa610969-3803-48b2-9bad-f492472c2d12" isLeaf="false">
+                <decisionNodeMoniker Id="ff4b4ab1-00a4-4538-9e1e-e89dd49cf76a" LastKnownName="Decision1" />
+                <elementDefinition Id="067bec08-d194-4319-96f5-e87114c1a36b" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
+          <decisionNode Id="ff4b4ab1-00a4-4538-9e1e-e89dd49cf76a" name="Decision1" isLeaf="false">
+            <elementDefinition Id="a4100532-9a4b-4555-b516-7bbc4cb674e7" />
+            <flowNodeTargets>
+              <controlFlow Id="9ac2c9fa-7c5e-448c-bfa8-6e3a44c28122" guard="Option 2" isLeaf="false">
+                <mergeNodeMoniker Id="eb8822ca-2960-4886-b42e-8d5f66c999a3" LastKnownName="Merge2" />
+                <elementDefinition Id="0b66087d-6f2a-4f55-81de-947b94c6e18f" />
+              </controlFlow>
+              <controlFlow Id="e25fa680-4e02-442d-b8c6-7509b75793ee" guard="Option 3" isLeaf="false">
+                <mergeNodeMoniker Id="44bf689d-75ea-4a65-bb0b-9223a4b84a11" LastKnownName="Merge3" />
+                <elementDefinition Id="bc50945f-398f-4855-9359-3a831289fa2b" />
+              </controlFlow>
+              <controlFlow Id="18be3e5b-55f9-48b9-b9d9-ea4a7843f4b2" guard="Killed by Cow" isLeaf="false">
+                <mergeNodeMoniker Id="896daaeb-b843-4a6c-9136-406034ab3e7d" LastKnownName="Merge6" />
+                <elementDefinition Id="30b30acb-47a0-4aa7-870d-4e4c4601a290" />
+              </controlFlow>
+              <controlFlow Id="72264392-fa0e-4d95-bdbb-eb3465dde820" guard="Option 1" isLeaf="false">
+                <opaqueActionMoniker Id="bbc2de90-89f1-4ac8-b856-752e2e144182" LastKnownName="Fly From Cow" />
+                <elementDefinition Id="0dd64fcf-4069-4f94-aeea-146a56a4f749" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="bbc2de90-89f1-4ac8-b856-752e2e144182" name="Fly From Cow" isLeaf="false">
+            <elementDefinition Id="a5aa257c-f86a-4bfb-8eba-61dd6e0667d3" />
+            <flowNodeTargets>
+              <controlFlow Id="b1ed0546-715a-4279-9a32-3466d4d8ca73" isLeaf="false">
+                <mergeNodeMoniker Id="c47ca2fd-fa98-472e-8fbd-bfcb417ca043" LastKnownName="Merge1" />
+                <elementDefinition Id="39e26b80-6850-45eb-b8cd-031515610aeb" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="adceff21-f84c-40a1-947e-13db66587b0a" name="Respawn" isLeaf="false">
+            <elementDefinition Id="1af8355f-c81b-4205-8845-9a39def22283" />
+            <flowNodeTargets>
+              <controlFlow Id="137dc448-1fe6-44e9-9ecf-3e458b96a68f" isLeaf="false">
+                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
+                <elementDefinition Id="cf98e066-1d61-4ec6-9c4b-f036fb7c2de3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="2a979e15-4b5b-4d43-8986-922a35dfa766" name="Decision2" isLeaf="false">
+            <elementDefinition Id="f7f2d115-6bcf-4e65-a430-98b457de2b62" />
+            <flowNodeTargets>
+              <controlFlow Id="bb1bff77-54b4-4bcc-a37b-ddafffed46f6" guard="Not killed by Hare" isLeaf="false">
+                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
+                <elementDefinition Id="af303e9f-efb6-4029-9efa-5b5dbac522ee" />
+              </controlFlow>
+              <controlFlow Id="77bf1942-d63e-466b-858e-be821f3f558b" guard="Killed by Hare" isLeaf="false">
+                <opaqueActionMoniker Id="adceff21-f84c-40a1-947e-13db66587b0a" LastKnownName="Respawn" />
+                <elementDefinition Id="6bced880-2d3a-4321-9348-dfb75d5c2916" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="3ba672ff-3305-435e-bf6b-336af8de2d99" name="Respawn" isLeaf="false">
+            <elementDefinition Id="d3bf3e64-86d7-489f-b912-8b89643ada9f" />
+          </opaqueAction>
+          <opaqueAction Id="522f8501-e666-4bf6-92d2-176fe8f3fbf6" name="Search Weapon" isLeaf="false">
+            <elementDefinition Id="3442c10f-a671-47ac-be1a-64e8280e4fae" />
+            <flowNodeTargets>
+              <controlFlow Id="24ad0d3f-6b09-4958-b6e0-573f68e3402a" isLeaf="false">
+                <decisionNodeMoniker Id="1fd7a768-a300-4d78-bf36-f1ca4174255d" LastKnownName="Decision3" />
+                <elementDefinition Id="1ecf5798-659b-437f-8277-9dab764129a3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b9a48371-a480-4726-82d5-23f4aeba5e9e" name="Search Sleep Pill" isLeaf="false">
+            <elementDefinition Id="88c9fc72-b276-422f-b361-f7ad1490f763" />
+            <flowNodeTargets>
+              <controlFlow Id="73a70ff4-8419-4bc1-ac79-cf28492165e0" isLeaf="false">
+                <decisionNodeMoniker Id="aaac746b-d09e-4803-9452-e37dc5cdbc43" LastKnownName="Decision4" />
+                <elementDefinition Id="7726a352-8054-4651-917b-7e6931ce3b8d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="1fd7a768-a300-4d78-bf36-f1ca4174255d" name="Decision3" isLeaf="false">
+            <elementDefinition Id="a323395a-e7db-4869-a648-81ec79a778d8" />
+            <flowNodeTargets>
+              <controlFlow Id="a8162200-ff29-4da5-9866-bf18613c89db" guard="Not Found" isLeaf="false">
+                <mergeNodeMoniker Id="eb8822ca-2960-4886-b42e-8d5f66c999a3" LastKnownName="Merge2" />
+                <elementDefinition Id="a85b45db-0f53-434f-9138-62c30a7a78d5" />
+              </controlFlow>
+              <controlFlow Id="14a03019-d670-4dd8-8117-92a3d7c91673" guard="Found Weapon" isLeaf="false">
+                <mergeNodeMoniker Id="5fbc654c-ef43-4d73-b3f1-958c352c36cf" LastKnownName="Merge5" />
+                <elementDefinition Id="b8c64fb5-e12d-4937-9569-1dacca255623" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="efa5748b-d01c-45f0-b018-f4a9c6fdb754" name="Hunt Cow" isLeaf="false">
+            <elementDefinition Id="1276a220-dbd1-43d2-a296-efe447661c32" />
+            <flowNodeTargets>
+              <controlFlow Id="0f6386bf-9717-40f4-82ef-3e8457668087" isLeaf="false">
+                <decisionNodeMoniker Id="3259ffb6-5c66-4c0c-b408-68d0960d6a66" LastKnownName="Decision5" />
+                <elementDefinition Id="1d68c0bd-95d9-47d6-ab73-a4ca4a9693a8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="aaac746b-d09e-4803-9452-e37dc5cdbc43" name="Decision4" isLeaf="false">
+            <elementDefinition Id="8708e8fa-027e-4508-8b2d-386f824d5108" />
+            <flowNodeTargets>
+              <controlFlow Id="39c80f03-41d3-4006-9adf-899c56c5bbde" guard="Not Found" isLeaf="false">
+                <mergeNodeMoniker Id="44bf689d-75ea-4a65-bb0b-9223a4b84a11" LastKnownName="Merge3" />
+                <elementDefinition Id="e28b4c61-d884-4498-93fe-a22715a2257b" />
+              </controlFlow>
+              <controlFlow Id="1ae18d6e-ada9-493e-82de-e53a5c8f0416" guard="Found Sleep pill" isLeaf="false">
+                <mergeNodeMoniker Id="5fbc654c-ef43-4d73-b3f1-958c352c36cf" LastKnownName="Merge5" />
+                <elementDefinition Id="2778dfa6-fc55-4cd2-828e-52c4a234ba5c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <mergeNode Id="eb8822ca-2960-4886-b42e-8d5f66c999a3" name="Merge2" isLeaf="false">
+            <elementDefinition Id="5ea5b8ef-488c-4d3b-b261-afd79e1b5967" />
+            <flowNodeTargets>
+              <controlFlow Id="14385fd8-2de4-4edd-ad41-6616f4b65297" isLeaf="false">
+                <decisionNodeMoniker Id="3c3f7bda-53f1-495f-b15d-23e024bb6e3a" LastKnownName="Decision7" />
+                <elementDefinition Id="9f193291-111b-4cf7-81cc-b5b666112df0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <mergeNode Id="44bf689d-75ea-4a65-bb0b-9223a4b84a11" name="Merge3" isLeaf="false">
+            <elementDefinition Id="e93e6a15-a230-452f-a7d6-5dd25881e6c5" />
+            <flowNodeTargets>
+              <controlFlow Id="1ecaec25-40b7-4cfb-8942-2e9d9976c9e1" isLeaf="false">
+                <decisionNodeMoniker Id="9c807ea8-05da-46f4-87d8-3b343ebe1711" LastKnownName="Decision6" />
+                <elementDefinition Id="907e2e8f-7251-4726-9025-0f9756f66e32" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <mergeNode Id="5fbc654c-ef43-4d73-b3f1-958c352c36cf" name="Merge5" isLeaf="false">
+            <elementDefinition Id="ad2c6e5b-54d4-44be-90d1-1b68f5f92323" />
+            <flowNodeTargets>
+              <controlFlow Id="f037d98d-da74-46a6-906c-e67646a80764" isLeaf="false">
+                <opaqueActionMoniker Id="efa5748b-d01c-45f0-b018-f4a9c6fdb754" LastKnownName="Hunt Cow" />
+                <elementDefinition Id="1e2b77c0-4db2-44fc-9513-b7a29e5667a3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <decisionNode Id="3259ffb6-5c66-4c0c-b408-68d0960d6a66" name="Decision5" isLeaf="false">
+            <elementDefinition Id="55d811dd-272b-4fcc-b822-01ee5fa40c4b" />
+            <flowNodeTargets>
+              <controlFlow Id="5c0dbfc5-c2aa-427b-b611-54ebcc3b0601" guard="Not found Cow" isLeaf="false">
+                <mergeNodeMoniker Id="5fbc654c-ef43-4d73-b3f1-958c352c36cf" LastKnownName="Merge5" />
+                <elementDefinition Id="7a02b559-d563-4054-94a5-40b222e2269a" />
+              </controlFlow>
+              <controlFlow Id="ab2e44c6-9938-4597-9c40-31139c0f874f" guard="Killed Cow" isLeaf="false">
+                <mergeNodeMoniker Id="c47ca2fd-fa98-472e-8fbd-bfcb417ca043" LastKnownName="Merge1" />
+                <elementDefinition Id="59198e10-40a8-4049-88fa-602c2df6f843" />
+              </controlFlow>
+              <controlFlow Id="b5465c72-dfaa-4279-a95d-2bba745ed140" guard="Killed by Cow" isLeaf="false">
+                <mergeNodeMoniker Id="896daaeb-b843-4a6c-9136-406034ab3e7d" LastKnownName="Merge6" />
+                <elementDefinition Id="ce2d2254-ee82-4622-8f12-11a1083bfec2" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <decisionNode Id="9c807ea8-05da-46f4-87d8-3b343ebe1711" name="Decision6" isLeaf="false">
+            <elementDefinition Id="b88c5075-9d80-4912-9e24-4699c4f59bd9" />
+            <flowNodeTargets>
+              <controlFlow Id="8cb9d485-d518-445b-88d8-ce2b39d61fa1" guard="Else" isLeaf="false">
+                <opaqueActionMoniker Id="b9a48371-a480-4726-82d5-23f4aeba5e9e" LastKnownName="Search Sleep Pill" />
+                <elementDefinition Id="708e1d90-ba2c-43ce-ba3d-10aebecc22d1" />
+              </controlFlow>
+              <controlFlow Id="9bbf9e8f-fd46-4004-80fe-939aac32e8c5" guard="Killed by Cow" isLeaf="false">
+                <mergeNodeMoniker Id="896daaeb-b843-4a6c-9136-406034ab3e7d" LastKnownName="Merge6" />
+                <elementDefinition Id="cba95366-7ef8-45ec-8e9f-b6e6e2b8db16" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <decisionNode Id="3c3f7bda-53f1-495f-b15d-23e024bb6e3a" name="Decision7" isLeaf="false">
+            <elementDefinition Id="13b4d355-d241-4427-baeb-f38d613aa6e0" />
+            <flowNodeTargets>
+              <controlFlow Id="9683e2a6-4dca-4bd1-9f53-849bdc8741b0" guard="Else" isLeaf="false">
+                <opaqueActionMoniker Id="522f8501-e666-4bf6-92d2-176fe8f3fbf6" LastKnownName="Search Weapon" />
+                <elementDefinition Id="0995b281-569c-4bae-9385-b4d4f74e1097" />
+              </controlFlow>
+              <controlFlow Id="c033ddde-ecb0-4838-b6c9-d5a5fe6fb4b3" guard="Killed By Cow" isLeaf="false">
+                <mergeNodeMoniker Id="896daaeb-b843-4a6c-9136-406034ab3e7d" LastKnownName="Merge6" />
+                <elementDefinition Id="bfb8b3ab-1f12-48cf-b8cd-14c32cd59e35" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <mergeNode Id="896daaeb-b843-4a6c-9136-406034ab3e7d" name="Merge6" isLeaf="false">
+            <elementDefinition Id="c20b1eee-925c-4448-a45b-3e3a5cd9a088" />
+            <flowNodeTargets>
+              <controlFlow Id="6f1afdad-ca74-4a1c-9087-c52460c0b733" isLeaf="false">
+                <opaqueActionMoniker Id="3ba672ff-3305-435e-bf6b-336af8de2d99" LastKnownName="Respawn" />
+                <elementDefinition Id="75af9695-e4cc-4412-977c-3c4dedf9ab20" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
         </nodes>
       </activity>
     </activityRootModelHasActivity>
