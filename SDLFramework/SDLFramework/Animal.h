@@ -19,6 +19,7 @@ public:
 	Animal();	
 	~Animal();
 
+
 	Graph* GetGraph();
 	void SetGraph(Graph* g);
 

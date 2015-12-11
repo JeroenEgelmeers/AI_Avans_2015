@@ -255,8 +255,15 @@ void FWApplication::UpdateGameObjects()
 
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
-		std::cout << "cow killed hare, respawn hare \n";
-		mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+		// TODO Check if cow is in chase state & hare is in chase state
+		if (!moveCow) {
+			std::cout << "cow killed hare, respawn hare \n";
+			mHare->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+		}
+		else {
+			std::cout << "Hare killed cow, respawn cow \n";
+			mCow->setCurrentNode(mGraph->GetNode(GetNewNode(mGraph->GetNodePosition(mHare->getCurrentNode()))));
+		}
 		mHare->ChangeState(StateEnum::eHareWanderAround);
 		mCow->ChangeState(StateEnum::eCowWanderAround);
 		

@@ -28,15 +28,7 @@ void CowWanderAround::Enter(Animal* cow)
 
 void CowWanderAround::Execute(Animal* cow)
 {
-	if (stateUpdatesDone <= stateUpdates)
-	{
-		++stateUpdatesDone;
-		cow->setCurrentNode(cow->GetGraph()->GetNode(cow->GetGraph()->GetNewNeighborNode(cow->GetGraph()->GetNodePosition(cow->getCurrentNode()))));
-	}
-	else
-	{
-		cow->ChangeState(StateEnum::eCowChaseHare);
-	}
+	cow->setCurrentNode(cow->GetGraph()->GetNode(cow->GetGraph()->GetNewNeighborNode(cow->GetGraph()->GetNodePosition(cow->getCurrentNode()))));
 }
 
 void CowWanderAround::Exit(Animal* cow)
@@ -89,18 +81,18 @@ void CowFleeFromHare::Execute(Animal* cow)
 		cow->setCurrentNode(cow->GetGraph()->GetNode(path));
 
 	}
-	else if (false) // hare has pill
-	{
-		cow->ChangeState(StateEnum::eHareWanderAround);
-	}
-	else if (false) // hare has gun
-	{
-		cow->ChangeState(StateEnum::eHareChaseCow);
-	}
-	else if (stateUpdatesDone > stateUpdates) // fleeing done
-	{
-		cow->ChangeState(StateEnum::eHareRest);
-	}
+	//else if (false) // hare has pill
+	//{
+	//	cow->ChangeState(StateEnum::eHareWanderAround);
+	//}
+	//else if (false) // hare has gun
+	//{
+	//	cow->ChangeState(StateEnum::eHareChaseCow);
+	//}
+	//else if (stateUpdatesDone > stateUpdates) // fleeing done
+	//{
+	//	cow->ChangeState(StateEnum::eHareRest);
+	//}
 }
 
 void CowFleeFromHare::Exit(Animal* hare)

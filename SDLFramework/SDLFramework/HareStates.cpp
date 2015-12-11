@@ -76,14 +76,6 @@ void HareFleeFromCow::Execute(Animal* hare)
 		hare->setCurrentNode(hare->GetGraph()->GetNode(path));
 
 	}
-	else if (false) // hare has pill
-	{
-		hare->ChangeState(StateEnum::eHareWanderAround);
-	}
-	else if (false) // hare has gun
-	{
-		hare->ChangeState(StateEnum::eHareChaseCow);
-	}
 }
 
 void HareFleeFromCow::Exit(Animal* hare)
