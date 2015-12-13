@@ -200,9 +200,33 @@ void FWApplication::UpdateGameObjects()
 	}
 	else
 	{
-		// TODO: Check if Cow has seen the Hare (1 edge away)
+
+		/*
+			-> Er wordt effectiviteit aan alle states toegevoegd. 
+			   Bij de start van de applicatie wordt deze op 10 gezet.
+
+			-> D.m.v. de spatiebalk wordt de effectiveiteit gemeten. Het gemiddelde wordt ook opgelsagen.
+
+			-> VOORBEELD:
+			-> De hare wordt gezien door de cow (staat er een node vanaf).
+			-> De hare beslist d.m.v. een random over de effectiviteit van alle states (3 in dit geval) welke state die pakt. 
+				-> In eerste instantie hebben ze allemaal 10 dus rand(0,29)
+				-> Als het 8 is (voorbeeld) valt dit in de eerste state (de eerste state heeft er 10, 8 valt daarbinnen dus praten we over de 1e state.
+				-> Doe deze state TOT de hare dood is.
+				-> aantal turns (spatie balk) wordt bekeken en d.m.v. uitkomst een nieuw gemiddeld berekend.
+				-> Hoger dan de andere? Dan wordt er 2 aan de effectiviteit toegevoegd en bij de andere 1 verwijderd. Anders wordt er 2 af gehaald en bij de ander 1 opgeteld.
+
+			~ Begin weer opnieuw bij "VOORBEELD:".
+
+			[ Let op: Als een state niet werkt gaat deze dus langzaam naar de 0 (effectiviteit), is niet effectief. Echter kan een state nooit onder de 2 komen.
+			om ervoor te ozrgen dat deze wel nog voor kan komen in de random. In het geval dat een state de 2 heeft bereikt geeft deze er geen meer af. De state die deze dus zou moeten ontvangen krijgt er dus
+			een minder. ] <- Niet persé nodig aangezien states ook worden verhoogd als een gemiddelde van een effectieve state daalt. Dit zorgt echter toch voor net wat meer onvoorspelbaarheid.
+			
+		*/
+
+		// TODO: Check if Cow has seen the Hare (1 node away)
 			// If true, change state from Hare to: get Pill, Get Weapon OR "run" using A*.
-		// If False, wander (just do the update below).
+		// If False, wander (just do the update (mHare->Update(0)).
 
 		mHare->Update(0);
 		moveCow = true;
