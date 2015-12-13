@@ -200,6 +200,10 @@ void FWApplication::UpdateGameObjects()
 	}
 	else
 	{
+		// TODO: Check if Cow has seen the Hare (1 edge away)
+			// If true, change state from Hare to: get Pill, Get Weapon OR "run" using A*.
+		// If False, wander (just do the update below).
+
 		mHare->Update(0);
 		moveCow = true;
 		if (mHare->getCurrentNode() == mGun->getCurrentNode())
@@ -214,7 +218,6 @@ void FWApplication::UpdateGameObjects()
 
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
-		// TODO Check if cow is in chase state & hare is in chase state
 		if (mCow->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos)
 		{
 			if (!moveCow)
