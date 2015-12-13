@@ -15,15 +15,7 @@ void HareWanderAround::Enter(Animal* hare)
 
 void HareWanderAround::Execute(Animal* hare)
 {
-	if (stateUpdatesDone <= stateUpdates)
-	{
-		++stateUpdatesDone;
-		hare->setCurrentNode(hare->GetGraph()->GetNode(hare->GetGraph()->GetNewNeighborNode(hare->GetGraph()->GetNodePosition(hare->getCurrentNode()))));
-	}
-	else
-	{
-		hare->ChangeState(StateEnum::eHareRest);
-	}
+	hare->setCurrentNode(hare->GetGraph()->GetNode(hare->GetGraph()->GetNewNeighborNode(hare->GetGraph()->GetNodePosition(hare->getCurrentNode()))));
 }
 
 void HareWanderAround::Exit(Animal* hare)

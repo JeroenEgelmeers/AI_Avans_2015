@@ -197,10 +197,6 @@ void FWApplication::UpdateGameObjects()
 	{
 		mCow->Update(0);
 		moveCow = false;
-		if (mCow->getCurrentNode() == mPill->getCurrentNode())
-		{
-			mPill->ChangeState(mCow);
-		}
 	}
 	else
 	{
@@ -209,6 +205,10 @@ void FWApplication::UpdateGameObjects()
 		if (mHare->getCurrentNode() == mGun->getCurrentNode())
 		{
 			mGun->ChangeState(mHare);
+		}
+		if (mHare->getCurrentNode() == mPill->getCurrentNode())
+		{
+			mPill->ChangeState(mHare);
 		}
 	}
 
@@ -222,7 +222,7 @@ void FWApplication::UpdateGameObjects()
 				std::cout << "cow killed hare, respawn hare \n";
 				mHare->GetNewRandomNode();
 				mHare->ChangeState(StateEnum::eHareWanderAround);
-				mCow->ChangeState(StateEnum::eCowWanderAround);
+				//mCow->ChangeState(StateEnum::eCowWanderAround);
 			}
 		}
 		if (mHare->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos)
@@ -232,7 +232,7 @@ void FWApplication::UpdateGameObjects()
 				std::cout << "Hare killed cow, respawn cow \n";
 				mCow->GetNewRandomNode();
 				mHare->ChangeState(StateEnum::eHareWanderAround);
-				mCow->ChangeState(StateEnum::eCowWanderAround);
+				//mCow->ChangeState(StateEnum::eCowWanderAround);
 			}
 		}
 
