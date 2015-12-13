@@ -85,15 +85,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Animal.cpp" />
-    <ClCompile Include="Cow.cpp" />
-    <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
-    <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="Hare.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="MovingEntity.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Prey.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -108,16 +104,12 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animal.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="Cow.h" />
-    <ClInclude Include="Edge.h" />
     <ClInclude Include="FWApplication.h" />
-    <ClInclude Include="Graph.h" />
-    <ClInclude Include="Hare.h" />
     <ClInclude Include="IGameObject.h" />
-    <ClInclude Include="Node.h" />
+    <ClInclude Include="MovingEntity.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="Prey.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

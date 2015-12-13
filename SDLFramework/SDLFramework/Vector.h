@@ -2,18 +2,19 @@
 #define __vector__
 class Vector{
 private:
-	Vector();
 public:
-	float x;
-	float y;
-	float z;
+	float	x;
+	float	y;
+	float	z;
 
+	Vector();
 	Vector(float x, float y);
 	Vector(float x, float y, float z);
 
-	Vector operator+(const Vector& v);
-	Vector operator-(const Vector& v);
+	Vector	operator+(const Vector& v);
+	Vector	operator-(const Vector& v);
 
-	float Length() const;
+	float	Length() const;
+	void	Normalize();
 };
 #endif

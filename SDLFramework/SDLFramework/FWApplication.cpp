@@ -8,6 +8,8 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 
+#include "Prey.h"
+
 FWApplication * FWApplication::mInstance;
 FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	: mTargetDelayMS(1000 / 60),
@@ -63,8 +65,13 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 
 	mInstance = this;
 	mGameObjects.reserve(32);
+
+	mGameObjects.push_back(new Prey());
 }
 
+void FWApplication::GetWindowSize(int *width, int *height) {
+	SDL_GetWindowSize(mWindow, width, height);
+}
 
 FWApplication::~FWApplication()
 {
@@ -138,6 +145,17 @@ void FWApplication::DrawTexture(SDL_Texture * texture, int xOffset, int yOffset,
 	//SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(mRenderer, texture, NULL, &rect);
+}
+
+void FWApplication::DrawTextureRotate(SDL_Texture * texture, int xOffset, int yOffset, int width, int height, double angle)
+{
+	SDL_Rect rect = { xOffset - (width / 2), yOffset - (height / 2), width, height };
+
+	SDL_Point point{ (width / 2), (height / 2) };
+
+	//SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+	SDL_RenderCopyEx(mRenderer, texture, NULL, &rect, angle, &point, SDL_FLIP_NONE);
 }
 
 void FWApplication::StartTick()

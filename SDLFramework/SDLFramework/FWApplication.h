@@ -59,7 +59,8 @@ public:
 	SDL_Window * GetWindow() const;
 	static FWApplication * GetInstance();
 
-	
+	void GetWindowSize(int *width, int *height);
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Is the game running, returns false when window is closed. </summary>
 	///
@@ -119,8 +120,7 @@ public:
 	/// <param name="height"> 	The height. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	void DrawTexture(SDL_Texture * texture, int xOffset, int yOffset, int width, int height);
-	
-
+	void DrawTextureRotate(SDL_Texture * texture, int xOffset, int yOffset, int width, int height, double angle);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Draws a line from position to position </summary>

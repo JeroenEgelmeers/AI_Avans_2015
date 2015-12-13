@@ -21,15 +21,6 @@
     <Filter Include="Library\Header">
       <UniqueIdentifier>{add5a7fc-29c5-47ad-8a32-cdd794dafcaa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Pathfinding">
-      <UniqueIdentifier>{64ded09b-4dfa-4d6c-80ad-b97c87dbcb72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\Pathfinding\Source">
-      <UniqueIdentifier>{aae31822-a9a9-477b-a5a2-f80bda37dbb7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\Pathfinding\Header">
-      <UniqueIdentifier>{43324e06-a5d4-48c5-aee7-20e8d8db3522}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -44,22 +35,10 @@
     <ClCompile Include="Point.cpp">
       <Filter>Library\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Graph.cpp">
-      <Filter>Library\Pathfinding\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Library\Pathfinding\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Edge.cpp">
-      <Filter>Library\Pathfinding\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Cow.cpp">
+    <ClCompile Include="MovingEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hare.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Animal.cpp">
+    <ClCompile Include="Prey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -108,22 +87,10 @@
     <ClInclude Include="Vector.h">
       <Filter>Library\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.h">
-      <Filter>Library\Pathfinding\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Library\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Edge.h">
-      <Filter>Library\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Cow.h">
+    <ClInclude Include="MovingEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hare.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Animal.h">
+    <ClInclude Include="Prey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

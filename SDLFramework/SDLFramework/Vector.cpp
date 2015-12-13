@@ -46,3 +46,10 @@ float Vector::Length() const {
 
 	return length;
 }
+
+void Vector::Normalize() {
+	float length = Length();
+	x = x / length;
+	y = y / length;
+	z = z / length;
+}
