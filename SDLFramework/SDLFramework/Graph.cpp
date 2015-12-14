@@ -325,6 +325,16 @@ int Graph::GetHareTargetNode()
 {
 	return GetNodePosition(hare->getCurrentNode());
 }
+
+int Graph::GetPillTargetNode()
+{
+	return GetNodePosition(hare->getCurrentNode());
+}
+
+int Graph::GetGunTargetNode()
+{
+	return GetNodePosition(hare->getCurrentNode());
+}
 #pragma endregion
 
 Graph::~Graph() { }

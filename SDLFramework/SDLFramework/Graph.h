@@ -31,8 +31,10 @@ private:
 	std::vector<int> mOpenList;
 	std::vector<int> mClosedList;
 
-	Cow* cow;
-	Hare* hare;
+	Cow*	cow;
+	Hare*	hare;
+	Pill*	pill;
+	Gun*	gun;
 	
 	void AStarReset();
 protected: 
@@ -47,12 +49,14 @@ public:
 	void AddNode(Node n);
 	void AddEdge(int a, int b);
 
+	void SetPill(Pill* _pill) { pill = _pill;  }
+	void SetGun(Gun* _gun) { gun = _gun; }
 	void SetCowTarget(Cow* c);
 	void SetHareTarget(Hare* h);
 	int GetCowTargetNode();
 	int GetHareTargetNode();
-	//Pill* GetPillTarget();
-	//Gun* GetGunTarget();
+	int GetPillTargetNode();
+	int GetGunTargetNode();
 
 	std::vector<Node> GetNodes();
 	std::vector<Edge> GetEdges();

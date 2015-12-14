@@ -73,3 +73,22 @@ public:
 	void HareChaseCow::Execute(Animal* hare) override;
 	void HareChaseCow::Exit(Animal* hare) override;
 };
+
+
+class HareSearchItem : public IAnimalState
+{
+private:
+	//copy ctor and assignment should be private
+	HareSearchItem(const HareSearchItem&);
+	HareSearchItem& operator=(const HareSearchItem&);
+
+	int stateUpdates, stateUpdatesDone;
+
+public:
+	HareSearchItem() { }
+	~HareSearchItem() { }
+
+	void HareSearchItem::Enter(Animal* hare) override;
+	void HareSearchItem::Execute(Animal* hare) override;
+	void HareSearchItem::Exit(Animal* hare) override;
+};

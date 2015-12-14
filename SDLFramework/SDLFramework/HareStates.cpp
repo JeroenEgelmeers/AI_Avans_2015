@@ -87,3 +87,14 @@ void HareChaseCow::Execute(Animal* hare)
 }
 
 void HareChaseCow::Exit(Animal* hare) { }
+
+//------------------------------------------------------------------------methods for HareSearchItem
+void HareSearchItem::Enter(Animal* hare) { }
+
+void HareSearchItem::Execute(Animal* hare)
+{
+	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetHareTargetNode(), hare->GetGraph()->GetPillTargetNode);
+	hare->setCurrentNode(hare->GetGraph()->GetNode(path));
+}
+
+void HareSearchItem::Exit(Animal* hare) { }

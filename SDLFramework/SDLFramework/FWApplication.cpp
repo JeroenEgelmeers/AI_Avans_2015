@@ -85,6 +85,9 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mPill = new Pill(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
 	mGun = new Gun(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
 
+	mGraph->SetPill(mPill);
+	mGraph->SetGun(mGun);
+
 	AddRenderable(mGraph);
 	AddRenderable(mCow);
 	AddRenderable(mHare);
@@ -238,6 +241,7 @@ void FWApplication::UpdateGameObjects()
 		}
 		if (mHare->getCurrentNode() == mPill->getCurrentNode())
 		{
+
 			mPill->ChangeState(mHare);
 		}
 	}
@@ -248,11 +252,13 @@ void FWApplication::UpdateGameObjects()
 	int cowNode = mGraph->GetNodeIndex(mCow->getCurrentNode());
 	for (size_t i = 0; i < edges.size(); i++)
 	{
-		Edge* edge = mGraph->GetEdge(edges.at(i));
-		int edgeIndex = edge->GetSecond();
 		if (mGraph->GetEdge(edges.at(i))->GetFirst() == cowNode || mGraph->GetEdge(edges.at(i))->GetSecond() == cowNode)
 		{
-			std::cout << "node distance is one, do stuff \n";
+			if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
+			{
+				mHare->ChangeState(StateEnum::eHareChaseCow);
+			}
+			break;
 		}
 	}
 
