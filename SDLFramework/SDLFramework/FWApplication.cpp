@@ -15,6 +15,8 @@
 #include "Gun.h"
 #include "Pill.h"
 
+#include "Edge.h"
+
 FWApplication * FWApplication::mInstance;
 FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	: mTargetDelayMS(1000 / 60),
@@ -32,7 +34,7 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 		return;
 	}
 
-	mWindow = SDL_CreateWindow("KMint framework", offsetX, offsetY, width, height, SDL_WINDOW_SHOWN);
+	mWindow = SDL_CreateWindow("KMint framework", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (!mWindow)
 	{
 		LOG(SDL_GetError());
@@ -75,13 +77,13 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 
 	mGraph = new Graph();
 	// TODO set current cow node
-	mCow = new Cow(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+	mCow = new Cow(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
 	mHare = new Hare(mGraph->GetNode(mGraph->GetNewNode(mGraph->GetNodePosition(mCow->getCurrentNode()))));
 	mCow->SetGraph(mGraph);
 	mHare->SetGraph(mGraph);
 
-	mPill = new Pill(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
-	mGun = new Gun(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+	mPill = new Pill(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
+	mGun = new Gun(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
 
 	AddRenderable(mGraph);
 	AddRenderable(mCow);
@@ -185,7 +187,7 @@ void FWApplication::EndTick()
 
 	mTimeMS = SDL_GetTicks();
 	mDeltaTimeMS = mTimeMS - mStartCycleTimeMS;
-	if (((int32_t)mTargetDelayMS - (int32_t)mDeltaTimeMS) > 0)
+	if (((int32_t) mTargetDelayMS - (int32_t) mDeltaTimeMS) > 0)
 	{
 		SDL_Delay(mTargetDelayMS - mDeltaTimeMS);
 	}
@@ -200,36 +202,36 @@ void FWApplication::UpdateGameObjects()
 	}
 	else
 	{
-
 		/*
-			-> Er wordt effectiviteit aan alle states toegevoegd. 
-			   Bij de start van de applicatie wordt deze op 10 gezet.
+			-> Er wordt effectiviteit aan alle states toegevoegd.
+			Bij de start van de applicatie wordt deze op 10 gezet.
 
 			-> D.m.v. de spatiebalk wordt de effectiveiteit gemeten. Het gemiddelde wordt ook opgelsagen.
 
 			-> VOORBEELD:
 			-> De hare wordt gezien door de cow (staat er een node vanaf).
-			-> De hare beslist d.m.v. een random over de effectiviteit van alle states (3 in dit geval) welke state die pakt. 
-				-> In eerste instantie hebben ze allemaal 10 dus rand(0,29)
-				-> Als het 8 is (voorbeeld) valt dit in de eerste state (de eerste state heeft er 10, 8 valt daarbinnen dus praten we over de 1e state.
-				-> Doe deze state TOT de hare dood is.
-				-> aantal turns (spatie balk) wordt bekeken en d.m.v. uitkomst een nieuw gemiddeld berekend.
-				-> Hoger dan de andere? Dan wordt er 2 aan de effectiviteit toegevoegd en bij de andere 1 verwijderd. Anders wordt er 2 af gehaald en bij de ander 1 opgeteld.
+			-> De hare beslist d.m.v. een random over de effectiviteit van alle states (3 in dit geval) welke state die pakt.
+			-> In eerste instantie hebben ze allemaal 10 dus rand(0,29)
+			-> Als het 8 is (voorbeeld) valt dit in de eerste state (de eerste state heeft er 10, 8 valt daarbinnen dus praten we over de 1e state.
+			-> Doe deze state TOT de hare dood is.
+			-> aantal turns (spatie balk) wordt bekeken en d.m.v. uitkomst een nieuw gemiddeld berekend.
+			-> Hoger dan de andere? Dan wordt er 2 aan de effectiviteit toegevoegd en bij de andere 1 verwijderd. Anders wordt er 2 af gehaald en bij de ander 1 opgeteld.
 
 			~ Begin weer opnieuw bij "VOORBEELD:".
 
 			[ Let op: Als een state niet werkt gaat deze dus langzaam naar de 0 (effectiviteit), is niet effectief. Echter kan een state nooit onder de 2 komen.
-			om ervoor te ozrgen dat deze wel nog voor kan komen in de random. In het geval dat een state de 2 heeft bereikt geeft deze er geen meer af. De state die deze dus zou moeten ontvangen krijgt er dus
+			om ervoor te zorgen dat deze wel nog voor kan komen in de random. In het geval dat een state de 2 heeft bereikt geeft deze er geen meer af. De state die deze dus zou moeten ontvangen krijgt er dus
 			een minder. ] <- Niet persé nodig aangezien states ook worden verhoogd als een gemiddelde van een effectieve state daalt. Dit zorgt echter toch voor net wat meer onvoorspelbaarheid.
-			
-		*/
+
+			*/
 
 		// TODO: Check if Cow has seen the Hare (1 node away)
-			// If true, change state from Hare to: get Pill, Get Weapon OR "run" using A*.
+		// If true, change state from Hare to: get Pill, Get Weapon OR "run" using A*.
 		// If False, wander (just do the update (mHare->Update(0)).
 
 		mHare->Update(0);
 		moveCow = true;
+
 		if (mHare->getCurrentNode() == mGun->getCurrentNode())
 		{
 			mGun->ChangeState(mHare);
@@ -237,6 +239,20 @@ void FWApplication::UpdateGameObjects()
 		if (mHare->getCurrentNode() == mPill->getCurrentNode())
 		{
 			mPill->ChangeState(mHare);
+		}
+	}
+
+	// setup for cheacking node distance
+	std::vector<int> edges = mHare->getCurrentNode()->GetEdges();
+	bool distanceCheck = false;
+	int cowNode = mGraph->GetNodeIndex(mCow->getCurrentNode());
+	for (size_t i = 0; i < edges.size(); i++)
+	{
+		Edge* edge = mGraph->GetEdge(edges.at(i));
+		int edgeIndex = edge->GetSecond();
+		if (mGraph->GetEdge(edges.at(i))->GetFirst() == cowNode || mGraph->GetEdge(edges.at(i))->GetSecond() == cowNode)
+		{
+			std::cout << "node distance is one, do stuff \n";
 		}
 	}
 
@@ -266,12 +282,12 @@ void FWApplication::UpdateGameObjects()
 		// Respawn Pill and Gun
 		if (mPill->TakenByAnimal)
 		{
-			mPill->setCurrentNode(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+			mPill->setCurrentNode(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
 			mPill->TakenByAnimal = false;
 		}
 		if (mGun->TakenByAnimal)
 		{
-			mGun->setCurrentNode(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
+			mGun->setCurrentNode(mGraph->GetNode((0 + (rand() % (int) (mGraph->GetNodes().size())))));
 			mGun->TakenByAnimal = false;
 		}
 	}

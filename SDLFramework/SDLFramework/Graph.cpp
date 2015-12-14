@@ -9,7 +9,6 @@
 #include "Gun.h"
 #include "Pill.h"
 
-
 using namespace std;
 
 Graph::Graph()
@@ -80,6 +79,17 @@ void Graph::AddEdge(int a, int b)
 Node* Graph::GetNode(int i)
 {
 	return &nodes[i];
+}
+
+int Graph::GetNodeIndex(Node* _node)
+{
+	for (size_t i = 0; i < nodes.size(); i++)
+	{
+		if (_node == &nodes.at(i))
+			return i;
+	}
+
+	return -1;
 }
 
 vector<Node> Graph::GetNodes()
@@ -178,13 +188,12 @@ int Graph::GetNodePosition(const Node* node)
 	for (size_t i = 0; i < nodes.size(); i++)
 	{
 		if (GetNode(i) == node)
-		{
 			return i;
-		}
 	}
 	return -1;
 }
 
+#pragma region Aster
 void Graph::AStarReset()
 {
 	mTargetNode = nullptr;
@@ -294,7 +303,9 @@ int Graph::AStar(int current, int goal)
 	}
 	return -1;
 }
+#pragma endregion
 
+#pragma region Target nodes
 void Graph::SetCowTarget(Cow* _cow)
 {
 	cow = _cow;
@@ -314,5 +325,6 @@ int Graph::GetHareTargetNode()
 {
 	return GetNodePosition(hare->getCurrentNode());
 }
+#pragma endregion
 
 Graph::~Graph() { }

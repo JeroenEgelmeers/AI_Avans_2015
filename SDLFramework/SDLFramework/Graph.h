@@ -59,6 +59,7 @@ public:
 	
 	int GetNumNodes();
 	Node* GetNode(int i);
+	int GetNodeIndex(Node* _node);
 	Edge* GetEdge(int i);
 
 	int GetNewNode(int node);
