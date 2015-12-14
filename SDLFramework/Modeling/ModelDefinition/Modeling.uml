@@ -233,7 +233,7 @@
             <flowNodeTargets>
               <controlFlow
                 Id="af303e9f-efb6-4029-9efa-5b5dbac522ee"
-                guard="Not killed by Hare"
+                guard="Not killed by Hare and not sleeping"
                 isLeaf="false">
                 <mergeNodeMoniker
                   Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
@@ -247,6 +247,15 @@
                 <opaqueActionMoniker
                   Id="1af8355f-c81b-4205-8845-9a39def22283"
                   LastKnownName="Respawn"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="1c265593-5c3e-4190-ad47-9ccc6e8ea0a2"
+                guard="Hit by sleep pill"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="a80c717c-0d47-49aa-a0a2-930977f2709f"
+                  LastKnownName="Merge7"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -340,12 +349,12 @@
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
               <controlFlow
-                Id="2778dfa6-fc55-4cd2-828e-52c4a234ba5c"
+                Id="eb503732-dd99-4ae8-aa22-1b215d77cf9e"
                 guard="Found Sleep pill"
                 isLeaf="false">
                 <mergeNodeMoniker
-                  Id="ad2c6e5b-54d4-44be-90d1-1b68f5f92323"
-                  LastKnownName="Merge5"
+                  Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7"
+                  LastKnownName="Merge1"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -494,6 +503,61 @@
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
+          <opaqueAction
+            Id="a3675669-1c27-4108-8f38-420ba91883b1"
+            name="Sleep"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="edf10c45-8631-4279-8f21-d0423acdee4b"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="387b04d9-c672-4044-90b2-084484fa244a"
+                  LastKnownName="Decision8"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode
+            Id="a80c717c-0d47-49aa-a0a2-930977f2709f"
+            name="Merge7"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e162c7cd-de93-4f1b-bbae-aae31646711b"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="a3675669-1c27-4108-8f38-420ba91883b1"
+                  LastKnownName="Sleep"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <decisionNode
+            Id="387b04d9-c672-4044-90b2-084484fa244a"
+            name="Decision8"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ccb01149-d58e-4c81-b896-bf6eb6d52487"
+                guard="5 turns in sleep"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
+                  LastKnownName="Merge4"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="67d5a847-aaab-42ef-b2ab-5759d9a8dea4"
+                guard="Else"
+                isLeaf="false">
+                <mergeNodeMoniker
+                  Id="a80c717c-0d47-49aa-a0a2-930977f2709f"
+                  LastKnownName="Merge7"
+                  LastKnownLocation="Modeling.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
         </nodes>
       </activity>
     </packageHasNamedElement>
