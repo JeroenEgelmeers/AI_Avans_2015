@@ -126,13 +126,17 @@
           <decisionNode Id="2a979e15-4b5b-4d43-8986-922a35dfa766" name="Decision2" isLeaf="false">
             <elementDefinition Id="f7f2d115-6bcf-4e65-a430-98b457de2b62" />
             <flowNodeTargets>
-              <controlFlow Id="bb1bff77-54b4-4bcc-a37b-ddafffed46f6" guard="Not killed by Hare" isLeaf="false">
+              <controlFlow Id="bb1bff77-54b4-4bcc-a37b-ddafffed46f6" guard="Not killed by Hare and not sleeping" isLeaf="false">
                 <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
                 <elementDefinition Id="af303e9f-efb6-4029-9efa-5b5dbac522ee" />
               </controlFlow>
               <controlFlow Id="77bf1942-d63e-466b-858e-be821f3f558b" guard="Killed by Hare" isLeaf="false">
                 <opaqueActionMoniker Id="adceff21-f84c-40a1-947e-13db66587b0a" LastKnownName="Respawn" />
                 <elementDefinition Id="6bced880-2d3a-4321-9348-dfb75d5c2916" />
+              </controlFlow>
+              <controlFlow Id="0455fd3a-77cd-4ee6-b2bc-fee11a3791cb" guard="Hit by sleep pill" isLeaf="false">
+                <mergeNodeMoniker Id="38bb6321-271e-4ac0-8dc8-a8e2f2e74354" LastKnownName="Merge7" />
+                <elementDefinition Id="1c265593-5c3e-4190-ad47-9ccc6e8ea0a2" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
@@ -186,9 +190,9 @@
                 <mergeNodeMoniker Id="44bf689d-75ea-4a65-bb0b-9223a4b84a11" LastKnownName="Merge3" />
                 <elementDefinition Id="e28b4c61-d884-4498-93fe-a22715a2257b" />
               </controlFlow>
-              <controlFlow Id="1ae18d6e-ada9-493e-82de-e53a5c8f0416" guard="Found Sleep pill" isLeaf="false">
-                <mergeNodeMoniker Id="5fbc654c-ef43-4d73-b3f1-958c352c36cf" LastKnownName="Merge5" />
-                <elementDefinition Id="2778dfa6-fc55-4cd2-828e-52c4a234ba5c" />
+              <controlFlow Id="604a1d25-a22a-42e3-9ba4-5701f7210aac" guard="Found Sleep pill" isLeaf="false">
+                <mergeNodeMoniker Id="c47ca2fd-fa98-472e-8fbd-bfcb417ca043" LastKnownName="Merge1" />
+                <elementDefinition Id="eb503732-dd99-4ae8-aa22-1b215d77cf9e" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
@@ -271,6 +275,37 @@
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
+          <opaqueAction Id="5ad9441c-2da3-40bf-b45c-d661f85a5919" name="Sleep" isLeaf="false">
+            <elementDefinition Id="a3675669-1c27-4108-8f38-420ba91883b1" />
+            <flowNodeTargets>
+              <controlFlow Id="8eb99bcf-2932-4d59-8276-df849c91c60e" isLeaf="false">
+                <decisionNodeMoniker Id="58dba850-73c6-44ee-bf90-da97b8e6c386" LastKnownName="Decision8" />
+                <elementDefinition Id="edf10c45-8631-4279-8f21-d0423acdee4b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode Id="38bb6321-271e-4ac0-8dc8-a8e2f2e74354" name="Merge7" isLeaf="false">
+            <elementDefinition Id="a80c717c-0d47-49aa-a0a2-930977f2709f" />
+            <flowNodeTargets>
+              <controlFlow Id="66d0d992-0566-44f2-8686-d0ee9952de3e" isLeaf="false">
+                <opaqueActionMoniker Id="5ad9441c-2da3-40bf-b45c-d661f85a5919" LastKnownName="Sleep" />
+                <elementDefinition Id="e162c7cd-de93-4f1b-bbae-aae31646711b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <decisionNode Id="58dba850-73c6-44ee-bf90-da97b8e6c386" name="Decision8" isLeaf="false">
+            <elementDefinition Id="387b04d9-c672-4044-90b2-084484fa244a" />
+            <flowNodeTargets>
+              <controlFlow Id="2ece4283-8486-48e2-a7bc-48f6e4997d9f" guard="5 turns in sleep" isLeaf="false">
+                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
+                <elementDefinition Id="ccb01149-d58e-4c81-b896-bf6eb6d52487" />
+              </controlFlow>
+              <controlFlow Id="ed207252-9ba1-4c4d-a4d1-fccf3e9191c8" guard="Else" isLeaf="false">
+                <mergeNodeMoniker Id="38bb6321-271e-4ac0-8dc8-a8e2f2e74354" LastKnownName="Merge7" />
+                <elementDefinition Id="67d5a847-aaab-42ef-b2ab-5759d9a8dea4" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
         </nodes>
       </activity>
     </activityRootModelHasActivity>
