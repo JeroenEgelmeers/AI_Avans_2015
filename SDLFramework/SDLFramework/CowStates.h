@@ -6,26 +6,6 @@ class Animal;
 
 //------------------------------------------------------------------------
 //
-//  Koe zal achter de haas aan gaan om deze proberen te vangen
-//  
-//------------------------------------------------------------------------
-class CowChaseHare : public IAnimalState
-{
-private:
-	//copy ctor and assignment should be private
-	CowChaseHare(const CowChaseHare&);
-	CowChaseHare& operator=(const CowChaseHare&);
-
-public:
-	CowChaseHare() {}
-
-	virtual void CowChaseHare::Enter(Animal* Cow) override;
-	virtual void CowChaseHare::Execute(Animal* Cow) override;
-	virtual void CowChaseHare::Exit(Animal* Cow) override;
-};
-
-//------------------------------------------------------------------------
-//
 //  De koe zal doelloos rondlopen
 //  
 //------------------------------------------------------------------------
@@ -44,6 +24,26 @@ public:
 	virtual void CowWanderAround::Enter(Animal* Cow) override;
 	virtual void CowWanderAround::Execute(Animal* Cow) override;
 	virtual void CowWanderAround::Exit(Animal* Cow) override;
+};
+
+//------------------------------------------------------------------------
+//
+//  Koe zal achter de haas aan gaan om deze proberen te vangen
+//  
+//------------------------------------------------------------------------
+class CowChaseHare : public IAnimalState
+{
+private:
+	//copy ctor and assignment should be private
+	CowChaseHare(const CowChaseHare&);
+	CowChaseHare& operator=(const CowChaseHare&);
+
+public:
+	CowChaseHare() {}
+
+	virtual void CowChaseHare::Enter(Animal* Cow) override;
+	virtual void CowChaseHare::Execute(Animal* Cow) override;
+	virtual void CowChaseHare::Exit(Animal* Cow) override;
 };
 
 class CowRest : public IAnimalState

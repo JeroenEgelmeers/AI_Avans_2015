@@ -8,14 +8,12 @@ Gun::Gun(Node* cNode)
 }
 
 Gun::~Gun()
-{
-}
+{ }
 
 void Gun::Draw()
 {
-	if (!TakenByAnimal) {
+	if (!TakenByAnimal)
 		mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
-	}
 }
 
 void Gun::ChangeState(Animal* animal)

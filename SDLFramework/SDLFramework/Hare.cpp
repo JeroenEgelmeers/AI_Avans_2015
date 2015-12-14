@@ -1,6 +1,7 @@
 #include "Hare.h"
 #include "HareStates.h"
 #include "Graph.h"
+#include "Item.h"
 
 Hare::Hare(Node * cNode)
 {
@@ -13,9 +14,7 @@ Hare::Hare(Node * cNode)
 	m_pStateMachine->CurrentState()->Enter(dynamic_cast<Animal*>(this));
 }
 
-Hare::~Hare()
-{
-}
+Hare::~Hare() { }
 
 void Hare::Update(float dt)
 {
@@ -37,7 +36,10 @@ void Hare::SetGraph(Graph* g)
 void Hare::ChangeState(StateEnum state)
 {
 	if (state > StateEnum::eEndCowStates && state < StateEnum::eEndHareStates)
-	{
 		this->GetFSM()->ChangeState(this->factory->CreateNewSate(state));
-	}
+}
+
+void Hare::SearchItem(Item* _item)
+{
+	SetItemTargetNode(GetGraph()->GetNodeIndex(_item->getCurrentNode()));
 }

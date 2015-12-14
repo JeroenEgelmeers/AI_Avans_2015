@@ -93,8 +93,9 @@ void HareSearchItem::Enter(Animal* hare) { }
 
 void HareSearchItem::Execute(Animal* hare)
 {
-	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetHareTargetNode(), hare->GetGraph()->GetPillTargetNode);
+	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetHareTargetNode(), hare->GetItemTargetNode());
 	hare->setCurrentNode(hare->GetGraph()->GetNode(path));
 }
 
 void HareSearchItem::Exit(Animal* hare) { }
+

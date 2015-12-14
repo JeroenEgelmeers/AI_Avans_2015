@@ -53,6 +53,8 @@ public:
 	void SetGun(Gun* _gun) { gun = _gun; }
 	void SetCowTarget(Cow* c);
 	void SetHareTarget(Hare* h);
+
+	// Get TargetNodes
 	int GetCowTargetNode();
 	int GetHareTargetNode();
 	int GetPillTargetNode();

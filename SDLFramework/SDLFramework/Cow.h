@@ -1,5 +1,6 @@
 #pragma once
 #include "Animal.h"
+class Item;
 
 class Cow : public Animal
 {
@@ -12,4 +13,5 @@ public:
 
 	void Cow::SetGraph(Graph* g);
 	void Cow::ChangeState(StateEnum state) override;
+	void Cow::SearchItem(Item* _item) override;
 };

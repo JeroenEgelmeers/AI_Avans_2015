@@ -1,5 +1,6 @@
 #pragma once
 #include <typeinfo>
+#include <string>
 #include "Node.h"
 #include "Animal.h"
 
@@ -10,13 +11,14 @@ class Item : public IGameObject
 protected:
 	Graph* graph;
 	Node* currentNode;
+
 public:
 	Item();
 	~Item();
 
-	Graph*	GetGraph();
-	void	SetGraph(Graph* g);
-	bool	TakenByAnimal;
+	Graph* GetGraph();
+	void SetGraph(Graph* g);
+	bool TakenByAnimal;
 
 	Node* getCurrentNode() { return currentNode; }
 	void setCurrentNode(Node* cNode);
@@ -25,4 +27,3 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void ChangeState(Animal* animal);
 };
-

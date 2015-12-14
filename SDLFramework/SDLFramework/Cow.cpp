@@ -1,6 +1,7 @@
 #include "Cow.h"
 #include "CowStates.h"
 #include "Graph.h"
+#include "Item.h"
 
 Cow::Cow(Node* cNode)
 {
@@ -38,4 +39,9 @@ void Cow::ChangeState(StateEnum state)
 	{
 		this->GetFSM()->ChangeState(this->factory->CreateNewSate(state));
 	}
+}
+
+void Cow::SearchItem(Item* _item)
+{
+	SetItemTargetNode(GetGraph()->GetNodeIndex(_item->getCurrentNode()));
 }

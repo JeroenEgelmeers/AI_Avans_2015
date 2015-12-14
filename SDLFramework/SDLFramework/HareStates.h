@@ -74,7 +74,6 @@ public:
 	void HareChaseCow::Exit(Animal* hare) override;
 };
 
-
 class HareSearchItem : public IAnimalState
 {
 private:

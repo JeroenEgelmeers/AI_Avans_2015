@@ -23,7 +23,6 @@ void Pill::Draw()
 void Pill::ChangeState(Animal* animal)
 {
 		// TODO check if it's a cow!
-		cout << "Cow now chasing hare \n";
-		animal->ChangeState(StateEnum::eCowChaseHare);
+		animal->ChangeState(StateEnum::eHareChaseCow);
 		TakenByAnimal = true;
 }

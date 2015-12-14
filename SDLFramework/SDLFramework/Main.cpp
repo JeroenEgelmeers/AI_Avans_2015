@@ -78,6 +78,7 @@ int main(int args[])
 				application->UpdateGameObjects();
 			}
 		}
+
 		application->SetColor(Color(0, 0, 0, 255));
 		application->DrawText("KMINT opdracht 2", 800 / 2, 10);
 		application->DrawText("Hit the SPACE bar to move the cow.", 800 / 2, 25);

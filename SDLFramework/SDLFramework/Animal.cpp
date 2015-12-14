@@ -1,5 +1,7 @@
 #include "Animal.h"
 #include "Graph.h"
+#include "Item.h"
+#include <algorithm>
 
 Animal::Animal() 
 {
@@ -41,4 +43,34 @@ void Animal::Update(float deltaTime)
 void Animal::ChangeState(StateEnum state)
 {
 
+}
+
+void Animal::AddItem(Item* _item)
+{
+	this->items.push_back(_item);
+}
+
+void Animal::RemoveItem(Item* _item)
+{
+	items.erase(std::remove(items.begin(), items.end(), _item), items.end());
+}
+
+std::vector<Item*> Animal::GetItems()
+{
+	return this->items;
+}
+
+void Animal::SearchItem(Item* _item)
+{
+
+}
+
+int Animal::GetItemTargetNode()
+{
+	return targetNode;
+}
+
+void Animal::SetItemTargetNode(int _target)
+{
+	this->targetNode = _target;
 }
