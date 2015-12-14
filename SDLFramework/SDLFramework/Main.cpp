@@ -22,6 +22,10 @@ int main(int args[])
 	application->SetTargetFPS(60);
 	application->SetColor(Color(255, 10, 40, 255));
 	
+	// lazy modes
+	bool lazyOn = false;
+	Uint32 lastLoopTime = 0;
+	Uint32 lastFpsTime = 0;
 
 	//while (true){}
 	while (application->IsRunning())
@@ -39,6 +43,14 @@ int main(int args[])
 				case SDL_KEYDOWN:
 					switch (event.key.keysym.sym)
 					{
+						case SDLK_RETURN:
+							if (lazyOn == true)
+								lazyOn = false;
+							else
+							{
+								lazyOn = true;
+							}
+							break;
 						case SDLK_SPACE:
 							application->UpdateGameObjects();
 							break;
@@ -47,6 +59,21 @@ int main(int args[])
 					}
 			}
 
+		}
+
+		// lazy modes
+		if (lazyOn)
+		{
+			Uint32 now = SDL_GetTicks();
+			Uint32 updateLength = now - lastLoopTime;
+			lastLoopTime = now;
+			lastFpsTime += updateLength;
+
+			if (lastFpsTime > 1000)
+			{
+				lastFpsTime = 0;
+				application->UpdateGameObjects();
+			}
 		}
 
 		application->SetColor(Color(0, 0, 0, 255));
