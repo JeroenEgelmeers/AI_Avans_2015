@@ -55,6 +55,7 @@ void Graph::Draw() {
 	{
 		mApplication->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
 		mApplication->DrawText(std::to_string(count), n.x - 20, n.y + 50);
+		++count;
 	}
 
 	mApplication->SetColor(Color(255, 255, 255, 255));
