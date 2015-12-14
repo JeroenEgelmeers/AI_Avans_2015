@@ -99,6 +99,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Pill.cpp" />
     <ClCompile Include="Point.cpp" />
+    <ClCompile Include="StateEffect.cpp" />
     <ClCompile Include="StateFactory.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
@@ -131,6 +132,7 @@
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="StateEffect.h" />
     <ClInclude Include="StateEnum.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="StateMachine2.h" />

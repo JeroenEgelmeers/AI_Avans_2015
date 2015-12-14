@@ -12,5 +12,8 @@ public:
 	void Hare::SetGraph(Graph* g);
 	void Hare::ChangeState(StateEnum state) override;
 	void Hare::SearchItem(Item* _item) override;
+
+	StateEffect effectivity[2];
+
 	~Hare();
 };

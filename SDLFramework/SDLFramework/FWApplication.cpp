@@ -212,7 +212,7 @@ void FWApplication::UpdateGameObjects()
 			-> D.m.v. de spatiebalk wordt de effectiveiteit gemeten. Het gemiddelde wordt ook opgelsagen.
 
 			-> VOORBEELD:
-			-> De hare wordt gezien door de cow (staat er een node vanaf).
+			V-> De hare wordt gezien door de cow (staat er een node vanaf).
 			-> De hare beslist d.m.v. een random over de effectiviteit van alle states (3 in dit geval) welke state die pakt.
 			-> In eerste instantie hebben ze allemaal 10 dus rand(0,29)
 			-> Als het 8 is (voorbeeld) valt dit in de eerste state (de eerste state heeft er 10, 8 valt daarbinnen dus praten we over de 1e state.
@@ -231,7 +231,7 @@ void FWApplication::UpdateGameObjects()
 		// TODO: Check if Cow has seen the Hare (1 node away)
 		// If true, change state from Hare to: get Pill, Get Weapon OR "run" using A*.
 		// If False, wander (just do the update (mHare->Update(0)).
-
+	
 		mHare->Update(0);
 		moveCow = true;
 

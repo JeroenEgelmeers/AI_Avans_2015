@@ -98,6 +98,9 @@
     <ClCompile Include="Animal.cpp">
       <Filter>Source Files\Animals</Filter>
     </ClCompile>
+    <ClCompile Include="StateEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -191,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="Animal.h">
       <Filter>Header Files\Animals</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEffect.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
