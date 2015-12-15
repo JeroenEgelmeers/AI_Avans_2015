@@ -1,6 +1,6 @@
 #include "StateEffect.h"
 
-StateEffect::StateEffect(string _StateName)
+StateEffect::StateEffect(StateEnum _StateName)
 {
 	StateName	= _StateName;
 	Avg			= 10;
@@ -28,5 +28,13 @@ bool StateEffect::DelFromEffectivity()
 		return true;
 	}
 
+	return false;
+}
+
+bool StateEffect::HasParents()
+{
+	if (ParentStates.size > 0) {
+		return true;
+	}
 	return false;
 }

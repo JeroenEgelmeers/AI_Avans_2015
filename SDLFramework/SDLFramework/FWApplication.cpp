@@ -232,8 +232,26 @@ void FWApplication::UpdateGameObjects()
 		// If true, change state from Hare to: get Pill, Get Weapon OR "run" using A*.
 		// If False, wander (just do the update (mHare->Update(0)).
 	
+		// setup for cheacking node distance
+		std::vector<int> edges = mHare->getCurrentNode()->GetEdges();
+		bool distanceCheck = false;
+		int cowNode = mGraph->GetNodeIndex(mCow->getCurrentNode());
+		for (size_t i = 0; i < edges.size(); i++)
+		{
+			if (mGraph->GetEdge(edges.at(i))->GetFirst() == cowNode || mGraph->GetEdge(edges.at(i))->GetSecond() == cowNode)
+			{
+				if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
+				{
+					mHare->ChangeState(StateEnum::eHareChaseCow);
+				}
+				break;
+			}
+		}
+
 		mHare->Update(0);
 		moveCow = true;
+
+		
 
 		if (mHare->getCurrentNode() == mGun->getCurrentNode())
 		{
@@ -243,22 +261,6 @@ void FWApplication::UpdateGameObjects()
 		{
 
 			mPill->ChangeState(mHare);
-		}
-	}
-
-	// setup for cheacking node distance
-	std::vector<int> edges = mHare->getCurrentNode()->GetEdges();
-	bool distanceCheck = false;
-	int cowNode = mGraph->GetNodeIndex(mCow->getCurrentNode());
-	for (size_t i = 0; i < edges.size(); i++)
-	{
-		if (mGraph->GetEdge(edges.at(i))->GetFirst() == cowNode || mGraph->GetEdge(edges.at(i))->GetSecond() == cowNode)
-		{
-			if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
-			{
-				mHare->ChangeState(StateEnum::eHareChaseCow);
-			}
-			break;
 		}
 	}
 

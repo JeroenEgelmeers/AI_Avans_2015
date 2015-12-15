@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "StateEnum.h"
 using namespace std;
 // State Effectivity
 class StateEffect
@@ -8,12 +9,12 @@ class StateEffect
 private:
 	int Effectivity;
 	int Avg;
-	std::string StateName;
+	StateEnum StateName;
 public:
-	StateEffect(string _StateName);
+	StateEffect(StateEnum _StateName);
 	~StateEffect();
 
-	string GetStateName() { return StateName; }
+	StateEnum GetStateName() { return StateName; }
 	int GetEffectivity() { return Effectivity; }
 
 	std::vector<StateEffect> ParentStates;
@@ -21,5 +22,6 @@ public:
 	void changeAvg(int _steps);
 	void AddToEffectivity();
 	bool DelFromEffectivity();
+	bool HasParents();
 };
 

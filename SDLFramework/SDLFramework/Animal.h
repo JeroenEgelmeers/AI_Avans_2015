@@ -4,6 +4,8 @@
 #include "StateMachine2.h"
 #include "StateFactory.h"
 #include "StateEnum.h"
+#include "ItemEnum.h"
+#include "StateEffect.h"
 
 class Graph;
 class Item;
@@ -19,7 +21,8 @@ protected:
 	StateMachine2<Animal>* m_pStateMachine;
 	StateFactory* factory;
 	std::vector<Item*> items;
-
+	std::vector<StateEffect>	effectivity;
+	ItemEnum getItem;
 	int targetNode;
 
 public:
@@ -46,4 +49,5 @@ public:
 	virtual void SearchItem(Item* _item) = 0;
 	virtual int GetItemTargetNode();
 	virtual void SetItemTargetNode(int _target);
+	virtual StateEnum GetBestStateByRandom();
 };

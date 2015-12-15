@@ -1,5 +1,6 @@
 #pragma once
 #include "Animal.h"
+#include "StateEffect.h"
 
 class Item;
 
@@ -13,7 +14,7 @@ public:
 	void Hare::ChangeState(StateEnum state) override;
 	void Hare::SearchItem(Item* _item) override;
 
-	StateEffect effectivity[2];
-
 	~Hare();
+
+	StateEnum Hare::GetBestStateByRandom() override;
 };
