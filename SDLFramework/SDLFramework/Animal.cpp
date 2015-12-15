@@ -75,4 +75,7 @@ void Animal::SetItemTargetNode(int _target)
 	this->targetNode = _target;
 }
 
-StateEnum Animal::GetBestStateByRandom(){}
+StateEnum Animal::GetBestStateByRandom()
+{
+	return StateEnum();
+}

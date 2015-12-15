@@ -1,6 +1,5 @@
 #pragma once
 #include "Animal.h"
-#include "StateEffect.h"
 
 class Item;
 

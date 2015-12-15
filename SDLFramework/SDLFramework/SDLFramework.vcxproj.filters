@@ -198,5 +198,8 @@
     <ClInclude Include="StateEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ItemEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

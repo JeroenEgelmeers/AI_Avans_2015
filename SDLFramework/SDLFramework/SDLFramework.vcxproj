@@ -127,6 +127,7 @@
     <ClInclude Include="HareStates.h" />
     <ClInclude Include="IAnimalState.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemEnum.h" />
     <ClInclude Include="Pill.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="IGameObject.h" />

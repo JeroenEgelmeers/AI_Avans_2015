@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <string>
 #include "StateEnum.h"
 using namespace std;
 // State Effectivity

@@ -242,7 +242,7 @@ void FWApplication::UpdateGameObjects()
 			{
 				if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
 				{
-					mHare->ChangeState(StateEnum::eHareChaseCow);
+					//mHare->ChangeState(StateEnum::eHareChaseCow);
 				}
 				break;
 			}

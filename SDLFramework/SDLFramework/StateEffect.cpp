@@ -33,7 +33,7 @@ bool StateEffect::DelFromEffectivity()
 
 bool StateEffect::HasParents()
 {
-	if (ParentStates.size > 0) {
+	if (ParentStates.size() > 0) {
 		return true;
 	}
 	return false;

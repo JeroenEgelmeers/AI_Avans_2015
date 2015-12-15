@@ -39,10 +39,10 @@ StateEnum Hare::GetBestStateByRandom()
 					if (effectivity.at(i).ParentStates.at(i1).GetEffectivity() >= randomNmb) {
 						if (effectivity.at(i).ParentStates.at(i1).GetStateName() == StateEnum::eHareChaseCow) {
 							// Weapon:
-							getItem = ItemEnum::Gun;
+							getItem = ItemEnum::eGun;
 						}else if(effectivity.at(i).ParentStates.at(i1).GetStateName() == StateEnum::eHareWanderAround) {
 							// Pill:
-							getItem = ItemEnum::Pill;
+							getItem = ItemEnum::ePill;
 						}	
 						return StateEnum::eHareSearchItem;
 					}
