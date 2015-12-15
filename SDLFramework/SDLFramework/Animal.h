@@ -40,6 +40,7 @@ public:
 	virtual void Update(float deltaTime) override;
 
 	StateMachine2<Animal>* GetFSM() const { return m_pStateMachine; }
+	ItemEnum GetCurrentSetItem() { return getItem; }
 	virtual void ChangeState(StateEnum state) = 0;
 
 	virtual void AddItem(Item* _item);

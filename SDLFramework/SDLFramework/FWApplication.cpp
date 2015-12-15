@@ -242,7 +242,16 @@ void FWApplication::UpdateGameObjects()
 			{
 				if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
 				{
-					//mHare->ChangeState(StateEnum::eHareChaseCow);
+					mHare->ChangeState(mHare->GetBestStateByRandom());
+					if (mHare->GetFSM()->GetNameOfCurrentState().find("HareSearchItem") != std::string::npos && 
+						mHare->GetCurrentSetItem() != NULL) {
+						if (mHare->GetCurrentSetItem() == ItemEnum::ePill) {
+							mHare->SearchItem(mPill);
+						}
+						else if(mHare->GetCurrentSetItem() == ItemEnum::ePill){
+							mHare->SearchItem(mGun);
+						}
+					}
 				}
 				break;
 			}
@@ -252,14 +261,12 @@ void FWApplication::UpdateGameObjects()
 		moveCow = true;
 
 		
-
 		if (mHare->getCurrentNode() == mGun->getCurrentNode())
 		{
 			mGun->ChangeState(mHare);
 		}
 		if (mHare->getCurrentNode() == mPill->getCurrentNode())
 		{
-
 			mPill->ChangeState(mHare);
 		}
 	}
