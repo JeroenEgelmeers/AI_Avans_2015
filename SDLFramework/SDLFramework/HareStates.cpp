@@ -63,10 +63,16 @@ void HareFleeFromCow::Execute(Animal* hare)
 	if (stateUpdatesDone <= stateUpdates)
 	{
 		++stateUpdatesDone;
-		int targetNode = hare->GetGraph()->GetFarthestHeuristicNode(hare->GetGraph()->GetHareTargetNode());
-		int path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), targetNode);
-		hare->setCurrentNode(hare->GetGraph()->GetNode(path));
+		int path;
+		int targetNode = hare->GetGraph()->GetFarthestHeuristicNode(hare->GetGraph()->GetFarthestHeuristicNode(hare->GetGraph()->GetHareTargetNode())); 
+		int edgeToRemove = hare->GetGraph()->CheckNodeDistanceIsOne(hare->GetGraph()->GetHareTargetNode(), hare->GetGraph()->GetCowTargetNode());
 
+		if (edgeToRemove > -1)
+			path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), targetNode, edgeToRemove);
+		else
+			path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), targetNode);
+
+		hare->setCurrentNode(hare->GetGraph()->GetNode(path));
 	}
 }
 
@@ -75,7 +81,6 @@ void HareFleeFromCow::Exit(Animal* hare)
 	stateUpdates = 0;
 	stateUpdatesDone = 0;
 }
-
 
 //------------------------------------------------------------------------methods for HareChaseCow
 void HareChaseCow::Enter(Animal* hare) { }

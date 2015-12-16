@@ -72,9 +72,17 @@ public:
 	int GetNewNeighborNode(int currentNode);
 	int GetFarthestHeuristicNode(int currentNode);
 	int GetNodePosition(const Node* node);
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// <summary> returns the edge index if the node distance is 1, else -1. </summary>
+	///
+	/// <returns>	int. </returns>
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	int CheckNodeDistanceIsOne(Node* currentNode, Node* targetNode);
+	int CheckNodeDistanceIsOne(int currentNode, int targetNode);
 
 	int Graph::FollowEdge(int node, int edge);
 	int AStar(int current, int goal);
+	int AStar(int current, int goal, int edgeToRemove);
 
 	~Graph();
 };

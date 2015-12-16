@@ -50,13 +50,17 @@ void Graph::Draw()
 		Node b = nodes[e.GetSecond()];
 
 		mApplication->DrawLine(a.x, a.y, b.x, b.y);
+		mApplication->DrawText(std::to_string((int)e.GetLength()), (a.x + b.x) / 2, (a.y + b.y) / 2 - 10);
 	}
 
 	mApplication->SetColor(Color(255, 0, 0, 255));
 	// Draw Nodes
+	int count = 0;
 	for (auto &n : nodes)
 	{
 		mApplication->DrawRect(n.x - 5, n.y - 5, 10, 10, true);
+		mApplication->DrawText(std::to_string(count), n.x - 30, n.y - 30);
+		++count;
 	}
 
 	mApplication->SetColor(Color(255, 255, 255, 255));
@@ -183,6 +187,35 @@ int Graph::GetFarthestHeuristicNode(int _currentNode)
 	return targetNode;
 }
 
+int Graph::CheckNodeDistanceIsOne(Node* currentNode, Node* targetNode)
+{
+	std::vector<int> edges = currentNode->GetEdges();
+	int target = GetNodeIndex(targetNode);
+	for (size_t i = 0; i < edges.size(); i++)
+	{
+		if (GetEdge(edges.at(i))->GetFirst() == target || GetEdge(edges.at(i))->GetSecond() == target)
+		{
+			return i;
+			break;
+		}
+	}
+	return -1;
+}
+
+int Graph::CheckNodeDistanceIsOne(int currentNode, int targetNode)
+{
+	std::vector<int> edges = GetNode(currentNode)->GetEdges();
+	for (size_t i = 0; i < edges.size(); i++)
+	{
+		if (GetEdge(edges.at(i))->GetFirst() == targetNode || GetEdge(edges.at(i))->GetSecond() == targetNode)
+		{
+			return i;
+			break;
+		}
+	}
+	return -1;
+}
+
 int Graph::GetNodePosition(const Node* node)
 {
 	for (size_t i = 0; i < nodes.size(); i++)
@@ -252,6 +285,107 @@ int Graph::AStar(int current, int goal)
 		for (i = 0; i < current_node->GetEdges().size(); i++)
 		{
 			int edge = current_node->GetEdges()[i];
+
+			int test_node = FollowEdge(current_node_index, edge);
+
+			if (GetNode(test_node)->IsSeen())
+			{
+				continue;
+			}
+
+			float g_weight = GetEdge(edge)->GetLength() + current_node->GetPathWeight();
+			float h_weight = (*mTargetNode + *GetNode(test_node)).Length();
+
+			float f_weight = g_weight + h_weight;
+
+			if (f_weight < GetNode(test_node)->GetPathWeight())
+			{
+				GetNode(test_node)->SetPathWeight(f_weight);
+				GetNode(test_node)->SetPathFrom(current_node_index);
+			}
+		}
+
+		// We made changes to our node weights. Make sure it's still a heap by remaking the heap.
+		std::make_heap(mOpenList.begin(), mOpenList.end(), sortSmallerWeight);
+
+		// Pop the smallest item off the heap.
+		std::pop_heap(mOpenList.begin(), mOpenList.end(), sortSmallerWeight);
+
+		int lowest_path_node = mOpenList.back();
+		float lowest_path_weight = GetNode(lowest_path_node)->GetPathWeight();
+
+		mOpenList.pop_back();
+
+		current_node_index = lowest_path_node;
+		GetNode(current_node_index)->SetSeen(true);
+
+		if (GetNode(lowest_path_node) == mTargetNode)
+		{
+			mClosedList.push_back(current_node_index);
+
+			while (GetNode(current_node_index)->GetPathFrom() != ~0)
+			{
+				current_node_index = GetNode(current_node_index)->GetPathFrom();
+				mClosedList.push_back(current_node_index);
+			}
+
+			mClosedList.pop_back();
+
+			return mClosedList.back();
+		}
+	}
+	return -1;
+}
+
+int Graph::AStar(int current, int goal, int edgeToRemove)
+{
+	if (current == goal)
+	{
+		return goal;
+	}
+
+	AStarReset();
+	mTargetNode = GetNode(goal);
+
+	int current_node_index = current;
+
+	Node* current_node = GetNode(current_node_index);
+	GetNode(current_node_index)->SetSeen(true);
+	GetNode(current_node_index)->SetPathWeight(0);
+
+
+	while (true)
+	{
+		current_node = GetNode(current_node_index);
+		std::vector<int> tempEdges = current_node->GetEdges();
+		if (edgeToRemove > -1)
+		{
+			tempEdges.erase(std::remove(tempEdges.begin(), tempEdges.end(), edgeToRemove), tempEdges.end());
+		}
+
+		for (int edge : tempEdges)
+		{
+			bool contained = false;
+			for (int node : mOpenList)
+			{
+				if (FollowEdge(current_node_index, edge) == node)
+				{
+					contained = true;
+				}
+			}
+			if (contained == false)
+			{
+				if (GetNode(FollowEdge(current_node_index, edge))->IsSeen() == false)
+				{
+					mOpenList.push_back(FollowEdge(current_node_index, edge));
+				}
+			}
+		}
+
+		size_t i;
+		for (i = 0; i < tempEdges.size(); i++)
+		{
+			int edge = tempEdges[i];
 
 			int test_node = FollowEdge(current_node_index, edge);
 

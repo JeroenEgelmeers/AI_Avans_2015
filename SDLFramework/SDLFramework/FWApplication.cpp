@@ -271,6 +271,22 @@ void FWApplication::UpdateGameObjects()
 		}
 	}
 
+	// setup for cheacking node distance == 1
+	std::vector<int> edges = mHare->getCurrentNode()->GetEdges();
+	bool distanceCheck = false;
+	int cowNode = mGraph->GetNodeIndex(mCow->getCurrentNode());
+	for (size_t i = 0; i < edges.size(); i++)
+	{
+		if (mGraph->GetEdge(edges.at(i))->GetFirst() == cowNode || mGraph->GetEdge(edges.at(i))->GetSecond() == cowNode)
+		{
+			if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
+			{
+				mHare->ChangeState(StateEnum::eHareChaseCow);
+			}
+			break;
+		}
+	}
+
 	if (mHare->getCurrentNode() == mCow->getCurrentNode())
 	{
 		if (mCow->GetFSM()->GetNameOfCurrentState().find("Chase") != std::string::npos)
@@ -449,7 +465,7 @@ uint32_t FWApplication::GetTimeSinceStartedMS() const
 void FWApplication::DrawText(const std::string & message, uint32_t offsetX, uint32_t offsetY)
 {
 	//SDL_Color color = { mColor.r, mColor.g, mColor.b, mColor.a };
-	SDL_Color color = { 0, 0, 0, mColor.a };
+	SDL_Color color = { mColor.r, mColor.g, mColor.b, mColor.a };
 	//SDL_Color bgColor = { mTextBackgroundColor.r, mTextBackgroundColor.g, mTextBackgroundColor.b, mTextBackgroundColor.a };
 
 	SDL_Surface * surface = TTF_RenderText_Blended(mFont, message.c_str(), color);
