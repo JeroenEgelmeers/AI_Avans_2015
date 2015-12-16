@@ -23,8 +23,10 @@ void Cow::Update(float dt)
 
 void Cow::Draw() 
 {
+	mApplication->SetColor(Color(0, 0, 0, 255));
 	mApplication->DrawTexture(mTexture, currentNode->x, currentNode->y, 75, 75);
 	mApplication->DrawText(GetFSM()->GetNameOfCurrentState(), currentNode->x + 50, currentNode->y - 50);
+	mApplication->SetColor(Color(255, 255, 255, 255));
 }
 
 void Cow::SetGraph(Graph* g)
