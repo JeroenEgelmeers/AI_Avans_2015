@@ -16,4 +16,5 @@ public:
 	~Hare();
 
 	StateEnum Hare::GetBestStateByRandom() override;
+	virtual void UpdateStateEffectivity() override;
 };

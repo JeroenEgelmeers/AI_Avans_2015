@@ -22,6 +22,8 @@ Hare::Hare(Node * cNode)
 
 Hare::~Hare() {}
 
+
+
 StateEnum Hare::GetBestStateByRandom()
 {
 	int randomMax = 0;
@@ -51,6 +53,30 @@ StateEnum Hare::GetBestStateByRandom()
 			return effectivity.at(i).GetStateName();
 		}
 	}
+}
+
+void Hare::UpdateStateEffectivity()
+{
+	// Get current Effectivity
+	// Update current AVG of Effectivity
+	// // Just get the current effectivity from list by using a switch. 
+	// // // When current = Gun, update 1 and parent 0,
+	// // // When current = Pill, update 1 and parent 1,
+
+
+	//switch (StateEnum) {
+	//case StateEnum::eHareChaseCow:
+	//	break;
+	//case StateEnum::eHareFleeFromCow:
+	//	break;
+	//case StateEnum::eHareRest:
+	//	break;
+	//case StateEnum::eHareSearchItem:
+	//	break;
+	//default:
+	//	break;
+	//}
+
 }
 
 void Hare::Update(float dt)

@@ -51,4 +51,5 @@ public:
 	virtual int GetItemTargetNode();
 	virtual void SetItemTargetNode(int _target);
 	virtual StateEnum GetBestStateByRandom();
+	virtual void UpdateStateEffectivity();
 };

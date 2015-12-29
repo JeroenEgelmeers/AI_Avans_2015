@@ -79,3 +79,5 @@ StateEnum Animal::GetBestStateByRandom()
 {
 	return StateEnum();
 }
+
+void Animal::UpdateStateEffectivity() {}
