@@ -14,13 +14,14 @@ public:
 	~StateEffect();
 
 	StateEnum GetStateName() { return StateName; }
-	int GetEffectivity() { return Effectivity; }
+	int GetEffectivity();
+	int GetAvg() { return Avg; }
 
 	std::vector<StateEffect> ParentStates;
 
 	void changeAvg(int _steps);
-	void AddToEffectivity();
-	bool DelFromEffectivity();
+	void AddToEffectivity(int addPoints);
+	bool DelFromEffectivity(int delPoints);
 	bool HasParents();
 };
 

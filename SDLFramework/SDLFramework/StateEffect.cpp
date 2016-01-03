@@ -11,23 +11,53 @@ StateEffect::~StateEffect()
 {
 }
 
+int StateEffect::GetEffectivity()
+{
+	if (HasParents) {
+		int totalEffectivity = 0;
+		for (int i = 0; i < ParentStates.size(); i++) {
+			totalEffectivity = (totalEffectivity + ParentStates.at(i).GetEffectivity());
+		}
+		return totalEffectivity;
+	}
+	else {
+		return Effectivity;
+	}
+}
+
 void StateEffect::changeAvg(int _steps)
 {
+	// Should be better to hold a list and get the real AVG.
 	Avg = (Avg + _steps) / 2;
 }
 
-void StateEffect::AddToEffectivity()
+void StateEffect::AddToEffectivity(int addPoints)
 {
-	++Effectivity;
+	if (HasParents()) {
+		int seprate = (addPoints / ParentStates.size()); // Warning, could be ,-number. Should be fixed later!
+		for (int i = 0; i < ParentStates.size(); i++) {
+			ParentStates.at(i).AddToEffectivity(seprate);
+		}
+	}
+	else {
+		Effectivity = (Effectivity + addPoints);
+	}
 }
 
-bool StateEffect::DelFromEffectivity()
+bool StateEffect::DelFromEffectivity(int delPoints)
 {
-	if (Effectivity > 2) {
-		Effectivity - 1;
-		return true;
+	if (HasParents()) {
+		int seprate = (delPoints / ParentStates.size()); // Warning, could be ,-number. Should be fixed later!
+		for (int i = 0; i < ParentStates.size(); i++) {
+			ParentStates.at(i).DelFromEffectivity(seprate);
+		}
 	}
-
+	else {
+		if (Effectivity > 2 && delPoints <= 2) {
+			Effectivity - delPoints;
+			return true;
+		}
+	}
 	return false;
 }
 

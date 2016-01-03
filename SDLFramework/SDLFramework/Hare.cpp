@@ -27,7 +27,7 @@ Hare::~Hare() {}
 StateEnum Hare::GetBestStateByRandom()
 {
 	int randomMax = 0;
-	for (size_t i = 0; i < effectivity.size(); i++) { randomMax += effectivity.at(1).GetEffectivity(); }
+	for (size_t i = 0; i < effectivity.size(); i++) { randomMax += effectivity.at(i).GetEffectivity(); }
 	int randomNmb = rand() % randomMax;
 
 	for (size_t i = 0; i < effectivity.size(); i++) {
@@ -48,35 +48,74 @@ StateEnum Hare::GetBestStateByRandom()
 						}	
 						return StateEnum::eHareSearchItem;
 					}
+					else {
+						randomNmb = (randomNmb - effectivity.at(i).ParentStates.at(i1).GetEffectivity()); // Lower the current number to get in the right state.
+					}
 				}
 			}
 			return effectivity.at(i).GetStateName();
 		}
 	}
+	return StateEnum::eHareWanderAround;
 }
 
 void Hare::UpdateStateEffectivity()
 {
-	// Get current Effectivity
-	// Update current AVG of Effectivity
-	// // Just get the current effectivity from list by using a switch. 
-	// // // When current = Gun, update 1 and parent 0,
-	// // // When current = Pill, update 1 and parent 1,
+	// TODO; Get current Turns and the switch header!
 
 
-	//switch (StateEnum) {
-	//case StateEnum::eHareChaseCow:
-	//	break;
-	//case StateEnum::eHareFleeFromCow:
-	//	break;
-	//case StateEnum::eHareRest:
-	//	break;
-	//case StateEnum::eHareSearchItem:
-	//	break;
-	//default:
-	//	break;
-	//}
+	int turns = 0; // Give the turns the hare stayed alive.
 
+	switch (/*Give the Enum of current State*/) {
+	case StateEnum::eHareChaseCow:
+		// Update Search and (child: Weapon) Effectivity
+
+		if (turns < (effectivity.at(1).ParentStates.at(0).GetAvg()))
+		{
+			effectivity.at(1).ParentStates.at(0).AddToEffectivity(2);
+			effectivity.at(0).DelFromEffectivity(2);
+		}
+		else {
+			effectivity.at(1).ParentStates.at(0).DelFromEffectivity(2);
+			effectivity.at(0).AddToEffectivity(2);
+		}
+		effectivity.at(1).ParentStates.at(0).changeAvg((turns));
+		break;
+	case StateEnum::eHareFleeFromCow:
+		if (turns < (effectivity.at(0).GetAvg()))
+		{
+			effectivity.at(0).AddToEffectivity(2);
+			effectivity.at(1).DelFromEffectivity(2);
+		}
+		else {
+			effectivity.at(1).AddToEffectivity(2);
+			effectivity.at(2).DelFromEffectivity(2);
+		}
+		effectivity.at(0).changeAvg((turns));
+		break;
+	case StateEnum::eHareSearchItem:
+		// Can only die here...
+		effectivity.at(0).AddToEffectivity(2);
+		effectivity.at(1).DelFromEffectivity(2);
+		effectivity.at(1).changeAvg((turns));
+		break;
+	case StateEnum::eHareWanderAround:
+		// Update Search and (child: Pill) Effectivity
+		if (turns < (effectivity.at(1).ParentStates.at(1).GetAvg()))
+		{
+			effectivity.at(1).ParentStates.at(1).AddToEffectivity(2);
+			effectivity.at(0).DelFromEffectivity(2);
+		}
+		else {
+			effectivity.at(1).ParentStates.at(1).DelFromEffectivity(2);
+			effectivity.at(0).AddToEffectivity(2);
+		}
+		effectivity.at(1).ParentStates.at(1).changeAvg((turns));
+		break;
+	default:
+		// StateEnum::eHareRest: No action needed as it's not in the effectivity's
+		break;
+	}
 }
 
 void Hare::Update(float dt)
