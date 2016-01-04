@@ -1,9 +1,16 @@
 #include "Prey.h"
+#include <cstdlib>
 
 Prey::Prey()
 {
-	mX = 50;
-	mY = 50;
+	mId = ObjectId::PREY;
+	mSteering = new PreySteeringBehaviors(this);
+
+	m_Position = Vector(rand() % 1920+ 1, rand() % 1080 + 1);
+	m_Heading = Vector((float)(rand() % 20 + 1) / 10 -1, (float)(rand() % 20 + 1) / 10 - 1);
+
+	m_Velocity = Vector(rand() % 200 + 1, rand() % 200 + 1);
+
 	mWidth = 32;
 	mHeight = 32;
 	mTexture = mApplication->LoadTexture("prey.png");
@@ -14,31 +21,18 @@ Prey::~Prey()
 }
 
 void Prey::Update(float deltatime) {
-	int screenWidth, screenHeight;
+	TorroidBehaviour();
 
-	int *widthPtr = &screenWidth;
-	int *heightPtr = &screenHeight;
-
-	mApplication->GetWindowSize(widthPtr, heightPtr);
-
-	if (mY > screenHeight + 16) {
-		mY = 0;
+	Vector stForce = mSteering->Calculate();
+	if ((stForce.x == 0 && stForce.y == 0) == false) {
+		m_Heading = Approach(stForce, m_Heading, deltatime);
 	}
-	else if (-16 < mY) {
-		mY = screenHeight;
-	}
+	m_Heading.Normalize();
 
-	if (mX > screenWidth + 16) {
-		mX = 0;
-	}
-	else if (-16 < mX) {
-		mX = screenWidth;
-	}
-
-	mY++;
-	mX++;
+	m_Position.y += (m_Heading.y * m_Velocity.y) * deltatime;
+	m_Position.x += (m_Heading.x * m_Velocity.x) * deltatime;
 }
 
 void Prey::Draw() {
-	mApplication->DrawTextureRotate(mTexture, mX, mY, mWidth, mHeight, 135);
+	mApplication->DrawTextureRotate(mTexture, (int)m_Position.x, (int)m_Position.y, mWidth, mHeight, m_Heading.Angle());
 }

@@ -44,7 +44,7 @@ struct Color
 class FWApplication
 {
 public:
-	FWApplication(int offsetX = 50, int offsetY = 50, int width = 800, int height = 600);
+	FWApplication(int offsetX = 50, int offsetY = 50, int width = 1920, int height = 1080);
 	~FWApplication();
 
 	void SetTargetFPS(unsigned short target);
@@ -242,6 +242,10 @@ public:
 	void RenderGameObjects();
 	void Quit();
 	//void AddOnEvent(std::function<void(SDL_Event*)> func);
+
+	std::vector<IGameObject *> GetGameObjects() {
+		return mGameObjects;
+	}
 
 private:
 	std::vector<IGameObject *> mGameObjects;

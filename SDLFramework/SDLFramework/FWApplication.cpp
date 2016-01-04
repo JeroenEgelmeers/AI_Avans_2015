@@ -7,6 +7,7 @@
 #include <SDL_events.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <ctime>
 
 #include "Prey.h"
 
@@ -27,7 +28,7 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 		return;
 	}
 
-	mWindow = SDL_CreateWindow("KMint framework", offsetX, offsetY, width, height, SDL_WINDOW_SHOWN);
+	mWindow = SDL_CreateWindow("KMint framework", 0, 0, width, height, SDL_WINDOW_SHOWN);
 	if (!mWindow)
 	{
 		LOG(SDL_GetError());
@@ -66,7 +67,25 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mInstance = this;
 	mGameObjects.reserve(32);
 
+
+	/* initialize random seed: */
+	srand(time(NULL));
+
 	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());	
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());	
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());
+	mGameObjects.push_back(new Prey());	
 }
 
 void FWApplication::GetWindowSize(int *width, int *height) {
@@ -189,20 +208,7 @@ void FWApplication::EndTick()
 void FWApplication::UpdateGameObjects()
 {
 	for (IGameObject * obj : mGameObjects)
-	{
-		for (IGameObject * o : mGameObjects)
-		{
-			if (o != obj)
-			{
-				// Check collision
-				bool collided = obj->CheckCollision(o);
-				if (collided)
-				{
-					obj->OnCollision(o);
-					o->OnCollision(obj);
-				}
-			}
-		}
+	{		
 		obj->Update((float)mDeltaTimeMS / 1000.0f);
 	}
 }

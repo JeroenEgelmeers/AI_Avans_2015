@@ -1,13 +1,27 @@
 #pragma once
 #include "FWApplication.h"
 #include <SDL_rect.h>
+#include "Vector.h"
 
+enum ObjectId { PREY, HUNTER };
 
 class IGameObject
 {
 public:
 	IGameObject() : mIsActive(true) { mApplication = FWApplication::GetInstance(); }
 
+	ObjectId mId;
+
+	Vector GetPosition() const {
+		return m_Position;
+	}
+
+	virtual Vector GetHeading() const {
+		return Vector();
+	}
+	virtual Vector GetVelocity() const {
+		return Vector();
+	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Abstract draw method </summary>
 	///
@@ -19,9 +33,9 @@ public:
 			return;
 
 		if (mWidth == 0 || mHeight == 0)
-			mApplication->DrawTexture(mTexture, mX, mY);
+			mApplication->DrawTexture(mTexture, (int)m_Position.x, (int)m_Position.y);
 		else
-			mApplication->DrawTexture(mTexture, mX, mY, mWidth, mHeight);
+			mApplication->DrawTexture(mTexture, (int)m_Position.x, (int)m_Position.y, mWidth, mHeight);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +65,7 @@ public:
 	/// <param name="x">	The uint32_t to process. </param>
 	/// <param name="y">	The uint32_t to process. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void SetOffset(uint32_t x, uint32_t y) { this->mX = x; this->mY = y; }
+	virtual void SetOffset(uint32_t x, uint32_t y) { this->m_Position.x = (float)x; this->m_Position.y = (float)y; }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// <summary>	Get the offset of this object (translation) </summary>
@@ -61,7 +75,7 @@ public:
 	/// <param name="x">	[in,out] The uint32_t &amp; to process. </param>
 	/// <param name="y">	[in,out] The uint32_t &amp; to process. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void GetOffset(uint32_t & x, uint32_t & y) const { x = this->mX; y = this->mY; };
+	virtual void GetOffset(uint32_t & x, uint32_t & y) const { x = (uint32_t)this->m_Position.x; y = (uint32_t)this->m_Position.y; };
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,7 +107,7 @@ public:
 	/// <param name="x">	The uint32_t to process. </param>
 	/// <param name="y">	The uint32_t to process. </param>
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	virtual void Translate(uint32_t x, uint32_t y) { this->mX += x; this->mY += y; }
+	virtual void Translate(uint32_t x, uint32_t y) { this->m_Position.x += x; this->m_Position.y += y; }
 
 	////************************************
 	//// Method:    SetColor
@@ -145,7 +159,7 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual float DistanceTo(IGameObject * obj)
 	{
-		return sqrt(pow((float)obj->GetBoundingBox().x - mX, 2) + pow((float)obj->GetBoundingBox().y - mY, 2));
+		return sqrt(pow((float)obj->GetBoundingBox().x - m_Position.x, 2) + pow((float)obj->GetBoundingBox().y - m_Position.y, 2));
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -160,7 +174,7 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual float DistanceTo(int x, int y)
 	{
-		return sqrt(pow((float)x - mX, 2) + pow((float)y - mY, 2));
+		return sqrt(pow((float)x - m_Position.x, 2) + pow((float)y - m_Position.y, 2));
 	}
 
 
@@ -174,8 +188,8 @@ public:
 	virtual SDL_Rect GetBoundingBox() const
 	{
 		SDL_Rect rect;
-		rect.x = mX;
-		rect.y = mY;
+		rect.x = (int)m_Position.x;
+		rect.y = (int)m_Position.y;
 		rect.w = mWidth;
 		rect.h = mHeight;
 
@@ -208,11 +222,10 @@ protected:
 	FWApplication * mApplication;
 	SDL_Texture * mTexture;
 	
-	uint32_t mX, mY;
+	Vector m_Position;
 	uint32_t mWidth, mHeight;
 	bool mIsActive;
 	//Color mColor;
-
 private:
 
 	SDL_Rect Intersection(const SDL_Rect& boundsA, const SDL_Rect& boundsB)

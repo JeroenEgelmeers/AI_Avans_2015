@@ -41,6 +41,9 @@
     <ClCompile Include="Prey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PreySteeringBehaviors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -91,6 +94,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Prey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PreySteeringBehaviors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
