@@ -22,9 +22,14 @@ IAnimalState* StateFactory::CreateNewSate(StateEnum number)
 	case eCowFleeFromHare:
 		return new CowFleeFromHare();
 		break;
+	case eCowSearchPill:
+		return new CowSearchPill();
+		break;
 	case eEndCowStates:
 		return new CowRest();
 		break;
+
+		// Hare states
 	case eHareWanderAround:
 		return new HareWanderAround();
 		break;
@@ -37,6 +42,8 @@ IAnimalState* StateFactory::CreateNewSate(StateEnum number)
 	case eHareChaseCow:
 		return new HareChaseCow();
 		break;
+	case eHareSearchGun:
+		return new HareSearchGun();
 	case eEndHareStates:
 		return new HareRest();
 		break;

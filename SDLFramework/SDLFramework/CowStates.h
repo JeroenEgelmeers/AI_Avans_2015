@@ -79,3 +79,19 @@ public:
 	virtual void CowFleeFromHare::Execute(Animal* Cow) override;
 	virtual void CowFleeFromHare::Exit(Animal* Cow) override;
 };
+
+class CowSearchPill : public IAnimalState
+{
+private:
+	//copy ctor and assignment should be private
+	CowSearchPill(const CowChaseHare&);
+	CowSearchPill& operator=(const CowSearchPill&);
+
+public:
+	CowSearchPill()
+	{}
+
+	virtual void CowSearchPill::Enter(Animal* Cow) override;
+	virtual void CowSearchPill::Execute(Animal* Cow) override;
+	virtual void CowSearchPill::Exit(Animal* Cow) override;
+};

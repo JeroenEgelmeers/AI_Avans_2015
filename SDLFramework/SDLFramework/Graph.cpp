@@ -318,4 +318,14 @@ int Graph::GetHareTargetNode()
 	return GetNodePosition(hare->getCurrentNode());
 }
 
+int Graph::GetPillTargetNode()
+{
+	return GetNodePosition(pill->getCurrentNode());
+}
+
+int Graph::GetGunTargetNode()
+{
+	return GetNodePosition(gun->getCurrentNode());
+}
+
 Graph::~Graph() { }
