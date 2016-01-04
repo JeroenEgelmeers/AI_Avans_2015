@@ -9,7 +9,7 @@ class MovingEntity : public IGameObject
 protected:
 	Vector m_Velocity;
 	Vector m_Heading;
-	Vector m_Side;
+	Vector m_Acceleration;
 
 	float f_Mass;
 	float m_MaxSpeed;
@@ -19,6 +19,7 @@ protected:
 	void TorroidBehaviour();
 
 	Vector Approach(Vector vGoal, Vector vCurrent, float dt);
+	void   ApplyForce(Vector force);
 public:
 	MovingEntity();
 	~MovingEntity();

@@ -11,9 +11,9 @@ Vector PreySteeringBehaviors::Cohesion(){
 	{
 		if (e != mParent && //Not checking self
 			e->mId == ObjectId::PREY && // Target is a prey
-			e->GetPosition().LengthTorus(mParent->GetPosition(), 1920, 1080) < cohesionDistance
+			e->GetPosition().LengthTorus(mParent->GetPosition(), mScreenHeight, mScreenWidth) < cohesionDistance
 			) {
-			centerOfMass += e->GetPosition();
+			centerOfMass + e->GetPosition();
 			neighbors++;
 		}
 
@@ -34,13 +34,14 @@ Vector PreySteeringBehaviors::Seperation() {
 	{
 		if (e != mParent && //Not checking self
 			e->mId == ObjectId::PREY && // Target is a prey
-			sqrt(e->GetPosition().LengthTorus(mParent->GetPosition(), 1920, 1080)) < seperationDistance
+			sqrt(e->GetPosition().LengthTorus(mParent->GetPosition(), mScreenHeight, mScreenWidth)) < seperationDistance
 			) {
 			Vector headingVector = mParent->GetPosition() - e->GetPosition();
 
 			float scale = headingVector.Length() / (float)sqrt(seperationDistance);
 			headingVector.Normalize();
-			forceVector += headingVector / scale;
+			headingVector / scale;
+			forceVector += headingVector;
 		}
 	}
 	
@@ -55,8 +56,9 @@ Vector PreySteeringBehaviors::Alignment() {
 	for each (IGameObject* e in mParent->GetLevel()->GetGameObjects())
 	{
 		if (e != mParent && //Not checking self
-			e->mId == ObjectId::PREY) // Target is a prey
-			{
+			e->mId == ObjectId::PREY && // Target is a prey
+			e->GetPosition().LengthTorus(mParent->GetPosition(), mScreenHeight, mScreenWidth) < cohesionDistance // Target is a prey
+			){
 				forceVector = mParent->GetHeading();
 				neighbors++;
 
@@ -74,6 +76,12 @@ Vector PreySteeringBehaviors::Alignment() {
 PreySteeringBehaviors::PreySteeringBehaviors(Prey* target)
 {
 	mParent = target;
+
+	mScreenWidth, mScreenHeight;
+
+	int *widthPtr = &mScreenWidth;
+	int *heightPtr = &mScreenHeight;
+	mParent->GetLevel()->GetWindowSize(widthPtr, heightPtr);
 }
 
 PreySteeringBehaviors::~PreySteeringBehaviors()

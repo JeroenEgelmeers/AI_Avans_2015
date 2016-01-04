@@ -16,21 +16,28 @@ void MovingEntity::TorroidBehaviour(){
 
 	mApplication->GetWindowSize(widthPtr, heightPtr);
 
-	if (m_Position.y >= screenHeight + 16) {
+	if (m_Position.y >= screenHeight + 32) {
 		m_Position.y = 0;
 	}
-	else if (m_Position.y < - 16) {
-		m_Position.y = screenHeight;
+	else if (m_Position.y < - 32) {
+		m_Position.y = (float)screenHeight;
 	}
 
-	if (m_Position.x > screenWidth + 16) {
+	if (m_Position.x > screenWidth + 32) {
 		m_Position.x = 0;
 	}
-	else if (m_Position.x < - 16) {
-		m_Position.x = screenWidth;
+	else if (m_Position.x < - 32) {
+		m_Position.x = (float)screenWidth;
 	}
 }
 
 Vector MovingEntity::Approach(Vector vGoal, Vector vCurrent, float dt) {
-	return vGoal*dt + vCurrent*(1.f - dt);
+	vGoal*dt;
+	vCurrent*(1.f - dt);
+	return vGoal + vCurrent;
+}
+
+void MovingEntity::ApplyForce(Vector force) {
+	force / f_Mass;
+	m_Acceleration += force;
 }

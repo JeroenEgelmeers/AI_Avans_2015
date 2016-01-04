@@ -69,7 +69,7 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 
 
 	/* initialize random seed: */
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	mGameObjects.push_back(new Prey());
 	mGameObjects.push_back(new Prey());
@@ -82,10 +82,6 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mGameObjects.push_back(new Prey());
 	mGameObjects.push_back(new Prey());	
 	mGameObjects.push_back(new Prey());
-	mGameObjects.push_back(new Prey());
-	mGameObjects.push_back(new Prey());
-	mGameObjects.push_back(new Prey());
-	mGameObjects.push_back(new Prey());	
 }
 
 void FWApplication::GetWindowSize(int *width, int *height) {

@@ -8,8 +8,11 @@ class PreySteeringBehaviors
 {
 private:
 	Prey* mParent;
-	int cohesionDistance = 550;
-	int seperationDistance = 500;
+	int cohesionDistance = 150;
+	int seperationDistance = 50;
+
+	int mScreenWidth;
+	int mScreenHeight;
 
 	Vector Cohesion();
 	Vector Seperation();
