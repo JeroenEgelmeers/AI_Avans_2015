@@ -23,6 +23,6 @@ void Pill::Draw()
 void Pill::ChangeState(Animal* animal)
 {
 		// TODO check if it's a cow!
-		animal->ChangeState(StateEnum::eHareChaseCow);
+		animal->ChangeState(StateEnum::eHareWanderAround);
 		TakenByAnimal = true;
 }

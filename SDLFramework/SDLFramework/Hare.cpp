@@ -27,7 +27,7 @@ StateEnum Hare::GetBestStateByRandom()
 	int randomMax = 0;
 	for (size_t i = 0; i < effectivity.size(); i++) { randomMax += effectivity.at(i).GetEffectivity(); }
 	int randomNmb = rand() % randomMax;
-
+	StateEffectivityUsed = true;
 	for (size_t i = 0; i < effectivity.size(); i++) {
 		if (effectivity.at(i).GetEffectivity() >= randomNmb) {
 			// If the random falls in the current effectivty, then take it!
@@ -43,7 +43,7 @@ StateEnum Hare::GetBestStateByRandom()
 						}else if(effectivity.at(i).ParentStates.at(i1).GetStateName() == StateEnum::eHareWanderAround) {
 							// Pill:
 							getItem = ItemEnum::ePill;
-						}	
+						}
 						return StateEnum::eHareSearchItem;
 					}
 					else {
@@ -122,6 +122,7 @@ void Hare::UpdateStateEffectivity()
 		break;
 	}
 
+	StateEffectivityUsed = false;
 	ResetTurnsMade();
 }
 

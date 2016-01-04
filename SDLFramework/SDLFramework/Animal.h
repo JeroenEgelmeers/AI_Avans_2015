@@ -41,6 +41,8 @@ public:
 
 	StateMachine2<Animal>* GetFSM() const { return m_pStateMachine; }
 	ItemEnum GetCurrentSetItem() { return getItem; }
+	ItemEnum SetCurrentSetItem(ItemEnum _item) { getItem = _item; }
+	void ClearItems() { getItem = ItemEnum::none; items.clear(); }
 	virtual void ChangeState(StateEnum state) = 0;
 
 	virtual void AddItem(Item* _item);
@@ -55,4 +57,5 @@ public:
 	virtual void SetItemTargetNode(int _target);
 	virtual StateEnum GetBestStateByRandom();
 	virtual void UpdateStateEffectivity();
+	bool StateEffectivityUsed;
 };

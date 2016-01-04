@@ -246,10 +246,16 @@ void FWApplication::UpdateGameObjects()
 					if (mHare->GetFSM()->GetNameOfCurrentState().find("HareSearchItem") != std::string::npos && 
 						mHare->GetCurrentSetItem() != NULL) {
 						if (mHare->GetCurrentSetItem() == ItemEnum::ePill) {
-							mHare->SearchItem(mPill);
+							if (!mPill->TakenByAnimal) {
+								mHare->SearchItem(mPill);
+								cout << "hare going to search the pill\n";
+							}
 						}
-						else if(mHare->GetCurrentSetItem() == ItemEnum::ePill){
-							mHare->SearchItem(mGun);
+						else if(mHare->GetCurrentSetItem() == ItemEnum::eGun){
+							if (!mGun->TakenByAnimal) {
+								mHare->SearchItem(mGun);
+								cout << "hare going to search the gun\n";
+							}
 						}
 					}
 				}
@@ -279,7 +285,8 @@ void FWApplication::UpdateGameObjects()
 	{
 		if (mGraph->GetEdge(edges.at(i))->GetFirst() == cowNode || mGraph->GetEdge(edges.at(i))->GetSecond() == cowNode)
 		{
-			if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
+			if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos &&
+				!mHare->StateEffectivityUsed)
 			{
 				mHare->GetBestStateByRandom();
 			}
@@ -293,10 +300,20 @@ void FWApplication::UpdateGameObjects()
 		{
 			if (!moveCow)
 			{
-				std::cout << "cow killed hare, respawn hare \n";
-				mHare->GetNewRandomNode();
-				mHare->ChangeState(StateEnum::eHareWanderAround);
-				mHare->UpdateStateEffectivity();
+				if (mPill->TakenByAnimal) {
+					std::cout << "hare killed cow by pill, respawn cow \n";
+					mCow->GetNewRandomNode();
+					mHare->ChangeState(StateEnum::eHareWanderAround);
+					mHare->ClearItems();
+					mHare->UpdateStateEffectivity();
+				}
+				else {
+					std::cout << "cow killed hare, respawn hare \n";
+					mHare->GetNewRandomNode();
+					mHare->ChangeState(StateEnum::eHareWanderAround);
+					mHare->ClearItems();
+					mHare->UpdateStateEffectivity();
+				}
 				//mCow->ChangeState(StateEnum::eCowWanderAround);
 			}
 		}
