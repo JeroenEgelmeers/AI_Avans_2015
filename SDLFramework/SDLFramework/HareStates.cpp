@@ -22,7 +22,14 @@ void HareWanderAround::Execute(Animal* hare)
 	}
 	else
 	{
-		hare->ChangeState(StateEnum::eHareRest);
+		std::random_device dev;
+		std::default_random_engine dre(dev());
+		std::uniform_int_distribution<int> dist1(1, 100);
+		int temp = dist1(dre);
+		if (temp < 51)
+			hare->ChangeState(StateEnum::eHareRest);
+		else
+			hare->ChangeState(StateEnum::eHareSearchGun);
 	}
 }
 
@@ -74,7 +81,6 @@ void HareFleeFromCow::Execute(Animal* hare)
 		int targetNode = hare->GetGraph()->GetFarthestHeuristicNode(hare->GetGraph()->GetHareTargetNode());
 		int path = hare->GetGraph()->AStar(hare->GetGraph()->GetCowTargetNode(), targetNode);
 		hare->setCurrentNode(hare->GetGraph()->GetNode(path));
-
 	}
 }
 
@@ -95,3 +101,14 @@ void HareChaseCow::Execute(Animal* hare)
 }
 
 void HareChaseCow::Exit(Animal* hare) { }
+
+//------------------------------------------------------------------------methods for HareChaseCow
+void HareSearchGun::Enter(Animal* hare) {}
+
+void HareSearchGun::Execute(Animal* hare)
+{
+	int path = hare->GetGraph()->AStar(hare->GetGraph()->GetHareTargetNode(), hare->GetGraph()->GetGunTargetNode());
+	hare->setCurrentNode(hare->GetGraph()->GetNode(path));
+}
+
+void HareSearchGun::Exit(Animal* hare) {}

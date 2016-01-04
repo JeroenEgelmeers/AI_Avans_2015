@@ -83,6 +83,9 @@ FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
 	mPill = new Pill(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
 	mGun = new Gun(mGraph->GetNode((0 + (rand() % (int)(mGraph->GetNodes().size())))));
 
+	mGraph->SetPill(mPill);
+	mGraph->SetGun(mGun);
+
 	AddRenderable(mGraph);
 	AddRenderable(mCow);
 	AddRenderable(mHare);

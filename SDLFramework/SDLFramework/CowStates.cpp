@@ -28,7 +28,15 @@ void CowWanderAround::Enter(Animal* cow)
 
 void CowWanderAround::Execute(Animal* cow)
 {
-	cow->setCurrentNode(cow->GetGraph()->GetNode(cow->GetGraph()->GetNewNeighborNode(cow->GetGraph()->GetNodePosition(cow->getCurrentNode()))));
+	if (stateUpdatesDone < stateUpdates)
+	{
+		++stateUpdatesDone;
+		cow->setCurrentNode(cow->GetGraph()->GetNode(cow->GetGraph()->GetNewNeighborNode(cow->GetGraph()->GetNodePosition(cow->getCurrentNode()))));
+	}
+	else
+	{
+		cow->ChangeState(StateEnum::eCowSearchPill);
+	}
 }
 
 void CowWanderAround::Exit(Animal* cow)
@@ -100,3 +108,14 @@ void CowFleeFromHare::Exit(Animal* hare)
 	stateUpdates = 0;
 	stateUpdatesDone = 0;
 }
+
+// ------------------------------------------------------------------------methods for CowChaseHare
+void CowSearchPill::Enter(Animal* cow) {}
+
+void CowSearchPill::Execute(Animal* cow)
+{
+	int path = cow->GetGraph()->AStar(cow->GetGraph()->GetCowTargetNode(), cow->GetGraph()->GetPillTargetNode());
+	cow->setCurrentNode(cow->GetGraph()->GetNode(path));
+}
+
+void CowSearchPill::Exit(Animal* cow) {}

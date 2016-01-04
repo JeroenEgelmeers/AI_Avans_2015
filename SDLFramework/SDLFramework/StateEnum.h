@@ -7,6 +7,7 @@ enum StateEnum
 	eCowRest,
 	eCowFleeFromHare,
 	// Add cow state here
+	eCowSearchPill,
 
 	//Do not remove this item
 	eEndCowStates,
@@ -17,6 +18,7 @@ enum StateEnum
 	eHareRest,
 	eHareChaseCow,
 	// Add hare state here
+	eHareSearchGun,
 
 	//Do not remove this item
 	eEndHareStates,
