@@ -13,7 +13,7 @@ class Item;
 class Animal : public IGameObject
 {
 private: 
-	// stuff
+	int turnsMade;
 
 protected:
 	Graph* graph;
@@ -46,6 +46,9 @@ public:
 	virtual void AddItem(Item* _item);
 	virtual void RemoveItem(Item* _item);
 	virtual std::vector<Item*> GetItems();
+	int		TurnsMade() { return turnsMade; }
+	void	TurnMade() { turnsMade++; }
+	void	ResetTurnsMade() { turnsMade = 0; }
 
 	virtual void SearchItem(Item* _item) = 0;
 	virtual int GetItemTargetNode();

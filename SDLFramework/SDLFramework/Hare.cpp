@@ -22,8 +22,6 @@ Hare::Hare(Node * cNode)
 
 Hare::~Hare() {}
 
-
-
 StateEnum Hare::GetBestStateByRandom()
 {
 	int randomMax = 0;
@@ -55,21 +53,27 @@ StateEnum Hare::GetBestStateByRandom()
 			}
 			return effectivity.at(i).GetStateName();
 		}
+		randomNmb = (randomNmb - effectivity.at(i).GetEffectivity());
 	}
 	return StateEnum::eHareWanderAround;
 }
 
 void Hare::UpdateStateEffectivity()
 {
-	// TODO; Get current Turns and the switch header!
+	int turns = TurnsMade(); // Give the turns the hare stayed alive.
 
+	// Get current State
+	string stateName = this->GetFSM()->GetNameOfCurrentState();
+	StateEnum stateEnumCur = StateEnum::eHareRest;
+	if (stateName == "HareWanderAround")		{ stateEnumCur = StateEnum::eHareWanderAround;	}
+	else if (stateName == "HareFleeFromCow")	{ stateEnumCur = StateEnum::eHareFleeFromCow;	}
+	else if (stateName == "HareChaseCow")		{ stateEnumCur = StateEnum::eHareChaseCow;		}
+	else if (stateName == "HareSearchItem")		{ stateEnumCur = StateEnum::eHareSearchItem;	}
 
-	int turns = 0; // Give the turns the hare stayed alive.
-
-	switch (/*Give the Enum of current State*/) {
+	// Do the action of current state for Hare; Better with LinkedList but amazing structure not needed for KMINT.
+	switch (stateEnumCur) {
 	case StateEnum::eHareChaseCow:
 		// Update Search and (child: Weapon) Effectivity
-
 		if (turns < (effectivity.at(1).ParentStates.at(0).GetAvg()))
 		{
 			effectivity.at(1).ParentStates.at(0).AddToEffectivity(2);
@@ -82,6 +86,7 @@ void Hare::UpdateStateEffectivity()
 		effectivity.at(1).ParentStates.at(0).changeAvg((turns));
 		break;
 	case StateEnum::eHareFleeFromCow:
+		// Flee
 		if (turns < (effectivity.at(0).GetAvg()))
 		{
 			effectivity.at(0).AddToEffectivity(2);
@@ -116,11 +121,14 @@ void Hare::UpdateStateEffectivity()
 		// StateEnum::eHareRest: No action needed as it's not in the effectivity's
 		break;
 	}
+
+	ResetTurnsMade();
 }
 
 void Hare::Update(float dt)
 {
 	this->GetFSM()->CurrentState()->Execute(dynamic_cast<Animal*>(this));
+	TurnMade();
 }
 
 void Hare::Draw()

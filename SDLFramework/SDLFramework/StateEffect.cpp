@@ -3,7 +3,7 @@
 StateEffect::StateEffect(StateEnum _StateName)
 {
 	StateName	= _StateName;
-	Avg			= 10;
+	Avg			= 0;
 	Effectivity = 10;
 }
 
@@ -13,7 +13,7 @@ StateEffect::~StateEffect()
 
 int StateEffect::GetEffectivity()
 {
-	if (HasParents) {
+	if (HasParents()) {
 		int totalEffectivity = 0;
 		for (int i = 0; i < ParentStates.size(); i++) {
 			totalEffectivity = (totalEffectivity + ParentStates.at(i).GetEffectivity());
@@ -28,7 +28,13 @@ int StateEffect::GetEffectivity()
 void StateEffect::changeAvg(int _steps)
 {
 	// Should be better to hold a list and get the real AVG.
-	Avg = (Avg + _steps) / 2;
+	// If else to make sure the first will set the AVG.
+	if (Avg != 0) {
+		Avg = (Avg + _steps) / 2;
+	}
+	else {
+		Avg = _steps;
+	}
 }
 
 void StateEffect::AddToEffectivity(int addPoints)

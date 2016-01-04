@@ -213,12 +213,12 @@ void FWApplication::UpdateGameObjects()
 
 			-> VOORBEELD:
 			V-> De hare wordt gezien door de cow (staat er een node vanaf).
-			-> De hare beslist d.m.v. een random over de effectiviteit van alle states (3 in dit geval) welke state die pakt.
-			-> In eerste instantie hebben ze allemaal 10 dus rand(0,29)
-			-> Als het 8 is (voorbeeld) valt dit in de eerste state (de eerste state heeft er 10, 8 valt daarbinnen dus praten we over de 1e state.
+			V -> De hare beslist d.m.v. een random over de effectiviteit van alle states (3 in dit geval) welke state die pakt.
+			V -> In eerste instantie hebben ze allemaal 10 dus rand(0,29)
+			V -> Als het 8 is (voorbeeld) valt dit in de eerste state (de eerste state heeft er 10, 8 valt daarbinnen dus praten we over de 1e state.
 			-> Doe deze state TOT de hare dood is.
-			-> aantal turns (spatie balk) wordt bekeken en d.m.v. uitkomst een nieuw gemiddeld berekend.
-			-> Hoger dan de andere? Dan wordt er 2 aan de effectiviteit toegevoegd en bij de andere 1 verwijderd. Anders wordt er 2 af gehaald en bij de ander 1 opgeteld.
+			V -> aantal turns (spatie balk) wordt bekeken en d.m.v. uitkomst een nieuw gemiddeld berekend.
+			V -> Hoger dan de andere? Dan wordt er 2 aan de effectiviteit toegevoegd en bij de andere 1 verwijderd. Anders wordt er 2 af gehaald en bij de ander 1 opgeteld.
 
 			~ Begin weer opnieuw bij "VOORBEELD:".
 
@@ -281,7 +281,7 @@ void FWApplication::UpdateGameObjects()
 		{
 			if (mHare->GetFSM()->GetNameOfCurrentState().find("HareWanderAround") != std::string::npos)
 			{
-				mHare->ChangeState(StateEnum::eHareChaseCow);
+				mHare->GetBestStateByRandom();
 			}
 			break;
 		}
@@ -296,6 +296,7 @@ void FWApplication::UpdateGameObjects()
 				std::cout << "cow killed hare, respawn hare \n";
 				mHare->GetNewRandomNode();
 				mHare->ChangeState(StateEnum::eHareWanderAround);
+				mHare->UpdateStateEffectivity();
 				//mCow->ChangeState(StateEnum::eCowWanderAround);
 			}
 		}

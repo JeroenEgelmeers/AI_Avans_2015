@@ -27,6 +27,7 @@ int main(int args[])
 	bool lazyOn = false;
 	Uint32 lastLoopTime = 0;
 	Uint32 lastFpsTime = 0;
+	int	currentTurns = 0;
 
 	//while (true){}
 	while (application->IsRunning())
@@ -50,7 +51,6 @@ int main(int args[])
 						else
 						{
 							lazyOn = true;
-
 						}
 						break;
 						case SDLK_SPACE:
@@ -76,6 +76,7 @@ int main(int args[])
 			{
 				lastFpsTime = 0;
 				application->UpdateGameObjects();
+				currentTurns++;
 			}
 		}
 
