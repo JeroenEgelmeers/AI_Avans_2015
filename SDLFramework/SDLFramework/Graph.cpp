@@ -164,10 +164,9 @@ int Graph::GetFarthestHeuristicNode(int _currentNode)
 	float heuristic = 0;
 	for (size_t i = 0; i < this->GetNodes().size(); i++)
 	{
-		if (_currentNode == i)
+		if (_currentNode == i) {
 			++i; // skip, for entity is on this node
-
-		if ((*mTargetNode + *GetNode(i)).Length() > heuristic)
+		}else if ((*mTargetNode + *GetNode(i)).Length() > heuristic)
 		{
 			heuristic = (*mTargetNode + *GetNode(i)).Length();
 			targetNode = i;
