@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
   dslVersion="1.0.0.0"
   Id="38233cb7-b90f-4d07-b3c0-0de11a65ff16"
   name="Modeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -144,11 +144,11 @@
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="067bec08-d194-4319-96f5-e87114c1a36b"
+                Id="9668b083-4a7d-43e4-af59-d7894645dc2f"
                 isLeaf="false">
                 <decisionNodeMoniker
-                  Id="a4100532-9a4b-4555-b516-7bbc4cb674e7"
-                  LastKnownName="Decision1"
+                  Id="63e98523-9b77-4eca-93ce-047f524504dd"
+                  LastKnownName="Decision8"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -242,20 +242,11 @@
               </controlFlow>
               <controlFlow
                 Id="6bced880-2d3a-4321-9348-dfb75d5c2916"
-                guard="Killed by Hare"
+                guard="Hit by Gun or Pill from Hare"
                 isLeaf="false">
                 <opaqueActionMoniker
                   Id="1af8355f-c81b-4205-8845-9a39def22283"
                   LastKnownName="Respawn"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-              <controlFlow
-                Id="1c265593-5c3e-4190-ad47-9ccc6e8ea0a2"
-                guard="Hit by sleep pill"
-                isLeaf="false">
-                <mergeNodeMoniker
-                  Id="a80c717c-0d47-49aa-a0a2-930977f2709f"
-                  LastKnownName="Merge7"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>
@@ -503,57 +494,27 @@
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
-          <opaqueAction
-            Id="a3675669-1c27-4108-8f38-420ba91883b1"
-            name="Sleep"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="edf10c45-8631-4279-8f21-d0423acdee4b"
-                isLeaf="false">
-                <decisionNodeMoniker
-                  Id="387b04d9-c672-4044-90b2-084484fa244a"
-                  LastKnownName="Decision8"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <mergeNode
-            Id="a80c717c-0d47-49aa-a0a2-930977f2709f"
-            name="Merge7"
-            isLeaf="false">
-            <flowNodeTargets>
-              <controlFlow
-                Id="e162c7cd-de93-4f1b-bbae-aae31646711b"
-                isLeaf="false">
-                <opaqueActionMoniker
-                  Id="a3675669-1c27-4108-8f38-420ba91883b1"
-                  LastKnownName="Sleep"
-                  LastKnownLocation="Modeling.uml" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
           <decisionNode
-            Id="387b04d9-c672-4044-90b2-084484fa244a"
+            Id="63e98523-9b77-4eca-93ce-047f524504dd"
             name="Decision8"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow
-                Id="ccb01149-d58e-4c81-b896-bf6eb6d52487"
-                guard="5 turns in sleep"
+                Id="c570f65e-09e6-4a58-a3a6-9c878e43ff89"
+                guard="StateEffectivity Used"
                 isLeaf="false">
                 <mergeNodeMoniker
-                  Id="6e19e5fd-0ef4-4338-a335-2f12eab8e684"
-                  LastKnownName="Merge4"
+                  Id="c1c1146e-a5a8-4e58-b6fb-5f1697a9f1d7"
+                  LastKnownName="Merge1"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
               <controlFlow
-                Id="67d5a847-aaab-42ef-b2ab-5759d9a8dea4"
+                Id="8a52a28e-467e-49f0-9aae-3043b96e6283"
                 guard="Else"
                 isLeaf="false">
-                <mergeNodeMoniker
-                  Id="a80c717c-0d47-49aa-a0a2-930977f2709f"
-                  LastKnownName="Merge7"
+                <decisionNodeMoniker
+                  Id="a4100532-9a4b-4555-b516-7bbc4cb674e7"
+                  LastKnownName="Decision1"
                   LastKnownLocation="Modeling.uml" />
               </controlFlow>
             </flowNodeTargets>

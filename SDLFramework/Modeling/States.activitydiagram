@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="7a394aea-de11-4c5a-a6b6-945b2e67fabd" name="States" linkedPackageId="0b97c78c-fd55-4ed9-ab1e-698c83c278ae" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="7a394aea-de11-4c5a-a6b6-945b2e67fabd" name="States" linkedPackageId="0b97c78c-fd55-4ed9-ab1e-698c83c278ae" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
   <ownedCommentsInternal>
     <comment Id="a5dc2a6e-e5de-4a17-9bde-671c779c15a8">
       <elementDefinition Id="3f45f8e9-c52e-48fa-b5fa-bce0dbaa743f" />
@@ -78,9 +78,9 @@
           <opaqueAction Id="d388dd45-6a12-43a9-aaa8-d1df105a71cc" name="Wandering" isLeaf="false">
             <elementDefinition Id="93aa047d-f9f7-4aa8-bb24-c71c7aac65c1" />
             <flowNodeTargets>
-              <controlFlow Id="fa610969-3803-48b2-9bad-f492472c2d12" isLeaf="false">
-                <decisionNodeMoniker Id="ff4b4ab1-00a4-4538-9e1e-e89dd49cf76a" LastKnownName="Decision1" />
-                <elementDefinition Id="067bec08-d194-4319-96f5-e87114c1a36b" />
+              <controlFlow Id="2c72f6a8-0e62-4a28-b58e-7bd8055824f4" isLeaf="false">
+                <decisionNodeMoniker Id="930027c2-0272-4600-802e-3dbae0895612" LastKnownName="Decision8" />
+                <elementDefinition Id="9668b083-4a7d-43e4-af59-d7894645dc2f" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
@@ -130,13 +130,9 @@
                 <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
                 <elementDefinition Id="af303e9f-efb6-4029-9efa-5b5dbac522ee" />
               </controlFlow>
-              <controlFlow Id="77bf1942-d63e-466b-858e-be821f3f558b" guard="Killed by Hare" isLeaf="false">
+              <controlFlow Id="77bf1942-d63e-466b-858e-be821f3f558b" guard="Hit by Gun or Pill from Hare" isLeaf="false">
                 <opaqueActionMoniker Id="adceff21-f84c-40a1-947e-13db66587b0a" LastKnownName="Respawn" />
                 <elementDefinition Id="6bced880-2d3a-4321-9348-dfb75d5c2916" />
-              </controlFlow>
-              <controlFlow Id="0455fd3a-77cd-4ee6-b2bc-fee11a3791cb" guard="Hit by sleep pill" isLeaf="false">
-                <mergeNodeMoniker Id="38bb6321-271e-4ac0-8dc8-a8e2f2e74354" LastKnownName="Merge7" />
-                <elementDefinition Id="1c265593-5c3e-4190-ad47-9ccc6e8ea0a2" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
@@ -275,34 +271,16 @@
               </controlFlow>
             </flowNodeTargets>
           </mergeNode>
-          <opaqueAction Id="5ad9441c-2da3-40bf-b45c-d661f85a5919" name="Sleep" isLeaf="false">
-            <elementDefinition Id="a3675669-1c27-4108-8f38-420ba91883b1" />
+          <decisionNode Id="930027c2-0272-4600-802e-3dbae0895612" name="Decision8" isLeaf="false">
+            <elementDefinition Id="63e98523-9b77-4eca-93ce-047f524504dd" />
             <flowNodeTargets>
-              <controlFlow Id="8eb99bcf-2932-4d59-8276-df849c91c60e" isLeaf="false">
-                <decisionNodeMoniker Id="58dba850-73c6-44ee-bf90-da97b8e6c386" LastKnownName="Decision8" />
-                <elementDefinition Id="edf10c45-8631-4279-8f21-d0423acdee4b" />
+              <controlFlow Id="a5c6cc93-6781-4fe7-bf5a-08b6d4a88a15" guard="StateEffectivity Used" isLeaf="false">
+                <mergeNodeMoniker Id="c47ca2fd-fa98-472e-8fbd-bfcb417ca043" LastKnownName="Merge1" />
+                <elementDefinition Id="c570f65e-09e6-4a58-a3a6-9c878e43ff89" />
               </controlFlow>
-            </flowNodeTargets>
-          </opaqueAction>
-          <mergeNode Id="38bb6321-271e-4ac0-8dc8-a8e2f2e74354" name="Merge7" isLeaf="false">
-            <elementDefinition Id="a80c717c-0d47-49aa-a0a2-930977f2709f" />
-            <flowNodeTargets>
-              <controlFlow Id="66d0d992-0566-44f2-8686-d0ee9952de3e" isLeaf="false">
-                <opaqueActionMoniker Id="5ad9441c-2da3-40bf-b45c-d661f85a5919" LastKnownName="Sleep" />
-                <elementDefinition Id="e162c7cd-de93-4f1b-bbae-aae31646711b" />
-              </controlFlow>
-            </flowNodeTargets>
-          </mergeNode>
-          <decisionNode Id="58dba850-73c6-44ee-bf90-da97b8e6c386" name="Decision8" isLeaf="false">
-            <elementDefinition Id="387b04d9-c672-4044-90b2-084484fa244a" />
-            <flowNodeTargets>
-              <controlFlow Id="2ece4283-8486-48e2-a7bc-48f6e4997d9f" guard="5 turns in sleep" isLeaf="false">
-                <mergeNodeMoniker Id="7bfed7b5-25b0-4851-9ca4-538ebe12681b" LastKnownName="Merge4" />
-                <elementDefinition Id="ccb01149-d58e-4c81-b896-bf6eb6d52487" />
-              </controlFlow>
-              <controlFlow Id="ed207252-9ba1-4c4d-a4d1-fccf3e9191c8" guard="Else" isLeaf="false">
-                <mergeNodeMoniker Id="38bb6321-271e-4ac0-8dc8-a8e2f2e74354" LastKnownName="Merge7" />
-                <elementDefinition Id="67d5a847-aaab-42ef-b2ab-5759d9a8dea4" />
+              <controlFlow Id="23f2f024-ef23-43d1-8030-5e1cc5f2861c" guard="Else" isLeaf="false">
+                <decisionNodeMoniker Id="ff4b4ab1-00a4-4538-9e1e-e89dd49cf76a" LastKnownName="Decision1" />
+                <elementDefinition Id="8a52a28e-467e-49f0-9aae-3043b96e6283" />
               </controlFlow>
             </flowNodeTargets>
           </decisionNode>
