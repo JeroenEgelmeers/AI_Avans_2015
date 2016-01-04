@@ -65,10 +65,10 @@ void Hare::UpdateStateEffectivity()
 	// Get current State
 	string stateName = this->GetFSM()->GetNameOfCurrentState();
 	StateEnum stateEnumCur = StateEnum::eHareRest;
-	if (stateName == "HareWanderAround")		{ stateEnumCur = StateEnum::eHareWanderAround;	}
-	else if (stateName == "HareFleeFromCow")	{ stateEnumCur = StateEnum::eHareFleeFromCow;	}
-	else if (stateName == "HareChaseCow")		{ stateEnumCur = StateEnum::eHareChaseCow;		}
-	else if (stateName == "HareSearchItem")		{ stateEnumCur = StateEnum::eHareSearchItem;	}
+	if (stateName		== "HareWanderAround")		{ stateEnumCur = StateEnum::eHareWanderAround;	}
+	else if (stateName	== "HareFleeFromCow")	{ stateEnumCur = StateEnum::eHareFleeFromCow;	}
+	else if (stateName	== "HareChaseCow")		{ stateEnumCur = StateEnum::eHareChaseCow;		}
+	else if (stateName	== "HareSearchItem")		{ stateEnumCur = StateEnum::eHareSearchItem;	}
 
 	// Do the action of current state for Hare; Better with LinkedList but amazing structure not needed for KMINT.
 	switch (stateEnumCur) {

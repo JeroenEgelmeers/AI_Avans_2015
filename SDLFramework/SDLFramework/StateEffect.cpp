@@ -29,7 +29,7 @@ void StateEffect::changeAvg(int _steps)
 {
 	// Should be better to hold a list and get the real AVG.
 	// If else to make sure the first will set the AVG.
-	if (Avg != 0) {
+	if (Avg > 0) {
 		Avg = (Avg + _steps) / 2;
 	}
 	else {
